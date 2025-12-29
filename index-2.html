@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOMaLA | AI-Powered Digital Agency</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --boom-red: #FF4F4F;
+            --boom-cyan: #5CE1E6;
+            --boom-white: #FFFFFF;
+            --boom-dark: #1A1A1A;
+            --boom-darker: #0D0D0D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--boom-darker);
+            color: var(--boom-white);
+            overflow-x: hidden;
+        }
+
+        /* Custom cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--boom-cyan);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease, background 0.15s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor.hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            background: rgba(92, 225, 230, 0.2);
+        }
+
+        /* Noise texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--boom-darker), transparent);
+        }
+
+        .logo {
+            height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--boom-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--boom-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--boom-red);
+            color: var(--boom-white);
+            padding: 0.8rem 2rem;
+            border: none;
+            font-family: 'Anton', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--boom-cyan);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-cta:hover {
+            transform: scale(1.05);
+            color: var(--boom-dark);
+        }
+
+        .nav-cta:hover::before {
+            left: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: -20%;
+            width: 70%;
+            height: 100%;
+            background: var(--boom-red);
+            transform: skewX(-15deg);
+            z-index: -1;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: -50px;
+            width: 100px;
+            height: 60%;
+            background: var(--boom-cyan);
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 55%;
+            animation: slideUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(92, 225, 230, 0.15);
+            border: 1px solid var(--boom-cyan);
+            padding: 0.5rem 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            animation: slideUp 1s ease 0.2s forwards;
+            opacity: 0;
+            box-shadow: 0 0 15px rgba(92, 225, 230, 0.2);
+        }
+
+        .hero-tag::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--boom-cyan);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--boom-cyan);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3.5rem, 8vw, 7rem);
+            line-height: 0.95;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            animation: slideUp 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero h1 span {
+            color: var(--boom-cyan);
+            display: block;
+            text-shadow: 0 0 40px rgba(92, 225, 230, 0.4);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 500px;
+            margin-bottom: 3rem;
+            animation: slideUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: slideUp 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .btn-primary {
+            background: var(--boom-cyan);
+            color: var(--boom-dark);
+            padding: 1rem 2.5rem;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(92, 225, 230, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(92, 225, 230, 0.5);
+        }
+
+        .btn-primary svg {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover svg {
+            transform: translateX(5px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--boom-white);
+            padding: 1rem 2.5rem;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            border: 2px solid var(--boom-white);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--boom-white);
+            color: var(--boom-dark);
+        }
+
+        /* Floating elements */
+        .float-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .float-1 {
+            top: 20%;
+            right: 15%;
+            width: 60px;
+            height: 60px;
+            border: 3px solid var(--boom-cyan);
+            animation-delay: 0s;
+            box-shadow: 0 0 20px rgba(92, 225, 230, 0.4);
+        }
+
+        .float-2 {
+            bottom: 25%;
+            right: 25%;
+            width: 40px;
+            height: 40px;
+            background: var(--boom-cyan);
+            opacity: 0.7;
+            animation-delay: 1s;
+            box-shadow: 0 0 25px rgba(92, 225, 230, 0.5);
+        }
+
+        .float-3 {
+            top: 35%;
+            right: 35%;
+            width: 20px;
+            height: 20px;
+            background: var(--boom-white);
+            border-radius: 50%;
+            animation-delay: 2s;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 4rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            color: var(--boom-cyan);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+            text-shadow: 0 0 20px rgba(92, 225, 230, 0.5);
+        }
+
+        .section-title {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--boom-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--boom-red);
+            background: linear-gradient(135deg, rgba(255, 71, 71, 0.1), rgba(255, 71, 71, 0.02));
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--boom-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: var(--boom-cyan);
+        }
+
+        .service-icon svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--boom-white);
+        }
+
+        .service-card h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .service-card .arrow {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+        .service-card:hover .arrow {
+            opacity: 1;
+            transform: translateX(0);
+            border-color: var(--boom-cyan);
+        }
+
+        .service-card .arrow svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--boom-cyan);
+        }
+
+        /* Work/Case Studies Section */
+        .work {
+            padding: 8rem 4rem;
+            position: relative;
+            background: linear-gradient(180deg, var(--boom-darker) 0%, var(--boom-dark) 100%);
+        }
+
+        .work::before {
+            content: 'WORK';
+            position: absolute;
+            top: 5%;
+            right: -5%;
+            font-family: 'Anton', sans-serif;
+            font-size: 20vw;
+            color: rgba(255, 79, 79, 0.05);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .case-study {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .case-study:hover {
+            transform: translateY(-8px);
+            border-color: var(--boom-cyan);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(92, 225, 230, 0.1);
+        }
+
+        .case-study-media {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: var(--boom-dark);
+        }
+
+        .case-study-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease, filter 0.4s ease;
+            filter: grayscale(20%);
+        }
+
+        .case-study:hover .case-study-media img {
+            transform: scale(1.08);
+            filter: grayscale(0%);
+        }
+
+        .case-study-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, var(--boom-darker) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .case-study-video-indicator {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: var(--boom-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 79, 79, 0.4);
+        }
+
+        .case-study:hover .case-study-video-indicator {
+            background: var(--boom-cyan);
+            transform: scale(1.1);
+            box-shadow: 0 4px 30px rgba(92, 225, 230, 0.5);
+        }
+
+        .case-study-video-indicator svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--boom-white);
+            margin-left: 3px;
+        }
+
+        .case-study-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(13, 13, 13, 0.85);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--boom-cyan);
+            z-index: 5;
+            border: 1px solid rgba(92, 225, 230, 0.3);
+        }
+
+        .case-study-content {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .case-study-client {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .case-study:hover .case-study-client {
+            color: var(--boom-cyan);
+        }
+
+        .case-study-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .case-study-tag {
+            background: rgba(255, 79, 79, 0.15);
+            border: 1px solid rgba(255, 79, 79, 0.3);
+            padding: 0.4rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--boom-red);
+            transition: all 0.3s ease;
+        }
+
+        .case-study:hover .case-study-tag {
+            background: rgba(92, 225, 230, 0.15);
+            border-color: rgba(92, 225, 230, 0.3);
+            color: var(--boom-cyan);
+        }
+
+        .case-study-link {
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            width: 45px;
+            height: 45px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(-15px);
+            transition: all 0.4s ease;
+        }
+
+        .case-study:hover .case-study-link {
+            opacity: 1;
+            transform: translateX(0);
+            border-color: var(--boom-cyan);
+        }
+
+        .case-study-link svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--boom-cyan);
+        }
+
+        /* Featured/Hero case study */
+        .case-study.featured {
+            grid-column: span 2;
+        }
+
+        .case-study.featured .case-study-media {
+            aspect-ratio: 21/10;
+        }
+
+        .case-study.featured .case-study-client {
+            font-size: 2.2rem;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            background: var(--boom-dark);
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .video-modal.active .video-modal-content {
+            transform: scale(1);
+        }
+
+        .video-modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--boom-red);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .video-modal-close:hover {
+            background: var(--boom-cyan);
+        }
+
+        .video-modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--boom-white);
+        }
+
+        /* Responsive Work Section */
+        @media (max-width: 1200px) {
+            .work-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .case-study.featured {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .case-study.featured {
+                grid-column: span 1;
+            }
+            
+            .case-study.featured .case-study-media {
+                aspect-ratio: 16/10;
+            }
+            
+            .case-study.featured .case-study-client {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Process Section */
+        .process {
+            padding: 8rem 4rem;
+            background: var(--boom-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .process::before {
+            content: 'BOOM';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Anton', sans-serif;
+            font-size: 25vw;
+            color: rgba(0, 0, 0, 0.1);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .process .section-label {
+            color: var(--boom-cyan);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-step {
+            position: relative;
+            text-align: center;
+        }
+
+        .step-number {
+            font-family: 'Anton', sans-serif;
+            font-size: 6rem;
+            color: var(--boom-cyan);
+            line-height: 1;
+            margin-bottom: 1rem;
+            text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2), 0 0 30px rgba(92, 225, 230, 0.5);
+        }
+
+        .step-title {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .about-box {
+            position: absolute;
+            background: var(--boom-red);
+        }
+
+        .about-box-1 {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 0;
+        }
+
+        .about-box-2 {
+            width: 60%;
+            height: 60%;
+            bottom: 0;
+            right: 0;
+            background: var(--boom-cyan);
+        }
+
+        .about-text-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--boom-dark);
+            padding: 3rem;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .about-text-box .stat {
+            font-family: 'Anton', sans-serif;
+            font-size: 4rem;
+            color: var(--boom-cyan);
+            text-shadow: 0 0 30px rgba(92, 225, 230, 0.6);
+        }
+
+        .about-text-box .stat-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .about-content h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+        }
+
+        .about-content h2 span {
+            color: var(--boom-cyan);
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .about-feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .about-feature .check {
+            width: 24px;
+            height: 24px;
+            background: var(--boom-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .about-feature .check svg {
+            width: 14px;
+            height: 14px;
+            stroke: var(--boom-white);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 8rem 4rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--boom-dark), var(--boom-darker));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, var(--boom-red), transparent 30%);
+            animation: rotate 20s linear infinite;
+            opacity: 0.1;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Anton', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta h2 span {
+            color: var(--boom-cyan);
+        }
+
+        .cta p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            height: 30px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--boom-cyan);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--boom-cyan);
+            background: var(--boom-cyan);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--boom-white);
+        }
+
+        .footer-social a:hover svg {
+            stroke: var(--boom-dark);
+        }
+
+        /* Mobile Menu Button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--boom-white);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: 6rem 2rem 4rem;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-bg {
+                width: 120%;
+                right: -60%;
+                opacity: 0.3;
+            }
+
+            .services,
+            .process,
+            .cta {
+                padding: 4rem 2rem;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+                padding: 4rem 2rem;
+                gap: 3rem;
+            }
+
+            .about-visual {
+                height: 300px;
+            }
+
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .services-grid,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .step-number {
+                font-size: 4rem;
+            }
+        }
+
+        /* Scroll animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+
+    <nav>
+        <img src="logo.png" alt="BOOMaLA" class="logo">
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-cta">GET STARTED</button>
+        <button class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="float-element float-1"></div>
+        <div class="float-element float-2"></div>
+        <div class="float-element float-3"></div>
+        
+        <div class="hero-content">
+            <div class="hero-tag">AI-Powered Digital Agency</div>
+            <h1>Launch Your Brand<span>With a BOOM</span></h1>
+            <p>We blend cutting-edge AI with strategic creativity to build websites, craft content, and ignite digital marketing that makes your brand impossible to ignore.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary">
+                    LET'S TALK
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </a>
+                <a href="#services" class="btn-secondary">VIEW SERVICES</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="work" id="work">
+        <div class="section-header reveal">
+            <span class="section-label">Our Work</span>
+            <h2 class="section-title">Case Studies That Prove It</h2>
+        </div>
+        
+        <div class="work-grid">
+            <!-- Featured: Dr. Slava Shut - Physical Therapist -->
+            <div class="case-study featured reveal" data-video="https://www.instagram.com/dr.slavashut/?hl=en">
+                <div class="case-study-media">
+                    <img src="https://images.squarespace-cdn.com/content/v1/609e0d9c9be85e40d4f18af3/3ce4124f-fc55-4248-b60d-a31bc2acefe7/DEMYSTIFYING+CHRONIC+PAIN-2.png" alt="Dr. Slava Shut Physical Therapy Brand">
+                    <span class="case-study-category">Social Media Strategy</span>
+                    <div class="case-study-video-indicator">
+                        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                    </div>
+                </div>
+                <div class="case-study-content">
+                    <h3 class="case-study-client">Dr. Slava Shut</h3>
+                    <p class="case-study-desc">Social media strategy including podcasts for a physical therapist demystifying chronic pain. Built a comprehensive MasterMind course with branded materials and promotional videos.</p>
+                    <div class="case-study-services">
+                        <span class="case-study-tag">Social Media</span>
+                        <span class="case-study-tag">Podcast Strategy</span>
+                        <span class="case-study-tag">Course Design</span>
+                        <span class="case-study-tag">Video Production</span>
+                    </div>
+                    <a href="https://jonsklein.com/marketing/physical-therapist" target="_blank" class="case-study-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mini Mouthz -->
+            <div class="case-study reveal">
+                <div class="case-study-media">
+                    <img src="https://images.squarespace-cdn.com/content/v1/609e0d9c9be85e40d4f18af3/89d80437-2df6-4659-8963-f23368782a16/Screenshot+2024-01-10+at+12.29.07+PM.png" alt="Mini Mouthz Speech Therapy Brand">
+                    <span class="case-study-category">Brand Development</span>
+                </div>
+                <div class="case-study-content">
+                    <h3 class="case-study-client">Mini Mouthz</h3>
+                    <p class="case-study-desc">Full brand evolution for a speech and myofunctional practice. From logo to website, crafting an identity that grows with the business.</p>
+                    <div class="case-study-services">
+                        <span class="case-study-tag">Logo Design</span>
+                        <span class="case-study-tag">Website</span>
+                        <span class="case-study-tag">Brand Identity</span>
+                    </div>
+                    <a href="https://jonsklein.com/marketing/mini-mouthz" target="_blank" class="case-study-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tappets -->
+            <div class="case-study reveal">
+                <div class="case-study-media">
+                    <img src="https://images.squarespace-cdn.com/content/v1/609e0d9c9be85e40d4f18af3/dd34551b-3f5b-42a9-8e16-c4f653077152/Top+5_Page_1.png" alt="Tappets Kids Emotional Learning">
+                    <span class="case-study-category">Content Strategy</span>
+                </div>
+                <div class="case-study-content">
+                    <h3 class="case-study-client">Tappets</h3>
+                    <p class="case-study-desc">Social media content strategy for a science-backed program empowering kids to manage big feelings and express emotions.</p>
+                    <div class="case-study-services">
+                        <span class="case-study-tag">Social Media</span>
+                        <span class="case-study-tag">Content Strategy</span>
+                        <span class="case-study-tag">Educational</span>
+                    </div>
+                    <a href="https://jonsklein.com/marketing/tappets" target="_blank" class="case-study-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="section-header reveal">
+            <span class="section-label">What We Do</span>
+            <h2 class="section-title">Services That Ignite Growth</h2>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h3>AI-Powered Websites</h3>
+                <p>Custom-built sites with intelligent UX, blazing speed, and conversion-focused design that turn visitors into customers.</p>
+                <div class="arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+                </div>
+                <h3>Digital Marketing Assessment</h3>
+                <p>Comprehensive audits of your current digital presence with actionable insights and strategic roadmaps for growth.</p>
+                <div class="arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                </div>
+                <h3>Content Strategy & Plans</h3>
+                <p>AI-enhanced content calendars, brand voice development, and creative campaigns that resonate with your audience.</p>
+                <div class="arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+            </div>
+
+            <div class="service-card reveal">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+                <h3>Brand Launch Packages</h3>
+                <p>Full-service launch support including positioning, visual identity, messaging, and go-to-market strategies that make an impact.</p>
+                <div class="arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process" id="process">
+        <div class="section-header reveal">
+            <span class="section-label">How We Work</span>
+            <h2 class="section-title">Your Path to Launch</h2>
+        </div>
+        
+        <div class="process-steps">
+            <div class="process-step reveal">
+                <div class="step-number">01</div>
+                <h3 class="step-title">Discovery</h3>
+                <p class="step-desc">We dive deep into your brand, audience, and goals to uncover what makes you unique.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-number">02</div>
+                <h3 class="step-title">Strategy</h3>
+                <p class="step-desc">AI-powered insights meet creative strategy to build your custom roadmap.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-number">03</div>
+                <h3 class="step-title">Create</h3>
+                <p class="step-desc">We build, design, and craft every element with precision and personality.</p>
+            </div>
+            <div class="process-step reveal">
+                <div class="step-number">04</div>
+                <h3 class="step-title">Launch</h3>
+                <p class="step-desc">Go live with confidence. We ensure your brand hits the market with maximum impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-visual reveal">
+            <div class="about-box about-box-1"></div>
+            <div class="about-box about-box-2"></div>
+            <div class="about-text-box">
+                <div class="stat">100+</div>
+                <div class="stat-label">Brands Launched</div>
+            </div>
+        </div>
+        
+        <div class="about-content reveal">
+            <h2>We're Not Another<span> Generic Agency</span></h2>
+            <p>BOOMaLA was built for brands ready to break through the noise. We combine AI efficiency with human creativity to deliver results that don't just meet expectations—they shatter them.</p>
+            <p>Every brand has a story worth telling. We make sure yours gets heard.</p>
+            
+            <div class="about-features">
+                <div class="about-feature">
+                    <div class="check">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>AI-Enhanced Process</span>
+                </div>
+                <div class="about-feature">
+                    <div class="check">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>Conversion Focused</span>
+                </div>
+                <div class="about-feature">
+                    <div class="check">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>Fast Turnarounds</span>
+                </div>
+                <div class="about-feature">
+                    <div class="check">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <span>Strategic Partners</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="contact">
+        <div class="cta-content reveal">
+            <h2>Ready to Make<span> Some Noise?</span></h2>
+            <p>Let's turn your brand vision into a launch that gets attention.</p>
+            <a href="/cdn-cgi/l/email-protection#d2beb7a6a1b0bdbdbfa6bdb6b3ab92b5bfb3bbbefcb1bdbf" class="btn-primary">
+                START YOUR PROJECT
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <img src="logo.png" alt="BOOMaLA" class="footer-logo">
+            
+            <ul class="footer-links">
+                <li><a href="#work">Work</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Privacy</a></li>
+            </ul>
+            
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+                <a href="#" aria-label="Twitter">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .service-card, .case-study').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Scroll reveal
+        const reveals = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const revealTop = el.getBoundingClientRect().top;
+                const revealPoint = 150;
+
+                if (revealTop < windowHeight - revealPoint) {
+                    el.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if 
