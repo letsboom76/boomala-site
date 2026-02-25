@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | BOOMaLA</title>
+    <meta name="description" content="Got questions? We've got answers. Everything you need to know about working with BOOMaLA.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-hero { padding: 12rem 4rem 4rem; text-align: center; }
+        .faq-hero h1 { font-family: 'Anton', sans-serif; font-size: clamp(3rem, 6vw, 5rem); text-transform: uppercase; margin-bottom: 1.5rem; }
+        .faq-hero h1 span { color: var(--boom-cyan); }
+        .faq-hero p { font-size: 1.25rem; color: rgba(255, 255, 255, 0.8); max-width: 600px; margin: 0 auto; }
+        
+        .faq-section { padding: 4rem; }
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-category { margin-bottom: 4rem; }
+        .faq-category-title { font-family: 'Anton', sans-serif; font-size: 1.5rem; text-transform: uppercase; color: var(--boom-cyan); margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(92, 225, 230, 0.3); }
+        
+        .faq-accordion { border: 1px solid rgba(255, 255, 255, 0.1); margin-bottom: 1rem; }
+        .faq-question { width: 100%; background: var(--boom-dark); border: none; padding: 1.5rem 2rem; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .faq-question:hover { background: rgba(92, 225, 230, 0.05); }
+        .faq-question h3 { font-family: 'Anton', sans-serif; font-size: 1.1rem; text-transform: uppercase; color: var(--boom-white); margin: 0; }
+        .faq-question .icon { width: 24px; height: 24px; color: var(--boom-cyan); transition: transform 0.3s ease; }
+        .faq-accordion.active .faq-question .icon { transform: rotate(45deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-accordion.active .faq-answer { max-height: 500px; }
+        .faq-answer-content { padding: 1.5rem 2rem; color: rgba(255, 255, 255, 0.8); line-height: 1.8; background: var(--boom-darker); }
+        .faq-answer-content a { color: var(--boom-cyan); }
+        
+        .faq-cta { text-align: center; padding: 4rem; background: var(--boom-dark); margin-top: 2rem; }
+        .faq-cta h2 { font-family: 'Anton', sans-serif; font-size: 2rem; text-transform: uppercase; margin-bottom: 1rem; }
+        .faq-cta p { color: rgba(255, 255, 255, 0.7); margin-bottom: 2rem; }
+        
+        @media (max-width: 768px) {
+            .faq-hero, .faq-section { padding-left: 2rem; padding-right: 2rem; }
+            .faq-question { padding: 1.25rem 1.5rem; }
+            .faq-answer-content { padding: 1.25rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    
+    <nav>
+        <a href="index.html"><img src="logo.png" alt="BOOMaLA" class="logo"></a>
+        <ul class="nav-links">
+            <li><a href="work.html">BOOMs</a></li>
+            <li><a href="services.html">Plans</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html" class="active">FAQ</a></li>
+            <li><a href="contact.html">Connect</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">LET'S TALK</a>
+        <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+
+    <section class="faq-hero">
+        <h1>Got <span>Questions?</span></h1>
+        <p>We've got answers. If you don't see what you're looking for, just ask.</p>
+    </section>
+
+    <section class="faq-section">
+        <div class="faq-container">
+            
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">Getting Started</h2>
+                
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>What's the BOOMprint Audit?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            It's a complete audit of what patients see when they Google you. We check your website, reviews, social presence, local listings, and competitor positioning. You get a detailed report with exactly what's working, what's broken, and what to fix first. Starting at $500.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>How fast can you start?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Most projects kick off within a week of signing. BOOMprint Audits can start same-day. We move fast because we use AI to handle the grunt work, so you get Fortune 500-level thinking at startup speed.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>What if I'm not sure what I need?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            That's exactly what the assessment is for. We'll tell you what's working, what's not, and give you a prioritized list of what to tackle first. No pressure, no upsells—just honest advice on where to focus.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">Pricing & Process</h2>
+                
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>How much does a website cost?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Depends on what you need. A simple landing page might be $2,500. A full practice website with scheduling integration runs $5,000-$15,000. We'll give you an exact quote after we understand your goals. No surprises.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>Do you offer payment plans?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. For larger projects, we typically split it 50% upfront, 50% on completion. For ongoing work like content strategy, we do monthly retainers. We'll find something that works for your budget.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>What's your typical timeline?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            BOOMprint Audit: 48 hours. Landing page: 1-2 weeks. Full website: 4-6 weeks. Content strategy: 2-3 weeks for the initial plan. We're faster than most agencies because AI handles the repetitive stuff.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">Working Together</h2>
+                
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>What do you need from me?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            For the assessment: just your practice name and website. For bigger projects: access to your current platforms, any brand guidelines you have, and 30-60 minutes of your time for discovery. We do the heavy lifting.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>Do you work with practices outside LA?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Absolutely. Most of our work is done remotely anyway. We've worked with practices across the country. Video calls, email, shared docs—we make it easy no matter where you are.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>What makes you different from other agencies?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            20+ years of Fortune 500 experience (American Express, Volkswagen, Microsoft—the real stuff). AI-powered efficiency so you get results faster. And we actually understand healthcare marketing, not just marketing in general. We know what patients look for.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">Results & Support</h2>
+                
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>What kind of results can I expect?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Depends on where you're starting. Practices with outdated websites often see 2-3x more inquiries after a redesign. Better Google Business optimization can double your local visibility. We'll set specific goals based on your situation.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-accordion">
+                    <button class="faq-question">
+                        <h3>Do you provide ongoing support?</h3>
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Yes. Website projects include 30 days of support after launch. For ongoing work, we offer monthly retainers for content, social media, and digital marketing management. We're here as long as you need us.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <div class="faq-cta reveal">
+        <h2>Still Have Questions?</h2>
+        <p>We're happy to chat. No pressure, no sales pitch—just answers.</p>
+        <a href="contact.html" class="btn-primary">GET IN TOUCH
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <img src="logo.png" alt="BOOMaLA" class="footer-logo">
+            <ul class="footer-links">
+                <li><a href="work.html">BOOMs</a></li>
+                <li><a href="services.html">Plans</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contact.html">Connect</a></li>
+            </ul>
+            <div class="footer-social">
+                <a href="https://instagram.com/boom2boom_la" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://linkedin.com/company/boomala" target="_blank" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 BOOMaLA. All rights reserved.</p></div>
+    </footer>
+    
+    <script src="main.js"></script>
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordion = button.parentElement;
+                const isActive = accordion.classList.contains('active');
+                
+                // Close all
+                document.querySelectorAll('.faq-accordion').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked if it wasn't active
+                if (!isActive) {
+                    accordion.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
