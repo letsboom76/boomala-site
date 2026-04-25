@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOOMprint — Okhovat Law Group | Digital Audit & Strategic Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #f5f1e8;
+    --paper-warm: #ede5d3;
+    --accent: #ff4d2e;
+    --accent-deep: #c93617;
+    --gold: #c8a04a;
+    --grey-1: #2a2a2a;
+    --grey-2: #5a5a5a;
+    --grey-3: #8a8a8a;
+    --good: #1f7a3d;
+    --warn: #c8a04a;
+    --bad: #c93617;
+    --border: rgba(10, 10, 10, 0.12);
+    --shadow: 0 1px 2px rgba(10,10,10,0.04), 0 8px 24px rgba(10,10,10,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(255, 77, 46, 0.04), transparent 40%),
+      radial-gradient(circle at 85% 92%, rgba(200, 160, 74, 0.05), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ===== HEADER ===== */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 24px 0 20px;
+    margin-bottom: 0;
+  }
+
+  .masthead-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .brand .boom {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 10px 6px;
+    margin-right: 2px;
+    display: inline-block;
+  }
+
+  .meta-strip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--grey-2);
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .meta-strip span strong { color: var(--ink); }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding: 64px 0 56px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 32px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(48px, 7vw, 84px);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin-bottom: 28px;
+    max-width: 950px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-deep);
+  }
+
+  .hero-sub {
+    font-size: 19px;
+    color: var(--grey-1);
+    max-width: 680px;
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  .hero-prepared {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+
+  .hero-prepared div { display: flex; flex-direction: column; gap: 4px; }
+  .hero-prepared .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey-3);
+  }
+  .hero-prepared .value { color: var(--ink); font-weight: 500; }
+
+  /* ===== EXEC SUMMARY ===== */
+  .section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    margin-bottom: 48px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 56px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .section-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey-3);
+    margin-left: auto;
+  }
+
+  /* Score grid */
+  .scorecard {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--ink);
+    background: var(--paper-warm);
+    margin-bottom: 32px;
+  }
+
+  .score-cell {
+    padding: 24px 20px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .score-cell:last-child { border-right: none; }
+
+  .score-cell.headline {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .score-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .score-value {
+    font-family: 'Fraunces', serif;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .score-value sub {
+    font-size: 16px;
+    color: var(--grey-3);
+    font-weight: 400;
+  }
+
+  .score-cell.headline .score-value sub { color: rgba(245,241,232,0.5); }
+
+  .score-grade {
+    font-size: 12px;
+    color: var(--grey-2);
+    margin-top: 4px;
+  }
+  .score-cell.headline .score-grade { color: rgba(245,241,232,0.7); }
+
+  .grade-good { color: var(--good); font-weight: 600; }
+  .grade-warn { color: var(--warn); font-weight: 600; }
+  .grade-bad  { color: var(--bad);  font-weight: 600; }
+
+  .summary-prose {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    line-height: 1.5;
+    font-weight: 300;
+    color: var(--grey-1);
+    max-width: 880px;
+    margin-bottom: 24px;
+  }
+
+  .summary-prose strong { font-weight: 600; color: var(--ink); }
+
+  .verdict-box {
+    padding: 28px 32px;
+    background: var(--ink);
+    color: var(--paper);
+    border-left: 6px solid var(--accent);
+    margin-top: 24px;
+  }
+  .verdict-box .vlabel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .verdict-box .vtext {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* ===== FINDINGS ===== */
+  .finding {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 28px;
+    padding: 32px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .finding:last-child { border-bottom: none; }
+
+  .finding-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 36px;
+    color: var(--grey-3);
+    line-height: 1;
+    font-weight: 300;
+  }
+
+  .finding-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .tag-critical { background: var(--accent); color: white; }
+  .tag-high { background: var(--gold); color: var(--ink); }
+  .tag-medium { background: var(--ink); color: var(--paper); }
+  .tag-quick { background: var(--good); color: white; }
+
+  .finding-title {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+
+  .finding-body { font-size: 15px; color: var(--grey-1); line-height: 1.65; }
+  .finding-body p { margin-bottom: 12px; }
+  .finding-body p:last-child { margin-bottom: 0; }
+  .finding-body strong { color: var(--ink); font-weight: 600; }
+
+  .quote-block {
+    background: var(--paper-warm);
+    border-left: 3px solid var(--accent);
+    padding: 14px 20px;
+    margin: 14px 0;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--grey-1);
+  }
+
+  .quote-block .source {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--grey-3);
+    margin-top: 8px;
+  }
+
+  .fix-box {
+    margin-top: 16px;
+    padding: 18px 22px;
+    background: rgba(31, 122, 61, 0.06);
+    border: 1px solid rgba(31, 122, 61, 0.2);
+    border-radius: 2px;
+  }
+
+  .fix-box .fix-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--good);
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fix-box .fix-label::before {
+    content: '→';
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+  }
+
+  .fix-box .fix-text { font-size: 14px; color: var(--ink); }
+
+  /* ===== COMPETITIVE ===== */
+  .competitor-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .competitor-card {
+    border: 1px solid var(--border);
+    background: white;
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .competitor-card.you {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+    grid-column: 1 / -1;
+  }
+
+  .comp-name {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .comp-handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--grey-3);
+    margin-bottom: 16px;
+  }
+  .competitor-card.you .comp-handle { color: rgba(245,241,232,0.5); }
+
+  .comp-stats { display: flex; gap: 24px; margin-bottom: 14px; flex-wrap: wrap; }
+  .comp-stat { font-size: 13px; }
+  .comp-stat strong { display: block; font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; }
+
+  .comp-edge {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--grey-1);
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+  }
+  .competitor-card.you .comp-edge { color: rgba(245,241,232,0.85); border-top-color: rgba(245,241,232,0.2); }
+
+  /* ===== ROADMAP ===== */
+  .roadmap-track {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .roadmap-track::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    bottom: 12px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--gold), var(--ink));
+  }
+
+  .phase {
+    position: relative;
+    padding: 20px 0 32px;
+  }
+
+  .phase::before {
+    content: '';
+    position: absolute;
+    left: -34px;
+    top: 26px;
+    width: 14px;
+    height: 14px;
+    background: var(--paper);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+  }
+
+  .phase-when {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  .phase-title {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 14px;
+  }
+
+  .phase-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .phase-list li {
+    padding: 10px 0 10px 22px;
+    border-bottom: 1px dashed var(--border);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--grey-1);
+    position: relative;
+  }
+
+  .phase-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .phase-list li:last-child { border-bottom: none; }
+
+  .phase-list li strong { color: var(--ink); font-weight: 600; }
+
+  /* ===== KEYWORDS ===== */
+  .keyword-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  .keyword-table th, .keyword-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .keyword-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey-3);
+    background: var(--paper-warm);
+    font-weight: 600;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .keyword-table td.kw {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 12px;
+  }
+  .pill-hot { background: var(--accent); color: white; }
+  .pill-warm { background: var(--gold); color: var(--ink); }
+  .pill-cool { background: var(--grey-3); color: white; }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 0;
+    margin: 0 -32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: 'BOOMaLA';
+    position: absolute;
+    bottom: -60px;
+    right: -30px;
+    font-family: 'Fraunces', serif;
+    font-weight: 800;
+    font-size: 280px;
+    line-height: 1;
+    color: rgba(245, 241, 232, 0.04);
+    letter-spacing: -0.04em;
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .cta-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(36px, 5vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+
+  .cta-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+
+  .cta-body {
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(245,241,232,0.8);
+    max-width: 680px;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: 2px solid var(--accent);
+  }
+  .btn-primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--paper);
+    border: 2px solid var(--paper);
+  }
+  .btn-ghost:hover { background: var(--paper); color: var(--ink); transform: translateY(-2px); }
+
+  /* ===== FOOTER ===== */
+  .colophon {
+    padding: 40px 0 60px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--grey-3);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .container { padding: 0 20px; }
+    .scorecard { grid-template-columns: 1fr 1fr; }
+    .score-cell.headline { grid-column: 1 / -1; }
+    .competitor-grid { grid-template-columns: 1fr; }
+    .finding { grid-template-columns: 1fr; gap: 12px; }
+    .section-head { flex-wrap: wrap; }
+    .section-kicker { margin-left: 0; }
+  }
+
+  @media print {
+    body { background: white; }
+    body::before { display: none; }
+    .cta-section { background: white; color: var(--ink); }
+    .cta-section::before { display: none; }
+    .btn { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== MASTHEAD ===== -->
+<header class="masthead">
+  <div class="container masthead-inner">
+    <div class="brand"><span class="boom">BOOM</span>print<sup style="font-size:14px;color:var(--accent);font-weight:600;">™</sup></div>
+    <div class="meta-strip">
+      <span><strong>Report №</strong> 2026-04-OL01</span>
+      <span><strong>Issued</strong> April 24, 2026</span>
+      <span><strong>By</strong> BOOMaLA</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-tag">Digital Audit & Strategic Roadmap</div>
+    <h1>You're a top-tier family law firm. Your <em>website</em> doesn't say so.</h1>
+    <p class="hero-sub">A line-by-line read of okhovatlaw.com against the local Woodland Hills market — what's costing you cases, what's costing you hires, and the 10 moves that close the gap in 90 days.</p>
+    <div class="hero-prepared">
+      <div>
+        <span class="label">Prepared for</span>
+        <span class="value">Okhovat Law Group</span>
+      </div>
+      <div>
+        <span class="label">Subject domain</span>
+        <span class="value">okhovatlaw.com</span>
+      </div>
+      <div>
+        <span class="label">Market</span>
+        <span class="value">Woodland Hills, CA — Family Law</span>
+      </div>
+      <div>
+        <span class="label">Delivery</span>
+        <span class="value">24-hour BOOMprint™</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXECUTIVE SUMMARY ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <div class="section-title">Executive Summary</div>
+      <div class="section-kicker">The headline read</div>
+    </div>
+
+    <div class="scorecard">
+      <div class="score-cell headline">
+        <div class="score-label">Overall BOOM Score</div>
+        <div class="score-value">54<sub>/100</sub></div>
+        <div class="score-grade">Functional. Not competitive.</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Brand & Messaging</div>
+        <div class="score-value">62<sub>/100</sub></div>
+        <div class="score-grade grade-warn">Premium tone, weak proof</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Local SEO</div>
+        <div class="score-value">38<sub>/100</sub></div>
+        <div class="score-grade grade-bad">Invisible for key terms</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Conversion UX</div>
+        <div class="score-value">51<sub>/100</sub></div>
+        <div class="score-grade grade-warn">Friction at every step</div>
+      </div>
+      <div class="score-cell">
+        <div class="score-label">Trust & Proof</div>
+        <div class="score-value">42<sub>/100</sub></div>
+        <div class="score-grade grade-bad">Thin signals, copy errors</div>
+      </div>
+    </div>
+
+    <p class="summary-prose">Okhovat Law Group has done the hardest part: <strong>built a real practice with real expertise in a city full of family law firms.</strong> The site, however, reads like a placeholder for a firm still introducing itself — not a 10-year-old practice promising "elite representation for those who have everything to protect." There's a gap between who you are and what the page communicates, and that gap is where prospective clients are leaving.</p>
+
+    <div class="verdict-box">
+      <div class="vlabel">The verdict in one line</div>
+      <div class="vtext">The site is selling a Camry while the firm operates like a flagship. Close that gap and the same traffic converts at 2–3x.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOP 10 FINDINGS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">02</div>
+      <div class="section-title">Top 10 Findings</div>
+      <div class="section-kicker">Ranked by revenue impact</div>
+    </div>
+
+    <!-- Finding 1 -->
+    <div class="finding">
+      <div class="finding-num">01</div>
+      <div>
+        <span class="finding-tag tag-critical">Critical • Trust Killer</span>
+        <h3 class="finding-title">There's a copywriting error on your homepage about spousal support.</h3>
+        <div class="finding-body">
+          <p>The Spousal Support section opens with a paragraph about <strong>"the way people consume entertainment"</strong> and laws adapting to performances. It's leftover boilerplate from a Squarespace template — entertainment law copy that never got replaced.</p>
+          <div class="quote-block">
+            "The way people consume entertainment is constantly in flux, so the laws must adapt quickly. We strive to anticipate these changes so you can focus more on creating a performance of a lifetime."
+            <span class="source">Okhovat Law homepage — under "Spousal Support"</span>
+          </div>
+          <p>Anyone evaluating you for a high-stakes divorce will read that, freeze, and click away. <strong>This is the single most expensive sentence on your website.</strong> It says "they're not detail-oriented" — to people who are hiring you specifically because they need someone detail-oriented.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">Fix today, free</div>
+          <div class="fix-text">Replace with proper spousal support copy. We've drafted three variations for you in Section 6. 5 minutes, biggest single ROI on the site.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 2 -->
+    <div class="finding">
+      <div class="finding-num">02</div>
+      <div>
+        <span class="finding-tag tag-critical">Critical • Conversion</span>
+        <h3 class="finding-title">Two phone numbers. Three CTAs. Zero clarity.</h3>
+        <div class="finding-body">
+          <p>Your header shows <strong>(855) 654-6828</strong>. Your footer and Google listing show <strong>(818) 392-8010</strong>. The "Schedule a Consultation" button routes to a contact form. The hero CTA says "Learn More" and goes to your About page.</p>
+          <p>For a stressed person at 11pm trying to figure out whether their soon-to-be-ex can drain the joint account, this is paralysis. <strong>Family law converts on phone calls, not forms</strong> — and you're splitting attention across two numbers and three competing actions.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">One canonical phone number, sticky on mobile, paired with one "Free 15-minute consultation" CTA. Demote the form to a secondary option. Track which number converts and consolidate.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 3 -->
+    <div class="finding">
+      <div class="finding-num">03</div>
+      <div>
+        <span class="finding-tag tag-critical">Critical • Local SEO</span>
+        <h3 class="finding-title">You're invisible for the searches that pay your bills.</h3>
+        <div class="finding-body">
+          <p>For "<strong>family law attorney Woodland Hills</strong>" and "<strong>divorce lawyer Woodland Hills</strong>" — the queries that drive 80% of your potential client demand — Okhovat Law does not appear on page 1 of Google's organic results. Taub & Taub, Kraft Miles, Leon F. Bennett, and Vorzimer Masserman dominate. You're not even in the conversation.</p>
+          <p>Why? Three structural reasons:</p>
+          <p><strong>1. Thin page content.</strong> Your About page is 38 words. Your competitors run 1,200–2,500 words per practice page with FAQ schema, internal linking, and location modifiers.</p>
+          <p><strong>2. No practice area pages.</strong> "Areas of Practice" links to a single combined page rather than dedicated URLs for divorce, custody, spousal support, domestic violence. Google can't rank what doesn't exist.</p>
+          <p><strong>3. No location signals.</strong> "Woodland Hills," "San Fernando Valley," "Encino," "Tarzana," "Calabasas" appear barely or not at all in your body copy. Competitors mention these neighborhoods 15–40 times per page.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix — 60-day SEO sprint</div>
+          <div class="fix-text">Five dedicated practice pages (1,500+ words each), one location hub page, FAQ schema across the site, and Google Business Profile optimization. Detailed roadmap in Section 4.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 4 -->
+    <div class="finding">
+      <div class="finding-num">04</div>
+      <div>
+        <span class="finding-tag tag-high">High • Brand</span>
+        <h3 class="finding-title">"Elite Family Law" is the right promise. The page doesn't keep it.</h3>
+        <div class="finding-body">
+          <p>The hero copy makes a strong, premium claim: <em>"Representation for those who have everything to protect."</em> It positions Okhovat against the discount-divorce mills of the Valley. Smart. Differentiated. On-brand for high-net-worth divorce work.</p>
+          <p>But the page that follows doesn't deliver on it. There's no:</p>
+          <p>• Photography of attorneys, the Ventura Blvd office, or the courtroom<br>
+          • Case results, settlement figures, or outcome stats<br>
+          • Bar memberships, certifications, awards, or Super Lawyers badges<br>
+          • Press, recognition, speaking engagements<br>
+          • Client video testimonials (or any visible testimonials on homepage)</p>
+          <p>The hero says "elite." Everything beneath it says "we exist." <strong>High-net-worth clients buy proof, not adjectives.</strong></p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">Trust strip below the hero: 4–6 logos/badges (CA Bar, Super Lawyers, AVVO rating, professional associations). Three case-result cards with anonymized outcomes. One 60-second attorney video. Built in 2 weeks.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 5 -->
+    <div class="finding">
+      <div class="finding-num">05</div>
+      <div>
+        <span class="finding-tag tag-high">High • Conversion</span>
+        <h3 class="finding-title">There is no path on this site for people in crisis.</h3>
+        <div class="finding-body">
+          <p>Family law clients arrive in three emotional states: <strong>planning</strong> (researching, 6+ weeks out), <strong>deciding</strong> (1–4 weeks out, comparing firms), and <strong>crisis</strong> (right now — served papers, restraining order, kid taken). Each requires a different journey.</p>
+          <p>Your homepage offers exactly one path: scroll → read → schedule. There's no "I was just served," no "emergency restraining order," no live chat, no after-hours number, no quick-assess intake. Crisis traffic — your highest-intent and highest-value segment — bounces immediately.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">Add a persistent header strip: "Just served? Restraining order? Call (818) 392-8010 — answered 24/7." Or, deploy an AI intake chatbot that captures leads outside business hours and routes urgent matters to your on-call attorney. (This is BOOMaLA's AI Operating System territory — happy to scope it.)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 6 -->
+    <div class="finding">
+      <div class="finding-num">06</div>
+      <div>
+        <span class="finding-tag tag-high">High • Trust</span>
+        <h3 class="finding-title">Your testimonials page is doing nothing for you.</h3>
+        <div class="finding-body">
+          <p>Testimonials are buried in the nav and not surfaced on the homepage. When prospective clients are choosing between you and three other Woodland Hills firms with 30–60 years of combined experience and dozens of visible reviews, your testimonial silence reads as absence of social proof.</p>
+          <p>Competitor benchmarks: Kraft Miles surfaces named client quotes on every major page. Leon F. Bennett embeds Google reviews directly in their FAQ schema for SEO double-duty.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">Pull 3–5 of your strongest testimonials onto the homepage, just below the practice areas. Add a Google Reviews widget showing your live star rating. Build a system to request reviews from every closed case.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 7 -->
+    <div class="finding">
+      <div class="finding-num">07</div>
+      <div>
+        <span class="finding-tag tag-medium">Medium • Visual</span>
+        <h3 class="finding-title">Stock photography is undermining the "Elite" positioning.</h3>
+        <div class="finding-body">
+          <p>The hero image and section visuals are generic Pexels stock — recognizable to anyone who's spent time on Squarespace. For a firm charging premium rates to high-asset clients, stock imagery signals "we haven't invested in our own brand."</p>
+          <p>The Edmund Burke quote ("We must all obey the great law of change…") is a thoughtful touch, but it's resting on a stock photo of clouds. It dilutes rather than elevates.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">Half-day photo shoot at the Ventura Blvd office: attorneys, conference room, the building. ~$1,500 for a full library. Or use AI image generation (Midjourney) for branded illustration that's consistent and unique. We can scope either path.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 8 -->
+    <div class="finding">
+      <div class="finding-num">08</div>
+      <div>
+        <span class="finding-tag tag-medium">Medium • SEO</span>
+        <h3 class="finding-title">Your meta titles and descriptions are blank or default.</h3>
+        <div class="finding-body">
+          <p>Your About page tab title reads <em>"About — Okhovat Law Group."</em> That's Squarespace's auto-generated default. There's no meta description. There's no Open Graph image. Share your URL on LinkedIn or in a text message and you get a generic preview.</p>
+          <p>Every page should have a hand-written title (under 60 characters, keyword-front-loaded) and meta description (under 160 characters, with a CTA). This is 30 minutes of work for 100% of pages and a real ranking signal.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">We've drafted titles and descriptions for all 6 of your pages. See Section 6.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 9 -->
+    <div class="finding">
+      <div class="finding-num">09</div>
+      <div>
+        <span class="finding-tag tag-quick">Quick Win</span>
+        <h3 class="finding-title">You don't have a blog. You should.</h3>
+        <div class="finding-body">
+          <p>Family law is one of the most search-driven verticals on the internet. People Google "what is community property in California" before they Google an attorney. Every blog post is a potential intake — and your competitors are publishing 2–4 per month.</p>
+          <p>You have 20+ years of legal expertise sitting in your team's heads, undocumented. AI changes this calculus completely: a single attorney interview can be turned into 4–6 polished posts in a week with AI assistance.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">Launch with 12 cornerstone posts targeting your highest-value keywords. AI-drafted, attorney-reviewed, published bi-weekly. Each post includes FAQ schema, internal linking, and a strong CTA. We do this for you.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finding 10 -->
+    <div class="finding">
+      <div class="finding-num">10</div>
+      <div>
+        <span class="finding-tag tag-quick">Quick Win</span>
+        <h3 class="finding-title">Your name is your strongest asset. Use it.</h3>
+        <div class="finding-body">
+          <p>"Okhovat" is a memorable, distinctive name. Many of your competitors are second- or third-generation Anglo names that blend together (Bennett, Brown, Stanton, Kraft, Miles). Your name is your moat — it's instantly searchable, instantly differentiated, and signals a specific cultural fluency that matters in the diverse San Fernando Valley market.</p>
+          <p>But the site never tells the founder's story. There's no founder bio, no "why we started this firm," no personal connection point. The Persian/Iranian-American community in the Valley alone is a meaningful niche — and one most competitors can't credibly serve.</p>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">The fix</div>
+          <div class="fix-text">Founder story page (or expanded About page) with attorney bios, the firm's origin, and language capabilities prominently displayed. If the firm offers consultations in Farsi, that should be a homepage feature.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== COMPETITIVE LANDSCAPE ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">03</div>
+      <div class="section-title">Competitive Landscape</div>
+      <div class="section-kicker">Who you're really up against</div>
+    </div>
+
+    <p style="font-size:17px; color:var(--grey-1); margin-bottom:32px; max-width:780px; line-height:1.6;">A snapshot of the four firms most likely to compete for the same client searches in your zip code. The good news: <strong>none of them have a clear digital edge.</strong> The bad news: they all have more authority signals than you do today.</p>
+
+    <div class="competitor-grid">
+
+      <div class="competitor-card you">
+        <div class="comp-name">Okhovat Law Group</div>
+        <div class="comp-handle">okhovatlaw.com — YOUR FIRM</div>
+        <div class="comp-stats">
+          <div class="comp-stat"><strong>2015</strong>Founded</div>
+          <div class="comp-stat"><strong>54</strong>BOOM Score</div>
+          <div class="comp-stat"><strong>Page 2+</strong>Local search</div>
+        </div>
+        <div class="comp-edge"><strong>Your edge:</strong> Distinctive brand name, premium positioning, prime Ventura Blvd location, modern (if underbuilt) site. <strong>Their edge over you:</strong> Years of content, reviews, authority signals, and refined intake systems.</div>
+      </div>
+
+      <div class="competitor-card">
+        <div class="comp-name">Kraft Miles, A Law Corporation</div>
+        <div class="comp-handle">kraftlawoffices.com</div>
+        <div class="comp-stats">
+          <div class="comp-stat"><strong>60+</strong>Combined yrs</div>
+          <div class="comp-stat"><strong>Board Cert.</strong>Family law</div>
+          <div class="comp-stat"><strong>Page 1</strong>Local search</div>
+        </div>
+        <div class="comp-edge">Strong personal-brand site (Joy Kraft Miles featured prominently). Heavy use of named testimonials. Multiple location pages targeting Woodland Hills, Encino, Calabasas.</div>
+      </div>
+
+      <div class="competitor-card">
+        <div class="comp-name">Law Offices of Leon F. Bennett</div>
+        <div class="comp-handle">leonfbennettlaw.com</div>
+        <div class="comp-stats">
+          <div class="comp-stat"><strong>35+</strong>Years</div>
+          <div class="comp-stat"><strong>FAQ Schema</strong>SEO</div>
+          <div class="comp-stat"><strong>Page 1</strong>Local search</div>
+        </div>
+        <div class="comp-edge">Best technical SEO of the local set. Extensive FAQ-driven content with structured data. Heavy neighborhood targeting (Encino, Sherman Oaks, Tarzana, Northridge).</div>
+      </div>
+
+      <div class="competitor-card">
+        <div class="comp-name">Taub & Taub, P.C.</div>
+        <div class="comp-handle">taubfamilylaw.com</div>
+        <div class="comp-stats">
+          <div class="comp-stat"><strong>40+</strong>Combined yrs</div>
+          <div class="comp-stat"><strong>Strong</strong>Brand recall</div>
+          <div class="comp-stat"><strong>Page 1</strong>Local search</div>
+        </div>
+        <div class="comp-edge">Family-name brand, heavy emphasis on "tireless" and "strategic" copy. Their site looks dated — your modern Squarespace beats their visual UX, but their content depth wins on Google.</div>
+      </div>
+
+      <div class="competitor-card">
+        <div class="comp-name">Vorzimer Masserman</div>
+        <div class="comp-handle">vmfirm.com</div>
+        <div class="comp-stats">
+          <div class="comp-stat"><strong>1994</strong>Founded</div>
+          <div class="comp-stat"><strong>Niche</strong>Fertility + Family</div>
+          <div class="comp-stat"><strong>Page 1</strong>Local search</div>
+        </div>
+        <div class="comp-edge">Owns a profitable niche (fertility/surrogacy + family law) that gives them national reach. Their lesson for you: <em>specialization wins.</em> A clear sub-niche could be your moat.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== KEYWORD OPPORTUNITIES ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">04</div>
+      <div class="section-title">Keyword Opportunities</div>
+      <div class="section-kicker">Where you can actually rank</div>
+    </div>
+
+    <p style="font-size:17px; color:var(--grey-1); margin-bottom:24px; max-width:780px; line-height:1.6;">The smart play isn't to fight Kraft Miles for "<em>Woodland Hills divorce attorney</em>." That's a 24-month battle. The smart play is owning the long-tail searches your competitors are too lazy to target.</p>
+
+    <table class="keyword-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Intent</th>
+          <th>Difficulty</th>
+          <th>Recommended Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="kw">Woodland Hills divorce attorney</td>
+          <td>High commercial</td>
+          <td><span class="pill pill-hot">Hard</span></td>
+          <td>Long game. Optimize homepage but don't expect quick wins.</td>
+        </tr>
+        <tr>
+          <td class="kw">Persian / Farsi-speaking divorce attorney LA</td>
+          <td>High commercial</td>
+          <td><span class="pill pill-warm">Medium</span></td>
+          <td><strong>Own this.</strong> Few competitors. Cultural niche moat.</td>
+        </tr>
+        <tr>
+          <td class="kw">High-asset divorce attorney San Fernando Valley</td>
+          <td>High commercial</td>
+          <td><span class="pill pill-warm">Medium</span></td>
+          <td>Build a dedicated landing page. Premium audience match.</td>
+        </tr>
+        <tr>
+          <td class="kw">Emergency restraining order Woodland Hills</td>
+          <td>Crisis / urgent</td>
+          <td><span class="pill pill-warm">Medium</span></td>
+          <td>Crisis-intent traffic = highest conversion. Build a 24/7 page.</td>
+        </tr>
+        <tr>
+          <td class="kw">How is community property divided in California</td>
+          <td>Informational</td>
+          <td><span class="pill pill-cool">Low</span></td>
+          <td>Cornerstone blog post. Funnel to consult.</td>
+        </tr>
+        <tr>
+          <td class="kw">Calabasas family law attorney</td>
+          <td>High commercial</td>
+          <td><span class="pill pill-warm">Medium</span></td>
+          <td>Location landing page. You're 7 minutes away.</td>
+        </tr>
+        <tr>
+          <td class="kw">Move-away custody case California</td>
+          <td>High commercial</td>
+          <td><span class="pill pill-warm">Medium</span></td>
+          <td>Specific, valuable, underserved query. Build content.</td>
+        </tr>
+        <tr>
+          <td class="kw">Postnuptial agreement Los Angeles</td>
+          <td>Mid commercial</td>
+          <td><span class="pill pill-cool">Low</span></td>
+          <td>Quick win. Build a 1,500-word page.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== ROADMAP ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">05</div>
+      <div class="section-title">90-Day Roadmap</div>
+      <div class="section-kicker">From audit to advantage</div>
+    </div>
+
+    <div class="roadmap-track">
+
+      <div class="phase">
+        <div class="phase-when">Week 1 — Triage</div>
+        <h3 class="phase-title">Stop the bleeding.</h3>
+        <ul class="phase-list">
+          <li><strong>Replace the broken Spousal Support paragraph.</strong> 5 minutes. Largest ROI on this page.</li>
+          <li><strong>Consolidate to one phone number.</strong> Pick (818) 392-8010 (the local one). Update header, footer, GBP.</li>
+          <li><strong>Add meta titles + descriptions</strong> across all 6 pages. (Drafts in Section 6.)</li>
+          <li><strong>Submit/refresh Google Business Profile</strong> with current photos, hours, services, posts.</li>
+          <li><strong>Add 3 testimonials to homepage</strong> below practice areas.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-when">Weeks 2–4 — Foundation</div>
+        <h3 class="phase-title">Rebuild the conversion machine.</h3>
+        <ul class="phase-list">
+          <li><strong>Hero rewrite</strong> — keep "Elite Family Law" promise, deliver proof beneath it.</li>
+          <li><strong>Trust strip</strong> — 4–6 badges/logos beneath hero (Bar, Super Lawyers, etc.).</li>
+          <li><strong>Crisis bar</strong> — persistent header for urgent matters with 24/7 phone.</li>
+          <li><strong>Five practice area pages</strong> (1,500+ words each): Divorce, Custody, Spousal Support, Domestic Violence, High-Asset Divorce.</li>
+          <li><strong>Founder/team story</strong> — who you are, why you do this, language capabilities.</li>
+          <li><strong>Photo shoot or AI imagery</strong> to replace stock.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-when">Weeks 5–8 — Authority</div>
+        <h3 class="phase-title">Become findable.</h3>
+        <ul class="phase-list">
+          <li><strong>Launch the blog</strong> — first 6 cornerstone posts targeting long-tail family law queries.</li>
+          <li><strong>FAQ schema</strong> across all practice pages for SERP feature eligibility.</li>
+          <li><strong>Location landing pages</strong> for Calabasas, Encino, Tarzana, Sherman Oaks.</li>
+          <li><strong>Build review-request automation</strong> — every closed case triggers a Google review ask.</li>
+          <li><strong>Submit to legal directories</strong> — Avvo, Justia, Findlaw, Super Lawyers nominee.</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-when">Weeks 9–12 — Multiply</div>
+        <h3 class="phase-title">Turn the firm into a system.</h3>
+        <ul class="phase-list">
+          <li><strong>AI intake chatbot</strong> — captures leads 24/7, qualifies, books consults.</li>
+          <li><strong>Email nurture sequence</strong> for form-fill leads who don't book immediately.</li>
+          <li><strong>Paid search pilot</strong> — $1,500/mo Google Ads on 3 highest-intent keywords with conversion tracking.</li>
+          <li><strong>Monthly content engine</strong> — 4 blog posts, 8 social posts, 1 client story per month, AI-assisted, attorney-reviewed.</li>
+          <li><strong>Quarterly review</strong> — measure traffic, calls, conversions, refine.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPENDIX ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">06</div>
+      <div class="section-title">Appendix: Ready-to-Ship Copy</div>
+      <div class="section-kicker">Use this today, free</div>
+    </div>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin-bottom:16px; font-weight:600;">A. Replacement Spousal Support Paragraph</h3>
+    <div class="quote-block" style="font-style:normal; border-left-color:var(--good);">
+      <strong>Spousal Support</strong><br><br>
+      Few financial questions in a divorce carry the weight of spousal support. The outcome reshapes both households for years — and in long marriages, sometimes for life. California courts award support to balance the financial gap between spouses and preserve the standard of living established during the marriage. For marriages under ten years, support typically extends for half the length of the marriage. For marriages over ten years, courts can order indefinite support based on need and ability to pay. Okhovat Law Group represents clients on both sides of these proceedings — those seeking support and those defending against unreasonable claims — with the precision and discretion these decisions demand.
+    </div>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin: 36px 0 16px; font-weight:600;">B. Meta Titles & Descriptions (All 6 Pages)</h3>
+
+    <table class="keyword-table">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Title (≤60 char)</th>
+          <th>Meta Description (≤160 char)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="kw">Home</td>
+          <td>Woodland Hills Family Law Attorney | Okhovat Law Group</td>
+          <td>Elite family law representation in Woodland Hills. Divorce, custody, high-asset cases. Decades of California experience. Free 15-min consultation.</td>
+        </tr>
+        <tr>
+          <td class="kw">About</td>
+          <td>About Okhovat Law Group | Founded 2015, Woodland Hills</td>
+          <td>Founded in 2015 on Ventura Blvd, Okhovat Law Group represents California families with assertive, compassionate, multi-language family law counsel.</td>
+        </tr>
+        <tr>
+          <td class="kw">Our Team</td>
+          <td>Our Family Law Attorneys | Okhovat Law Group, Woodland Hills</td>
+          <td>Meet the attorneys behind Okhovat Law Group — California family law specialists serving Woodland Hills and the San Fernando Valley.</td>
+        </tr>
+        <tr>
+          <td class="kw">FAQ</td>
+          <td>California Family Law FAQ | Okhovat Law Group</td>
+          <td>Common questions about divorce, custody, support, and restraining orders in California — answered by Woodland Hills family law attorneys.</td>
+        </tr>
+        <tr>
+          <td class="kw">Testimonials</td>
+          <td>Client Testimonials | Okhovat Law Group, Woodland Hills</td>
+          <td>What clients say about working with Okhovat Law Group on their California family law matters. Read reviews from real cases.</td>
+        </tr>
+        <tr>
+          <td class="kw">Contact</td>
+          <td>Contact Okhovat Law Group | Woodland Hills Family Law</td>
+          <td>Speak with a Woodland Hills family law attorney today. Call (818) 392-8010 or schedule online. Same-day consultations available.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-family:'Fraunces',serif; font-size:22px; margin: 36px 0 16px; font-weight:600;">C. Hero Headline Options (To Replace Current)</h3>
+
+    <div style="display:grid; grid-template-columns:1fr; gap:14px;">
+      <div class="quote-block" style="border-left-color:var(--accent);">
+        <strong>Option 1 — Premium / Direct</strong><br>
+        "Family law for clients who can't afford the wrong outcome."<br>
+        <span class="source">Subhead: Woodland Hills representation in divorce, custody, and high-asset matters. Decades of California experience. Free, confidential 15-minute consultation.</span>
+      </div>
+      <div class="quote-block" style="border-left-color:var(--accent);">
+        <strong>Option 2 — Empathetic / Confident</strong><br>
+        "When everything's at stake, you don't want a generalist."<br>
+        <span class="source">Subhead: Okhovat Law Group is a Woodland Hills family law firm built around one specialty: protecting what matters most when divorce, custody, or domestic disputes threaten it.</span>
+      </div>
+      <div class="quote-block" style="border-left-color:var(--accent);">
+        <strong>Option 3 — Outcome-Focused</strong><br>
+        "Better outcomes. Less drama. Faster resolutions."<br>
+        <span class="source">Subhead: California family law done with the precision your assets, family, and future deserve. Headquartered in Woodland Hills, serving the San Fernando Valley and beyond.</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-tag">— What's next</div>
+    <h1 class="cta-title">You can fix the <em>$0 items</em> this week. The rest, we can do for you.</h1>
+    <p class="cta-body">This BOOMprint shows you the gaps. Closing them is a separate conversation. BOOMaLA partners with a small number of LA-area practices each quarter to execute audits like this one — content, SEO, conversion, and AI-powered intake. If you'd like to scope a 90-day engagement, the next step is a 30-minute call.</p>
+    <div class="cta-actions">
+      <a href="mailto:jon@boomala.com?subject=BOOMprint%20follow-up%20—%20Okhovat%20Law" class="btn btn-primary">Schedule the strategy call →</a>
+      <a href="https://boomala.com" class="btn btn-ghost">See more BOOMaLA work</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="container">
+  <div class="colophon">
+    <div>BOOMaLA · Woodland Hills, CA · jon@boomala.com</div>
+    <div>BOOMprint™ № 2026-04-OL01 · Confidential to recipient</div>
+  </div>
+</footer>
+
+</body>
+</html>
