@@ -114,6 +114,56 @@ td:first-child{font-weight:700;white-space:nowrap}
 .contact button:focus-visible{outline:2px solid var(--plum-ink);outline-offset:3px}
 .sign{font-family:var(--display);font-size:1.6rem;font-weight:800;text-transform:uppercase}
 footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+
+/* sample */
+.sample{display:grid;gap:40px}
+.subhead{display:grid;gap:6px}
+.subhead p{color:var(--muted);font-size:.96rem;max-width:40em}
+.markrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.markbox{display:grid;place-items:center;aspect-ratio:4/3;max-width:100%;border:1px solid var(--line);border-radius:4px;padding:16px}
+.markbox.dark{background:#1b1329;border-color:#1b1329}
+.markbox.light{background:#f3e7c7;border-color:#e6d6aa}
+.mark{display:grid;justify-items:center;gap:6px;line-height:.8}
+.mark .glyph{font-family:var(--display);font-weight:900;font-size:clamp(5rem,14vw,7.5rem);letter-spacing:-.02em}
+.mark .glyph b{font-weight:900;color:#d9a93a}
+.mark .word{font-family:var(--mono);font-size:.7rem;letter-spacing:.42em;padding-left:.42em}
+.markbox.dark .mark{color:#f3eefb}
+.markbox.light .mark{color:#2b1f45}
+.markbox.light .mark .glyph b{color:#a8780f}
+.beforeafter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.pair{display:grid;grid-template-rows:auto auto;gap:6px;min-width:0}
+.pair img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:2px}
+.cap{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.covers{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:640px){.covers{grid-template-columns:1fr}}
+.cover{position:relative;aspect-ratio:1/1;max-width:100%;overflow:hidden;border-radius:2px;background:#1b1329;color:#f3eefb}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,19,41,0) 40%,rgba(27,19,41,.85) 100%)}
+.cover .t{position:absolute;left:6%;right:6%;bottom:5%;z-index:1;font-family:var(--display);font-weight:900;font-size:clamp(3rem,11vw,5.6rem);line-height:.82;text-transform:uppercase}
+.cover .t b{color:#d9a93a;font-weight:900}
+.cover .m{position:absolute;top:5%;left:6%;z-index:1;font-family:var(--display);font-weight:900;font-size:1.6rem;line-height:1}
+.cover .m b{color:#d9a93a}
+.cover .tag{position:absolute;top:6%;right:6%;z-index:1;font-family:var(--mono);font-size:.62rem;letter-spacing:.2em}
+.olds{display:grid;gap:10px}
+.olds p{color:var(--muted);font-size:.96rem}
+.olds ul{margin:0;padding-left:1.1em;display:grid;gap:6px;font-size:.96rem}
+.phone{max-width:420px;width:100%;margin:0 auto;border:1px solid var(--line);border-radius:22px;padding:18px 10px 10px;background:var(--surface)}
+.phone .bar{display:flex;align-items:center;gap:10px;padding:0 6px 14px}
+.phone .av{width:44px;height:44px;border-radius:50%;background:center/cover no-repeat;border:2px solid #d9a93a;flex:none}
+.phone .bio{font-size:.82rem;line-height:1.35;min-width:0}
+.phone .bio b{display:block;font-size:.9rem}
+.grid9{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px}
+.tile{position:relative;aspect-ratio:4/5;overflow:hidden;background:#1b1329;color:#f3eefb;display:grid;place-items:center;text-align:center;padding:8px}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile.type{font-family:var(--display);font-weight:900;text-transform:uppercase;line-height:.9;font-size:clamp(.95rem,3.4vw,1.35rem)}
+.tile.gold{background:#d9a93a;color:#1b1329}
+.tile.cream{background:#f3e7c7;color:#2b1f45}
+.tile .big3{font-family:var(--display);font-weight:900;font-size:clamp(3.4rem,12vw,5rem);line-height:.8}
+.tile small{display:block;font-family:var(--mono);font-weight:500;font-size:.5rem;letter-spacing:.18em;margin-top:6px}
+.tile.cov .ct{position:absolute;left:8%;bottom:6%;z-index:1;font-family:var(--display);font-weight:900;font-size:clamp(1.1rem,4.4vw,1.7rem);line-height:.85;text-align:left}
+.tile.cov .ct b{color:#d9a93a}
+.tile.cov::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(27,19,41,.85))}
+.note{font-size:.96rem;color:var(--muted);max-width:40em}
 </style>
 </head>
 <body>
@@ -171,6 +221,51 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
 </div></section>
 
 <section><div class="wrap">
+  <div class="head"><span class="label">A first look</span><h2>What one look could feel like</h2>
+  <p class="intro">Words only go so far, so here's a quick sketch. It's a starting point to react to, not a finished identity. Everything here uses photos you already have.</p></div>
+  <div class="sample">
+
+    <div class="subhead"><h3>The mark</h3><p>Built from the thing you already own: L3. Heavy, condensed letters with the 3 in gold. It works on a cover, a hat, a Story, or the big screen at the studio.</p></div>
+    <div class="markrow">
+      <div class="markbox dark"><div class="mark"><span class="glyph">L<b>3</b></span><span class="word">LTHRIZZL3</span></div></div>
+      <div class="markbox light"><div class="mark"><span class="glyph">L<b>3</b></span><span class="word">A, THE VALLEY</span></div></div>
+    </div>
+
+    <div class="subhead"><h3>One grade on every photo</h3><p>Same photos, one color treatment: deep plum shadows, warm gold highlights, a little film grain for grit. Shoot anywhere and it still looks like your world.</p></div>
+    <div class="beforeafter">
+      <div class="pair"><img src="img/laugh-before.jpg" alt="Original photo, laughing in a graphic tee" loading="lazy"><img src="img/laugh.jpg" alt="The same photo with the L3 color grade" loading="lazy"><span class="cap">Before / after</span></div>
+      <div class="pair"><img src="img/light-before.jpg" alt="Original photo at Urban Light" loading="lazy"><img src="img/light.jpg" alt="The same photo with the L3 color grade" loading="lazy"><span class="cap">Before / after</span></div>
+      <div class="pair"><img src="img/redcap-before.jpg" alt="Original street photo in a red cap" loading="lazy"><img src="img/redcap.jpg" alt="The same photo with the L3 color grade" loading="lazy"><span class="cap">Before / after</span></div>
+    </div>
+
+    <div class="subhead"><h3>A cover system</h3><p>Every release follows one rule: a graded photo of you, the title big at the bottom, the mark in the corner. Change the photo and title, keep the rest. Your covers become recognizable before anyone reads them.</p></div>
+    <div class="covers">
+      <div class="cover"><img src="img/blue.jpg" alt="Sample cover for L3zzY using the L3 cover system"><span class="m">L<b>3</b></span><span class="tag">SINGLE · 2026</span><div class="t">L<b>3</b>ZZY</div></div>
+      <div class="olds"><p>Right now your three covers look like three different artists:</p>
+        <ul><li><b>Prada:</b> script logo over a photo</li><li><b>L3zzY:</b> gold glitter, jet, Rolls and cash</li><li><b>3s Back:</b> cartoon art in a DistroKid template</li></ul>
+        <p>With one system, the next ten covers all read as L3.</p></div>
+    </div>
+
+    <div class="subhead"><h3>The grid</h3><p>What someone sees in the first three seconds on your page. The music, the look and the message, all in one world.</p></div>
+    <div class="phone">
+      <div class="bar"><div class="av" style="background-image:url(img/laugh.jpg)"></div><div class="bio"><b>L3</b>Party R&amp;B. Tough love you can dance to.<br>A, the Valley · New single out now ↓</div></div>
+      <div class="grid9">
+        <div class="tile cov"><img src="img/blue.jpg" alt=""><span class="ct">L<b>3</b>ZZY</span></div>
+        <div class="tile"><img src="img/light.jpg" alt=""></div>
+        <div class="tile type">Tough love you can dance to.</div>
+        <div class="tile gold"><div><span class="big3">3</span><small>NEW MUSIC FRIDAY</small></div></div>
+        <div class="tile"><img src="img/laugh.jpg" alt=""></div>
+        <div class="tile"><img src="img/redcap.jpg" alt=""></div>
+        <div class="tile"><img src="img/hoodie.jpg" alt=""></div>
+        <div class="tile type cream">A, the Valley.</div>
+        <div class="tile type">In the studio<small>STUDIO DAYS</small></div>
+      </div>
+    </div>
+    <p class="note">This is a sketch. A real identity would come from working together on it: your input, more options, and testing what your audience responds to.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
   <div class="head"><span class="label">The roadmap</span><h2>Four phases to the next level</h2>
   <p class="intro">Each phase builds on the one before. Don't skip ahead.</p></div>
   <div class="road">
@@ -181,7 +276,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
         <li>Replace the AI profile photo with a real portrait from your photographer.</li>
         <li>Swap the pinned post for something bright where we can see your face.</li>
         <li>Rewrite the bio: who you are in one line, plus a link hub instead of a raw track link.</li>
-        <li>Book the Coke Studio session before the studio closes for the winter buildout.</li>
+        <li>Get on the Coke Studio list now, so you're in the first wave when the rebuilt studio opens in February.</li>
       </ul>
       <p class="goal">Goal: a page that tells a stranger who L3 is in three seconds.</p>
     </div></div>
@@ -193,14 +288,16 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
         <li>Set up scheduled posting so the work keeps going out on the weeks you're with your boys.</li>
         <li>Launch a simple website: music, videos, story, and later, merch and the documentary.</li>
         <li>Start filming the documentary now. Capture everything; cut it later.</li>
+        <li>Plan the Coke Studio day: the songs, the looks, the set, the crew.</li>
       </ul>
       <p class="goal">Goal: consistency that doesn't depend on you having a good week.</p>
     </div></div>
     <div class="phase"><div class="num">3</div><div class="body">
-      <span class="when">JANUARY → MARCH</span><h3>The real rollout</h3>
+      <span class="when">JANUARY → MARCH</span><h3>Coke Studio and the real rollout</h3>
       <ul>
         <li>Pick the strongest party R&amp;B single and give it a six-week lead-up: teasers, snippets, behind-the-scenes, release.</li>
-        <li>Use the Coke Studio footage as anchor content across the rollout.</li>
+        <li>Shoot the Coke Studio session in February, in the rebuilt room. Make it the launch moment for the new L3.</li>
+        <li>Use that footage as the anchor content for the whole rollout.</li>
         <li>Book live dates and film every one. Shows are content.</li>
         <li>Start light PR: playlists, blogs, local radio, podcasts.</li>
       </ul>
@@ -237,7 +334,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
 
 <section><div class="wrap">
   <div class="head"><span class="label">Coke Studio</span><h2>Making the session count</h2>
-  <p class="intro">You get the room and the logo. Coke doesn't promote it for you, so the plan around the session is what makes it worth anything.</p></div>
+  <p class="intro">The studio is closed for a rebuild and reopens around February with more cameras in every room. That gives you three months to show up ready. You get the room and the logo; Coke doesn't promote it for you, so the plan around the session is what makes it worth anything.</p></div>
   <div class="session">
     <div><h3>Bring your people</h3><p>You build beats on the spot and work fast. Bring your own producer-engineer so the house engineer doesn't slow your rhythm.</p></div>
     <div><h3>Shoot like a campaign</h3><p>Two camera guys plus the room's locked-off cameras. One live-streams, one shoots stills and BTS. Plan the outfits as looks, not just changes.</p></div>
