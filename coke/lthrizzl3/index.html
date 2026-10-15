@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="A brand read and roadmap for LTHrizzL3, prepared by BOOMaLA.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>L3 Brand Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+html,body{margin:0}
+/* Layout: a single editorial column with a plum night-sky hero, a gold "3" motif, and a phased roadmap laid out as a timeline. */
+:root{
+  --bg:#f6f5f8; --surface:#ffffff; --ink:#1f1830; --muted:#5d5670; --line:#dcd8e4;
+  --plum:#2b1f45; --plum-ink:#f3eefb; --gold:#b98a1e; --gold-soft:#f3e7c7;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141020; --surface:#1d172c; --ink:#ece8f4; --muted:#a69fb8; --line:#33294a;
+  --plum:#0d0a16; --plum-ink:#f3eefb; --gold:#e3b54a; --gold-soft:#3a2f17; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141020; --surface:#1d172c; --ink:#ece8f4; --muted:#a69fb8; --line:#33294a;
+  --plum:#0d0a16; --plum-ink:#f3eefb; --gold:#e3b54a; --gold-soft:#3a2f17; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1;margin:0}
+h2{font-size:clamp(2.2rem,6vw,3.2rem);font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+h3{font-size:1.5rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+a{color:var(--gold)}
+
+/* hero */
+.hero{background:var(--plum);color:var(--plum-ink);position:relative;overflow:hidden}
+.hero .wrap{padding-block:56px 48px;position:relative;z-index:1;display:grid;gap:20px}
+.hero .big3{position:absolute;right:-4%;top:50%;transform:translateY(-50%);font-family:var(--display);font-weight:900;font-size:clamp(16rem,48vw,30rem);line-height:.8;color:var(--gold);opacity:.18;pointer-events:none;user-select:none}
+.hero h1{font-size:clamp(3.4rem,13vw,7rem);font-weight:900;text-transform:uppercase;letter-spacing:-.005em}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .lede{max-width:34em;font-size:1.15rem;color:#d8d0e8}
+.hero .by{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:#b8aed0}
+
+section{padding-block:56px}
+section+section{border-top:1px solid var(--line)}
+.head{display:grid;gap:10px;margin-bottom:28px}
+.intro{color:var(--muted);max-width:40em}
+
+/* assets grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.cell{background:var(--surface);padding:20px;display:grid;gap:6px;align-content:start;min-width:0}
+.cell strong{font-family:var(--display);font-size:1.35rem;font-weight:800;text-transform:uppercase;letter-spacing:.02em}
+.cell p{color:var(--muted);font-size:.96rem}
+.stat{font-family:var(--display);font-weight:900;font-size:2.6rem;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+
+/* gaps list */
+.gaps{display:grid;gap:0;list-style:none;margin:0;padding:0}
+.gaps li{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);gap:8px 24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.gaps li:first-child{border-top:1px solid var(--line)}
+.gaps b{font-weight:700}
+.gaps span{color:var(--muted)}
+@media (max-width:600px){.gaps li{grid-template-columns:1fr}}
+
+/* identity */
+.identity{background:var(--gold-soft);border-radius:4px;padding:32px clamp(18px,4vw,40px);display:grid;gap:24px}
+.tagline{font-family:var(--display);font-weight:900;font-size:clamp(2.4rem,8vw,4.2rem);text-transform:uppercase;line-height:.95}
+.tagline small{display:block;font-family:var(--mono);font-weight:500;font-size:.75rem;letter-spacing:.14em;color:var(--muted);margin-bottom:10px}
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+.pillars div{display:grid;gap:4px;min-width:0}
+.pillars p{font-size:.96rem;color:var(--ink)}
+
+/* roadmap */
+.road{display:grid;gap:0;position:relative}
+.phase{display:grid;grid-template-columns:4.5rem minmax(0,1fr);gap:20px;padding-bottom:36px;position:relative}
+.phase::before{content:"";position:absolute;left:2.25rem;top:4.5rem;bottom:0;width:2px;background:var(--line)}
+.phase:last-child::before{display:none}
+.num{width:4.5rem;height:4.5rem;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:2rem;color:var(--gold);background:var(--bg)}
+.phase .body{display:grid;gap:10px;padding-top:6px}
+.when{font-family:var(--mono);font-size:.78rem;letter-spacing:.08em;color:var(--muted)}
+.phase ul{margin:0;padding-left:1.1em;display:grid;gap:6px}
+.phase .goal{font-style:italic;color:var(--muted)}
+@media (max-width:520px){.phase{grid-template-columns:3rem minmax(0,1fr);gap:14px}.num{width:3rem;height:3rem;font-size:1.4rem}.phase::before{left:1.5rem;top:3rem}}
+
+/* rhythm table */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:4px}
+table{border-collapse:collapse;width:100%;min-width:520px;background:var(--surface)}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.96rem}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+
+/* coke */
+.session{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.session div{display:grid;gap:6px;min-width:0}
+.session p{color:var(--muted);font-size:.96rem}
+
+/* close */
+.close{background:var(--plum);color:var(--plum-ink)}
+.close .wrap{padding-block:64px;display:grid;gap:28px}
+.close h2{color:var(--plum-ink)}
+.close .intro{color:#d8d0e8}
+.offer{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:#3d3160;border:1px solid #3d3160}
+.offer div{background:var(--plum);padding:20px;display:grid;gap:6px;min-width:0}
+.offer strong{font-family:var(--display);font-size:1.3rem;font-weight:800;text-transform:uppercase;color:var(--gold)}
+.offer p{color:#cfc7e2;font-size:.95rem}
+.contact{display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;font-family:var(--mono);font-size:.95rem}
+.contact span{user-select:all}
+.contact button{font:inherit;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#1a1326;border:0;border-radius:3px;padding:8px 14px;cursor:pointer}
+.contact button:focus-visible{outline:2px solid var(--plum-ink);outline-offset:3px}
+.sign{font-family:var(--display);font-size:1.6rem;font-weight:800;text-transform:uppercase}
+footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="big3" aria-hidden="true">3</div>
+  <div class="wrap">
+    <span class="label">Prepared for LTHrizzL3 · October 2026</span>
+    <h1>The read.<br><em>The road.</em></h1>
+    <p class="lede">You told me the end goal is a sold-out SoFi. Here is an honest read on where you stand today, what is slowing you down, and a step-by-step plan to close the gap. It's yours to use whether we work together or not.</p>
+    <p class="by">Jonathan Klein · BOOMaLA</p>
+  </div>
+</header>
+
+<main>
+<section><div class="wrap">
+  <div class="head"><span class="label">Where you stand</span><h2>What you already have</h2>
+  <p class="intro">Most artists at your stage are missing half of this. You're further along than your streaming numbers show.</p></div>
+  <div class="grid">
+    <div class="cell"><span class="stat">20K</span><strong>An audience</strong><p>Twenty thousand followers on a 35-post grid. People are already watching you. The job now is getting them to listen.</p></div>
+    <div class="cell"><span class="stat">3</span><strong>Studios</strong><p>Home, Miami and unlimited access in Burbank, with producers who build beats on the spot for free.</p></div>
+    <div class="cell"><span class="stat">2+1</span><strong>A camera crew</strong><p>Two cameramen and a photographer who already know how to shoot you. Your photos read editorial, not amateur.</p></div>
+    <div class="cell"><strong>Club play</strong><p>Your records are getting spun at Jungle and 3rd Base on weekends. That's organic proof the music works in a room.</p></div>
+    <div class="cell"><strong>Discipline</strong><p>Fifteen years of sports. You know how to train, take coaching and play on a team. That carries over.</p></div>
+    <div class="cell"><strong>A real story</strong><p>Where you came from and why you do this is the kind of story people follow an artist for, not just a song.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><span class="label">What's in the way</span><h2>The gaps</h2>
+  <p class="intro">None of these are talent problems. They're system problems, and every one of them is fixable.</p></div>
+  <ul class="gaps">
+    <li><b>"I'm versatile"</b><span>It's true, and it's your gift. But a new listener needs one clear first impression before they'll follow you into everything else. Lead with one lane, explore later.</span></li>
+    <li><b>Three covers, three worlds</b><span>Prada is a script logo on a photo, L3zzY is gold glitter with a jet and cash, 3s Back is a cartoon in a template. Someone scrolling can't tell they're the same artist.</span></li>
+    <li><b>The six-week drop-off</b><span>You said it yourself: you go hard for about a month and a half, then life pulls you away. The algorithm and the audience both forget fast.</span></li>
+    <li><b>Editing bottleneck</b><span>You're capturing more than anyone can cut in iMovie. Every hour you spend editing is an hour you're not making music.</span></li>
+    <li><b>No home base</b><span>Instagram is rented land. A documentary, merch and the full catalog need a place you own.</span></li>
+    <li><b>Quick fixes on the profile</b><span>The profile photo is AI and doesn't look like you. The pinned post is too dark, with your face half covered. The bio is a raw Spotify link.</span></li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><span class="label">Who you are</span><h2>The identity</h2>
+  <p class="intro">You found this while we were talking. Here it is, written down so you can hold onto it.</p></div>
+  <div class="identity">
+    <p class="tagline"><small>A working brand line</small>Tough love you can dance to.</p>
+    <div class="pillars">
+      <div><h3>The sound</h3><p>Party R&amp;B made for women. You said it's effortless for you, and it shows.</p></div>
+      <div><h3>The point of view</h3><p>A man who motivates women. Brutally honest, hard on the people he loves, because he wants them to win.</p></div>
+      <div><h3>The story</h3><p>The athlete who lost everything, found his fire again through his kids, and turned it into music.</p></div>
+      <div><h3>The roots</h3><p>A, the Valley. Your tag. Make it a signature, not just an ad-lib.</p></div>
+      <div><h3>The mark</h3><p>The 3. LTHrizzL3, 3s Back, L3zzY. Design one mark around it and use it everywhere.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><span class="label">The roadmap</span><h2>Four phases to the next level</h2>
+  <p class="intro">Each phase builds on the one before. Don't skip ahead.</p></div>
+  <div class="road">
+    <div class="phase"><div class="num">1</div><div class="body">
+      <span class="when">NOW → END OF OCTOBER</span><h3>Lock in</h3>
+      <ul>
+        <li>Run the Halloween drop all month with your six videos. Post on a schedule, not on a feeling.</li>
+        <li>Replace the AI profile photo with a real portrait from your photographer.</li>
+        <li>Swap the pinned post for something bright where we can see your face.</li>
+        <li>Rewrite the bio: who you are in one line, plus a link hub instead of a raw track link.</li>
+        <li>Book the Coke Studio session before the studio closes for the winter buildout.</li>
+      </ul>
+      <p class="goal">Goal: a page that tells a stranger who L3 is in three seconds.</p>
+    </div></div>
+    <div class="phase"><div class="num">2</div><div class="body">
+      <span class="when">NOVEMBER → DECEMBER</span><h3>Build the system</h3>
+      <ul>
+        <li>Design the L3 visual identity: one mark, one type style, one color story, one cover template.</li>
+        <li>Get an editor. Cheap and fast for social cuts; save your own time for the hero pieces.</li>
+        <li>Set up scheduled posting so the work keeps going out on the weeks you're with your boys.</li>
+        <li>Launch a simple website: music, videos, story, and later, merch and the documentary.</li>
+        <li>Start filming the documentary now. Capture everything; cut it later.</li>
+      </ul>
+      <p class="goal">Goal: consistency that doesn't depend on you having a good week.</p>
+    </div></div>
+    <div class="phase"><div class="num">3</div><div class="body">
+      <span class="when">JANUARY → MARCH</span><h3>The real rollout</h3>
+      <ul>
+        <li>Pick the strongest party R&amp;B single and give it a six-week lead-up: teasers, snippets, behind-the-scenes, release.</li>
+        <li>Use the Coke Studio footage as anchor content across the rollout.</li>
+        <li>Book live dates and film every one. Shows are content.</li>
+        <li>Start light PR: playlists, blogs, local radio, podcasts.</li>
+      </ul>
+      <p class="goal">Goal: one record that people outside your circle know is yours.</p>
+    </div></div>
+    <div class="phase"><div class="num">4</div><div class="body">
+      <span class="when">SPRING 2027 →</span><h3>Scale it</h3>
+      <ul>
+        <li>Release a full project built in one lane, with one look, on a real plan.</li>
+        <li>Release the documentary on your site, cut into clips for social.</li>
+        <li>Launch the motivation side: a series or podcast where you talk straight to women about knowing their worth.</li>
+        <li>Bring on a manager. With momentum behind you, you'll attract a better one.</li>
+      </ul>
+      <p class="goal">Goal: a brand bigger than any one song.</p>
+    </div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><span class="label">Fixing the six-week drop-off</span><h2>The weekly rhythm</h2>
+  <p class="intro">Put this on your big paper calendar. It's built so it still runs on your busy weeks.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Day</th><th>What happens</th><th>Who</th></tr></thead>
+    <tbody>
+      <tr><td>Monday</td><td>Plan the week. Pick three posts and one story theme.</td><td>You</td></tr>
+      <tr><td>Tuesday</td><td>Post 1: a music moment. Song snippet, studio clip or performance.</td><td>Scheduled</td></tr>
+      <tr><td>Thursday</td><td>Post 2: the look. Fit, photo, lifestyle, with the song under it.</td><td>Scheduled</td></tr>
+      <tr><td>Saturday</td><td>Post 3: the person. Motivation, a real thought, behind the scenes.</td><td>Scheduled</td></tr>
+      <tr><td>Daily</td><td>Stories: casual, unpolished, you. Ten minutes, no editing.</td><td>You</td></tr>
+      <tr><td>Studio days</td><td>Shoot everything. Hand the footage to the editor the same day.</td><td>Crew + editor</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><span class="label">Coke Studio</span><h2>Making the session count</h2>
+  <p class="intro">You get the room and the logo. Coke doesn't promote it for you, so the plan around the session is what makes it worth anything.</p></div>
+  <div class="session">
+    <div><h3>Bring your people</h3><p>You build beats on the spot and work fast. Bring your own producer-engineer so the house engineer doesn't slow your rhythm.</p></div>
+    <div><h3>Shoot like a campaign</h3><p>Two camera guys plus the room's locked-off cameras. One live-streams, one shoots stills and BTS. Plan the outfits as looks, not just changes.</p></div>
+    <div><h3>Set the room</h3><p>Dim the lights, wash it in red, put your L3 mark on the big LED screen. It should look like your world, not a borrowed studio.</p></div>
+    <div><h3>Plan the after</h3><p>Before you walk in, know what gets posted when. One session should feed a month of content.</p></div>
+  </div>
+</div></section>
+</main>
+
+<aside class="close"><div class="wrap">
+  <div class="head" style="margin:0"><span class="label">When you're ready</span><h2>Take it and run. Or let's run it together.</h2>
+  <p class="intro">Everything above is yours. You can follow this on your own and I'll be rooting for you. If you ever want a partner on it, this is where I fit on the board.</p></div>
+  <div class="offer">
+    <div><strong>Brand management</strong><p>Keeping the L3 identity consistent across every post, cover, video and room you walk into.</p></div>
+    <div><strong>Creative direction</strong><p>Concepts, treatments and on-set direction for your shoots and videos.</p></div>
+    <div><strong>Rollout planning</strong><p>Release calendars and lead-up campaigns, built around how you actually work.</p></div>
+    <div><strong>Studio sessions</strong><p>Producing your Coke Studio day and the content plan that comes out of it.</p></div>
+    <div><strong>The right connections</strong><p>Editors, PR and the people who can get you in rooms you're not in yet.</p></div>
+  </div>
+  <p>I've spent 20 years building and launching brands. I liked your drive the minute we sat down, and I like working with people who already have the fire. No pressure, no timeline. Hit me up whenever.</p>
+  <div class="contact">
+    <span id="email">jon@boomala.com</span>
+    <button type="button" id="copy">Copy email</button>
+    <a href="/">boomala.com</a>
+  </div>
+  <p class="sign">— Jonathan</p>
+</div></aside>
+
+<footer class="wrap">BOOMaLA · Prepared October 2026 for LTHrizzL3</footer>
+
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var b=this,t='jon@boomala.com';
+  function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy email'},1600)}
+  function fallback(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected'}
+  try{navigator.clipboard.writeText(t).then(done,fallback)}catch(e){fallback()}
+});
+</script>
+</body>
+</html>
