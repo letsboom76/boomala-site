@@ -199,6 +199,16 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
 .avbig{width:100%;max-width:110px;aspect-ratio:1/1;border-radius:50%;border:3px solid #f4eee2}
 .avbig.cr{box-shadow:0 0 0 1px var(--line)}
 .avrow figcaption{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center}
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+section,aside.close{scroll-margin-top:calc(env(safe-area-inset-top,0px) + 64px)}
+.jump{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.jump ul{list-style:none;margin:0;padding:10px 0;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.jump ul::-webkit-scrollbar{display:none}
+.jump a{display:block;white-space:nowrap;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.jump a:hover{border-color:var(--gold);color:var(--gold)}
+.jump a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -212,9 +222,10 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
     <p class="by">Jonathan Klein · BOOMaLA</p>
   </div>
 </header>
+<nav class="jump" aria-label="Jump to a section"><div class="wrap"><ul><li><a href="#have">What you have</a></li><li><a href="#gaps">The gaps</a></li><li><a href="#identity">Identity</a></li><li><a href="#direction-a">Direction A</a></li><li><a href="#direction-b">Direction B</a></li><li><a href="#roadmap">Roadmap</a></li><li><a href="#rhythm">Weekly rhythm</a></li><li><a href="#coke">Coke Studio</a></li><li><a href="#together">Work together</a></li></ul></div></nav>
 
 <main>
-<section><div class="wrap">
+<section id="have"><div class="wrap">
   <div class="head"><span class="label">Where you stand</span><h2>What you already have</h2>
   <p class="intro">Most artists at your stage are missing half of this. You're further along than your streaming numbers show.</p></div>
   <div class="grid">
@@ -227,7 +238,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
   </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="gaps"><div class="wrap">
   <div class="head"><span class="label">What's in the way</span><h2>The gaps</h2>
   <p class="intro">None of these are talent problems. They're system problems, and every one of them is fixable.</p></div>
   <ul class="gaps">
@@ -240,7 +251,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
   </ul>
 </div></section>
 
-<section><div class="wrap">
+<section id="identity"><div class="wrap">
   <div class="head"><span class="label">Who you are</span><h2>The identity</h2>
   <p class="intro">You found this while we were talking. Here it is, written down so you can hold onto it.</p></div>
   <div class="identity">
@@ -256,7 +267,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
   </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="direction-a"><div class="wrap">
   <div class="head"><span class="label">A first look · Direction A</span><h2>Night and gold</h2>
   <p class="intro">Words only go so far, so here are two quick sketches that go in very different directions. They're starting points to react to, not a finished identity. Both use photos you already have. This first one is the after-dark, party R&amp;B world: deep plum, warm gold, film grain.</p></div>
   <div class="sample">
@@ -300,7 +311,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
   </div>
 </div></section>
 
-<section class="vb"><div class="wrap">
+<section id="direction-b" class="vb"><div class="wrap">
   <div class="head"><span class="label">A first look · Direction B</span><h2>Number 3</h2>
   <p class="intro">This one comes from somewhere else: the fifteen years you spent as an athlete. You put the ball down for music, but the number never left you. Here, the 3 is a jersey number, and every release is a new season.</p></div>
   <div class="sample">
@@ -357,7 +368,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
   </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="roadmap"><div class="wrap">
   <div class="head"><span class="label">The roadmap</span><h2>Four phases to the next level</h2>
   <p class="intro">Each phase builds on the one before. Don't skip ahead.</p></div>
   <div class="road">
@@ -408,7 +419,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
   </div>
 </div></section>
 
-<section><div class="wrap">
+<section id="rhythm"><div class="wrap">
   <div class="head"><span class="label">Fixing the six-week drop-off</span><h2>The weekly rhythm</h2>
   <p class="intro">Put this on your big paper calendar. It's built so it still runs on your busy weeks.</p></div>
   <div class="tbl"><table>
@@ -424,7 +435,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
   </table></div>
 </div></section>
 
-<section><div class="wrap">
+<section id="coke"><div class="wrap">
   <div class="head"><span class="label">Coke Studio</span><h2>Making the session count</h2>
   <p class="intro">The studio is closed for a rebuild and reopens around February with more cameras in every room. That gives you three months to show up ready. You get the room and the logo; Coke doesn't promote it for you, so the plan around the session is what makes it worth anything.</p></div>
   <div class="session">
@@ -436,7 +447,7 @@ footer{padding-block:24px;font-family:var(--mono);font-size:.72rem;color:var(--m
 </div></section>
 </main>
 
-<aside class="close"><div class="wrap">
+<aside class="close" id="together"><div class="wrap">
   <div class="head" style="margin:0"><span class="label">When you're ready</span><h2>Take it and run. Or let's run it together.</h2>
   <p class="intro">Everything above is yours. You can follow this on your own and I'll be rooting for you. If you ever want a partner on it, this is where I fit on the board.</p></div>
   <div class="offer">
