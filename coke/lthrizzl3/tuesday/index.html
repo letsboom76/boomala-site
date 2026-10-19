@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Studio day game plan for L3 at Coke Studio, prepared by BOOMaLA.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>L3 Studio Day</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+html,body{margin:0}
+/* Layout: phone-first call sheet. Plum header, then a vertical timeline of blocks, then a tap-to-check prep list. */
+:root{
+  --bg:#f6f5f8; --surface:#ffffff; --ink:#1f1830; --muted:#5d5670; --line:#dcd8e4;
+  --plum:#2b1f45; --plum-ink:#f3eefb; --gold:#b98a1e; --gold-soft:#f3e7c7; --red:#c8102e;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141020; --surface:#1d172c; --ink:#ece8f4; --muted:#a69fb8; --line:#33294a;
+  --plum:#0d0a16; --plum-ink:#f3eefb; --gold:#e3b54a; --gold-soft:#3a2f17; --red:#ef3b55; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141020; --surface:#1d172c; --ink:#ece8f4; --muted:#a69fb8; --line:#33294a;
+  --plum:#0d0a16; --plum-ink:#f3eefb; --gold:#e3b54a; --gold-soft:#3a2f17; --red:#ef3b55; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1;margin:0;text-transform:uppercase}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+
+.hero{background:var(--plum);color:var(--plum-ink);position:relative;overflow:hidden}
+.hero .wrap{padding-block:40px 34px;display:grid;gap:14px;position:relative;z-index:1}
+.hero .big3{position:absolute;right:-2%;bottom:-18%;font-family:var(--display);font-weight:900;font-size:clamp(12rem,42vw,22rem);line-height:.8;color:var(--gold);opacity:.16;pointer-events:none;user-select:none}
+.hero h1{font-size:clamp(3rem,13vw,5.6rem);font-weight:900}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;padding:6px 10px;border-radius:999px;border:1px solid #4a3c6b;color:#d8d0e8}
+.chip b{color:var(--plum-ink);font-weight:500}
+.hero .lede{color:#d8d0e8;max-width:32em}
+
+section{padding-block:40px}
+section+section{border-top:1px solid var(--line)}
+.head{display:grid;gap:8px;margin-bottom:22px}
+h2{font-size:clamp(2rem,8vw,2.8rem);font-weight:800}
+.intro{color:var(--muted)}
+
+/* goals */
+.goals{display:grid;gap:12px;counter-reset:g}
+.goal{display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px}
+.goal .n{font-family:var(--display);font-weight:900;font-size:2.4rem;line-height:.85;color:var(--gold)}
+.goal h3{font-size:1.25rem;font-weight:800;letter-spacing:.02em}
+.goal p{color:var(--muted);font-size:.96rem;margin-top:4px}
+
+/* timeline */
+.now-bar{display:none;align-items:center;gap:10px;background:var(--red);color:#fff;border-radius:6px;padding:10px 14px;margin-bottom:16px;font-weight:600}
+.now-bar.on{display:flex}
+.now-bar .dot{width:9px;height:9px;border-radius:50%;background:#fff;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){.now-bar .dot{animation:none}}
+.tl{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.blk{display:grid;grid-template-columns:5.2rem minmax(0,1fr);gap:14px;padding:16px 0;border-bottom:1px solid var(--line);position:relative}
+.blk:first-child{border-top:1px solid var(--line)}
+.blk .t{font-family:var(--mono);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums;line-height:1.35;padding-top:2px}
+.blk .t b{display:block;color:var(--ink);font-weight:500;font-size:.95rem}
+.blk .body{display:grid;gap:6px;min-width:0}
+.blk .where{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.blk h3{font-size:1.35rem;font-weight:800;letter-spacing:.01em}
+.blk p{font-size:.96rem;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 8px;border-radius:4px;background:var(--bg);border:1px solid var(--line);color:var(--muted)}
+.tag.photo{background:var(--gold-soft);border-color:transparent;color:var(--ink)}
+.blk.key h3{color:var(--red)}
+.blk.mini h3{font-size:1.05rem}
+.blk.now{background:linear-gradient(90deg,color-mix(in srgb,var(--red) 10%,transparent),transparent 70%)}
+.blk.now::before{content:"";position:absolute;left:-12px;top:12px;bottom:12px;width:4px;border-radius:2px;background:var(--red)}
+.blk.done{opacity:.55}
+.legend{font-size:.85rem;color:var(--muted);margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* questions */
+.qs{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.qs li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;font-family:var(--display);font-weight:800;font-size:1.35rem;text-transform:uppercase;line-height:1.05}
+
+/* prep */
+.prep{display:grid;gap:8px}
+.chk{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;cursor:pointer}
+.chk input{appearance:none;-webkit-appearance:none;width:24px;height:24px;border:2px solid var(--gold);border-radius:5px;margin:1px 0 0;display:grid;place-items:center;cursor:pointer;background:var(--surface)}
+.chk input::after{content:"";width:12px;height:7px;border-left:3px solid var(--surface);border-bottom:3px solid var(--surface);transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.chk input:checked{background:var(--gold);border-color:var(--gold)}
+.chk input:checked::after{opacity:1}
+.chk input:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.chk span b{display:block;font-weight:700}
+.chk span small{display:block;color:var(--muted);font-size:.9rem}
+.chk:has(input:checked) span{opacity:.6}
+.covered{margin-top:18px;color:var(--muted);font-size:.95rem}
+.covered ul{margin:8px 0 0;padding-left:1.1em;display:grid;gap:4px}
+
+/* rules */
+.rules{display:grid;gap:10px}
+.rule{border-left:4px solid var(--gold);padding:4px 0 4px 14px}
+.rule b{display:block;font-family:var(--display);font-weight:800;font-size:1.3rem;text-transform:uppercase;letter-spacing:.01em}
+.rule p{color:var(--muted);font-size:.96rem}
+
+footer{padding-block:28px 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;display:grid;gap:6px}
+footer a{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="big3" aria-hidden="true">3</div>
+  <div class="wrap">
+    <span class="label">Coke Studio @ L.A. Live · Game plan</span>
+    <h1>Studio day <em>Tuesday</em></h1>
+    <div class="meta">
+      <span class="chip"><b>Tue Oct 20</b></span>
+      <span class="chip">Call time <b>11:30 AM</b></span>
+      <span class="chip">Wrap <b>7:00 PM</b></span>
+      <span class="chip">Arrive in <b>look 1</b></span>
+    </div>
+    <p class="lede">Seven hours, four rooms, one goal: walk out with finished videos, a new record, and a month of content. Here's the whole day.</p>
+  </div>
+</header>
+
+<main>
+<section><div class="wrap">
+  <div class="head"><span class="label">What we leave with</span><h2>Three wins</h2></div>
+  <div class="goals">
+    <div class="goal"><span class="n">1</span><div><h3>Two performance videos</h3><p>The Halloween single on the LED stage, finished and ready to post before the 31st. A second song in the Red Room for socials.</p></div></div>
+    <div class="goal"><span class="n">2</span><div><h3>A record from scratch</h3><p>You and your producer build a song live while the cameras roll. That's how you work best, and it's the first scene of the documentary.</p></div></div>
+    <div class="goal"><span class="n">3</span><div><h3>A month of content</h3><p>New profile picture, cover photos, interview clips, and 10–15 verticals with your tags.</p></div></div>
+  </div>
+</div></section>
+
+<section id="schedule"><div class="wrap">
+  <div class="head"><span class="label">Run of show</span><h2>The day</h2>
+  <p class="intro">The photographer is only with us 12:00–3:00, so every photo moment happens first.</p></div>
+  <div class="now-bar" id="nowbar" role="status"><span class="dot" aria-hidden="true"></span><span id="nowtext"></span></div>
+  <ol class="tl" id="tl">
+    <li class="blk mini" data-s="11:30" data-e="12:00"><div class="t"><b>11:30</b>12:00</div><div class="body"><span class="where">Load-in</span><h3>Set up</h3><p>Engineer sets the cameras and puts your hand logo on the LED screen. You're dressed in look 1.</p></div></li>
+    <li class="blk" data-s="12:00" data-e="12:45"><div class="t"><b>12:00</b>12:45</div><div class="body"><span class="where">Red Room</span><h3>Portraits</h3><p>Fresh face, first thing. New profile picture and cover shots, warm gold and black-and-white.</p><div class="tags"><span class="tag photo">Photographer</span></div></div></li>
+    <li class="blk key" data-s="12:45" data-e="14:15"><div class="t"><b>12:45</b>2:15</div><div class="body"><span class="where">LED stage</span><h3>Halloween single</h3><p>Four full takes. This is the one that has to be finished. Photographer shoots during takes, never stops one.</p><div class="tags"><span class="tag photo">Photographer</span><span class="tag">House cams</span><span class="tag">Handheld</span><span class="tag">Phone</span></div></div></li>
+    <li class="blk" data-s="14:15" data-e="15:00"><div class="t"><b>2:15</b>3:00</div><div class="body"><span class="where">Red Room</span><h3>Song two</h3><p>Change to look 2. Three takes, then ten minutes of look-2 portraits.</p><div class="tags"><span class="tag photo">Photographer</span><span class="tag">Handheld</span><span class="tag">Phone</span></div></div></li>
+    <li class="blk mini" data-s="15:00" data-e="15:30"><div class="t"><b>3:00</b>3:30</div><div class="body"><span class="where">Break</span><h3>Eat, back up</h3><p>Photographer wraps. Every card gets copied before anyone leaves.</p></div></li>
+    <li class="blk key" data-s="15:30" data-e="17:45"><div class="t"><b>3:30</b>5:45</div><div class="body"><span class="where">Session room</span><h3>Song from nothing</h3><p>Your producer builds the beat, you go. The cameras roll the whole time and nobody directs you. Look 3 if you want it.</p><div class="tags"><span class="tag">House cams</span></div></div></li>
+    <li class="blk" data-s="17:45" data-e="18:20"><div class="t"><b>5:45</b>6:20</div><div class="body"><span class="where">Second room</span><h3>Interview</h3><p>Three questions, sitting down. They're below so you can think about them.</p><div class="tags"><span class="tag">Phone</span></div></div></li>
+    <li class="blk" data-s="18:20" data-e="18:50"><div class="t"><b>6:20</b>6:50</div><div class="body"><span class="where">Anywhere</span><h3>Verticals</h3><p>Quick hits to camera: "Do your shi 3," "I'm from the Eight," "The 3 is for Thrizzl3."</p><div class="tags"><span class="tag">Phone</span></div></div></li>
+    <li class="blk mini" data-s="18:50" data-e="19:00"><div class="t"><b>6:50</b>7:00</div><div class="body"><span class="where">Wrap</span><h3>Wrap</h3><p>Lock in when the studio's footage comes back to us.</p></div></li>
+  </ol>
+  <p class="legend"><span class="tag photo">Photographer</span> blocks are the only time we have stills.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><span class="label">5:45 interview</span><h2>Three questions</h2><p class="intro">No script. Just think about them on the way in.</p></div>
+  <ol class="qs">
+    <li>Why do you make music for women?</li>
+    <li>Where's the Eight?</li>
+    <li>Who are you doing this for?</li>
+  </ol>
+</div></section>
+
+<section id="prep"><div class="wrap">
+  <div class="head"><span class="label">Before Tuesday</span><h2>Your list</h2><p class="intro">Tap to check off. It remembers on your phone.</p></div>
+  <div class="prep">
+    <label class="chk"><input type="checkbox" id="p1"><span><b>Pick both songs</b><small>The Halloween single plus one party R&amp;B track.</small></span></label>
+    <label class="chk"><input type="checkbox" id="p2"><span><b>Instrumentals on a USB stick</b><small>WAV files for both songs.</small></span></label>
+    <label class="chk"><input type="checkbox" id="p3"><span><b>Three outfits, not seven</b><small>Look 1: portraits + LED stage. Look 2: Red Room. Look 3: session room, optional.</small></span></label>
+    <label class="chk"><input type="checkbox" id="p4"><span><b>Show up in look 1</b><small>No outfit change on photographer time.</small></span></label>
+    <label class="chk"><input type="checkbox" id="p5"><span><b>Bring your producer</b><small>So the session moves at your speed.</small></span></label>
+  </div>
+  <div class="covered"><b>Jonathan's handling:</b>
+    <ul><li>Clearing your producer with the studio</li><li>LED screen files: your hand logo, the 3, your covers</li><li>Coke's dos and don'ts for the day</li><li>Phone, tripod, mic and backup drives</li></ul>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="head"><span class="label">How we win the day</span><h2>Ground rules</h2></div>
+  <div class="rules">
+    <div class="rule"><b>Takes come first</b><p>Nobody stops a performance for a photo.</p></div>
+    <div class="rule"><b>Tight, then loose</b><p>The performance blocks stay on the clock. 3:30 is where you freestyle as long as it takes.</p></div>
+    <div class="rule"><b>One must-finish</b><p>The Halloween single leaves finished. Everything else is a bonus.</p></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="wrap">
+  <p>Your brand roadmap: <a id="roadlink" href="/coke/lthrizzl3/">boomala.com/coke/lthrizzl3</a></p>
+  <p>Jonathan Klein · BOOMaLA · jon@boomala.com</p>
+</footer>
+
+<script>
+(function(){
+  // per-viewer checklist memory
+  document.querySelectorAll('.chk input').forEach(function(cb){
+    try{ if(localStorage.getItem('l3tue_'+cb.id)==='1') cb.checked=true; }catch(e){}
+    cb.addEventListener('change',function(){ try{ localStorage.setItem('l3tue_'+cb.id, cb.checked?'1':'0'); }catch(e){} });
+  });
+  // live "now" marker on the shoot day, in Los Angeles time
+  function laNow(){
+    var p={}; new Intl.DateTimeFormat('en-US',{timeZone:'America/Los_Angeles',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
+    return {date:p.year+'-'+p.month+'-'+p.day, mins:(+p.hour)*60+(+p.minute)};
+  }
+  function toM(s){var a=s.split(':');return (+a[0])*60+(+a[1]);}
+  function tick(){
+    var n; try{ n=laNow(); }catch(e){ return; }
+    var bar=document.getElementById('nowbar'), txt=document.getElementById('nowtext');
+    var blocks=document.querySelectorAll('.blk'), live=null;
+    blocks.forEach(function(b){ b.classList.remove('now','done'); });
+    if(n.date!=='2026-10-20'){ bar.classList.remove('on'); return; }
+    blocks.forEach(function(b){
+      var s=toM(b.dataset.s), e=toM(b.dataset.e);
+      if(n.mins>=e) b.classList.add('done');
+      else if(n.mins>=s && !live){ b.classList.add('now'); live=b; }
+    });
+    if(live){ var left=toM(live.dataset.e)-n.mins; txt.textContent='Now: '+live.querySelector('h3').textContent+' · '+left+' min left'; bar.classList.add('on'); }
+    else if(n.mins<toM('11:30')){ txt.textContent='Call time 11:30 AM'; bar.classList.add('on'); }
+    else { txt.textContent="That's a wrap"; bar.classList.add('on'); }
+  }
+  tick(); setInterval(tick,30000);
+})();
+</script>
+</body>
+</html>
