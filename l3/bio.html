@@ -25,7 +25,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
-<link rel="preload" as="image" href="img/bio-wide.jpg" media="(min-width:901px)">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -113,6 +112,10 @@ nav a{white-space:nowrap;text-decoration:none;font-weight:700;font-size:14px;pad
 header.ondark .brand,header.ondark nav a{color:var(--cream)}
 header.ondark .brand img{filter:invert(1) sepia(.2)}
 
+.bgvid .vid{position:absolute;inset:0;overflow:hidden;opacity:0;transition:opacity 1.2s}
+.bgvid .vid.on{opacity:1}
+.bgvid iframe{position:absolute;left:50%;top:50%;width:max(100vw,177.78vh);height:max(56.25vw,100vh);transform:translate(-50%,-50%);border:0;pointer-events:none}
+.bgvid::after{z-index:1}
 /* SCENE 2 — statement */
 .s2{--len:220vh}
 .s2 .big{font-size:min(110vh,90vw)}
@@ -253,7 +256,9 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
   <section class="pin s1" id="top" data-scene aria-label="LTHrizzL3">
     <div class="stage">
-      <div class="photo"><picture><source media="(max-width:900px)" srcset="img/lights.jpg"><img src="img/bio-wide.jpg" alt="LTHrizzL3 at the Urban Light lamp posts at night" width="1920" height="1080" fetchpriority="high"></picture></div>
+      <div class="photo bgvid">
+        <div class="vid" id="bgvid" data-yt="f1WeHfvv0N0" aria-hidden="true"></div>
+      </div>
       <div class="top"><span class="label">Bio</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
       <div class="mid">
         <p class="tag"><span>I'm from the Eight</span><span class="r">Do your shi 3</span></p>
@@ -376,6 +381,16 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     function sel(){var r=document.createRange();r.selectNodeContents(em);var s=getSelection();s.removeAllRanges();s.addRange(r);cp.textContent='Selected'}
     try{navigator.clipboard.writeText(em.textContent).then(function(){cp.textContent='Copied'},sel)}catch(e){sel()}
   });
+})();
+</script>
+<script>
+(function(){
+  var v=document.getElementById('bgvid'); if(!v||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var id=v.dataset.yt, f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3&start=60';
+  f.title='Background video'; f.tabIndex=-1; f.allow='autoplay; encrypted-media'; f.setAttribute('aria-hidden','true');
+  f.addEventListener('load',function(){setTimeout(function(){v.classList.add('on')},1200)});
+  v.appendChild(f);
 })();
 </script>
 </body>

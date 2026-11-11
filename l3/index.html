@@ -154,6 +154,8 @@ header.ondark .brand img{filter:invert(1) sepia(.2)}
 .vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
 .slot{border:1px dashed var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:14px;background:#151515;min-height:84px}
 .slot b{font-size:15px}
+.s4 .slot{background:var(--cream-2)}
+.s5.dark{background:var(--ink)}
 
 /* SCENE 5 — studio pan */
 .s5{--len:270vh;background:var(--cream-2)}
@@ -306,22 +308,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
-  <section class="pin s5" id="studio" data-scene aria-labelledby="sh">
-    <div class="stage">
-      <div class="big" aria-hidden="true">STUDIO</div>
-      <div class="inner"><div class="wrap"><div data-step="1"><div class="label">In the studio</div><h2 id="sh" class="h2" style="margin-top:8px">Coke Studio<br>@ L.A. Live</h2></div></div></div>
-      <div class="rail" id="rail">
-        <figure><img src="img/booth.jpg" alt="LTHrizzL3 recording in the vocal booth" loading="lazy" width="720" height="960"></figure>
-        <figure><img src="img/jersey23.jpg" alt="LTHrizzL3 in a number 23 jersey" loading="lazy" width="720" height="960"></figure>
-        <figure><img src="img/desk.jpg" alt="LTHrizzL3 at the mixing desk" loading="lazy" width="720" height="960"></figure>
-        <figure><img src="img/chair.jpg" alt="LTHrizzL3 in the studio" loading="lazy" width="720" height="960"></figure>
-        <figure><img src="img/blue.jpg" alt="LTHrizzL3 in a blue sweater" loading="lazy" width="720" height="960"></figure>
-        <figure><img src="img/hero-courtside.jpg" alt="LTHrizzL3 courtside" loading="lazy" width="960" height="1280"></figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="pin s4 dark" id="watch" data-scene aria-labelledby="wh">
+  <section class="pin s4" id="watch" data-scene aria-labelledby="wh">
     <div class="stage">
       <div class="big" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg></div>
       <div class="inner"><div class="wrap">
@@ -345,6 +332,20 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
           <div class="slot" data-step="5"><span class="label" style="color:var(--red)">Coming soon</span><b>Pull Up clip</b></div>
         </div>
       </div></div>
+    </div>
+  </section>
+
+  <section class="pin s5 dark" id="studio" data-scene aria-labelledby="sh">
+    <div class="stage">
+      <div class="big" aria-hidden="true">STUDIO</div>
+      <div class="inner"><div class="wrap"><div data-step="1"><div class="label">In the studio</div><h2 id="sh" class="h2" style="margin-top:8px">Coke Studio<br>@ L.A. Live</h2></div></div></div>
+      <div class="rail" id="rail">
+        <figure><img src="img/booth.jpg" alt="LTHrizzL3 recording in the vocal booth" loading="lazy" width="720" height="960"></figure>
+        <figure><img src="img/jersey23.jpg" alt="LTHrizzL3 in a number 23 jersey" loading="lazy" width="720" height="960"></figure>
+        <figure><img src="img/desk.jpg" alt="LTHrizzL3 at the mixing desk" loading="lazy" width="720" height="960"></figure>
+        <figure><img src="img/blue.jpg" alt="LTHrizzL3 in a blue sweater" loading="lazy" width="720" height="960"></figure>
+        <figure><img src="img/hero-courtside.jpg" alt="LTHrizzL3 courtside" loading="lazy" width="960" height="1280"></figure>
+      </div>
     </div>
   </section>
 
