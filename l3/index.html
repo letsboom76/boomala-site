@@ -170,8 +170,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
     <a class="brand" href="#top" aria-label="LTHrizzL3 home"><img src="img/logo-black.png" alt="" width="40" height="40"><span>LTHrizzL3</span></a>
     <nav aria-label="Main">
       <ul>
-        <li><a href="#watch">Watch</a></li>
         <li><a href="#music">Music</a></li>
+        <li><a href="#watch">Watch</a></li>
         <li><a href="#pull-up">Pull Up</a></li>
         <li><a href="#eight">The Eight</a></li>
         <li><a href="#booking">Booking</a></li>
@@ -181,56 +181,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </header>
 
 <main id="main">
-  <!-- HERO: featured video -->
-  <div id="top" class="wrap hero">
+  <!-- HERO + MUSIC FIRST -->
+  <div id="top" class="wrap hero" style="padding-bottom:20px">
     <div class="hero-top">
       <h1>LTHrizzL3</h1>
       <p class="tag"><span>I'm from the Eight</span><span class="r">Do your shi 3</span></p>
     </div>
-    <div class="hero-frame">
-      <button class="yt" type="button" data-yt="f1WeHfvv0N0" aria-label="Play featured video: LTHrizzL3 live">
-        <img src="https://i.ytimg.com/vi/f1WeHfvv0N0/hqdefault.jpg" alt="" loading="eager">
-        <span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
-      </button>
-    </div>
-    <div class="hero-cap">
-      <div><div class="label">Featured</div><div style="font-weight:900;font-size:20px">Live from the studio</div></div>
-      <div class="ctas">
-        <a class="btn red" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">Subscribe on YouTube</a>
-        <a class="btn ghost" href="#music">Listen</a>
-      </div>
-    </div>
   </div>
-
-  <!-- WATCH -->
-  <section id="watch" class="sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><div class="label">Videos</div><h2>Watch</h2></div>
-        <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">All videos on YouTube</a>
-      </div>
-      <div class="vgrid">
-        <article class="vcard">
-          <div class="slot"><div class="label" style="color:var(--red)">Coming soon</div><div style="font-weight:700">Coke Studio session</div></div>
-          <h3>Live at Coke Studio @ L.A. Live</h3><div class="label">Session · Oct 2026</div>
-        </article>
-        <article class="vcard">
-          <button class="yt" type="button" data-yt="f1WeHfvv0N0" aria-label="Play: LTHrizzL3 live">
-            <img src="https://i.ytimg.com/vi/f1WeHfvv0N0/hqdefault.jpg" alt="" loading="lazy">
-            <span class="pb" aria-hidden="true" style="width:60px;height:60px"><svg viewBox="0 0 16 16" width="20" height="20"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
-          </button>
-          <h3>Live</h3><div class="label">YouTube Live · Nov 2026</div>
-        </article>
-        <article class="vcard">
-          <div class="slot"><div class="label" style="color:var(--red)">Coming soon</div><div style="font-weight:700">Music video</div></div>
-          <h3>ThrizzL3 — official video</h3><div class="label">[Date]</div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- MUSIC -->
-  <section id="music" class="sec">
+  <section id="music" class="sec" style="border-top:1px solid var(--red);padding-top:48px">  
     <div class="wrap music">
       <div>
         <div class="cover" role="img" aria-label="3's BACK album cover placeholder"><div class="three" aria-hidden="true">3</div><img src="img/logo-black.png" alt=""></div>
@@ -248,6 +206,46 @@ footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
           <a class="btn" href="[APPLE MUSIC URL]" target="_blank" rel="noopener">Apple Music</a>
           <a class="btn" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WATCH -->
+  <section id="watch" class="sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="label">Videos</div><h2>Watch</h2></div>
+        <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">All videos on YouTube</a>
+      </div>
+      <div class="hero-frame" style="margin-bottom:12px">
+      <button class="yt" type="button" data-yt="f1WeHfvv0N0" aria-label="Play featured video: LTHrizzL3 live">
+        <img src="https://i.ytimg.com/vi/f1WeHfvv0N0/hqdefault.jpg" alt="" loading="eager">
+        <span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
+      </button>
+      </div>
+      <div class="hero-cap" style="margin-bottom:40px">
+      <div><div class="label">Featured</div><div style="font-weight:900;font-size:20px">Live from the studio</div></div>
+      <div class="ctas">
+        <a class="btn red" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">Subscribe on YouTube</a>
+        
+      </div>
+      </div>
+      <div class="vgrid">
+        <article class="vcard">
+          <div class="slot"><div class="label" style="color:var(--red)">Coming soon</div><div style="font-weight:700">Coke Studio session</div></div>
+          <h3>Live at Coke Studio @ L.A. Live</h3><div class="label">Session · Oct 2026</div>
+        </article>
+        <article class="vcard">
+          <button class="yt" type="button" data-yt="f1WeHfvv0N0" aria-label="Play: LTHrizzL3 live">
+            <img src="https://i.ytimg.com/vi/f1WeHfvv0N0/hqdefault.jpg" alt="" loading="lazy">
+            <span class="pb" aria-hidden="true" style="width:60px;height:60px"><svg viewBox="0 0 16 16" width="20" height="20"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
+          </button>
+          <h3>Live</h3><div class="label">YouTube Live · Nov 2026</div>
+        </article>
+        <article class="vcard">
+          <div class="slot"><div class="label" style="color:var(--red)">Coming soon</div><div style="font-weight:700">Music video</div></div>
+          <h3>ThrizzL3 — official video</h3><div class="label">[Date]</div>
+        </article>
       </div>
     </div>
   </section>
