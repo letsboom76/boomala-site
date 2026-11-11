@@ -137,7 +137,7 @@ nav a{text-decoration:none;font-weight:700;font-size:14px;padding-block:10px;dis
 .feature{overflow:hidden;max-width:min(100%,calc((100svh - 400px) * 16 / 9));margin:0 auto}
 .motion .feature{transform:scale(calc(.7 + min(var(--p) * 1.6, 1) * .3));border-radius:calc((1 - min(var(--p) * 1.6, 1)) * 32px)}
 .yt{position:relative;aspect-ratio:16/9;width:100%;background:#1A1A1A;overflow:hidden;border:0;padding:0;display:block;cursor:pointer;color:var(--cream)}
-.yt img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .3s,transform .6s}
+.yt img{width:100%;height:100%;object-fit:cover;opacity:.92;transition:opacity .3s,transform .6s}
 .yt:hover img{opacity:1;transform:scale(1.02)}
 .yt .pb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:var(--cream);box-shadow:0 0 0 2px var(--red);display:flex;align-items:center;justify-content:center}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -154,8 +154,11 @@ nav a{text-decoration:none;font-weight:700;font-size:14px;padding-block:10px;dis
 .rail img{width:100%;height:100%;object-fit:cover}
 
 /* SCENE 6 — Pull Up */
-.s6 .big{font-size:min(44vh,26vw);flex-direction:column;line-height:.78}
-.pu{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:64px;align-items:center}
+.s6 .big svg{height:min(78vh,88vw);width:auto}
+.pu{display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;text-align:center}
+.pu p{margin-inline:auto}
+.pu .eps{width:min(100%,560px)}
+.s6 .h2{font-size:clamp(64px,11vw,170px)}
 .pu .logo{width:100%;aspect-ratio:1/1;background:#0B0B0D;display:flex;align-items:center;justify-content:center;padding:6%;border:1px solid #2A2A2A;border-radius:24px}
 .motion .s6 .logo{transform:scale(calc(.7 + min(var(--p) * 1.6, 1) * .3)) rotate(calc((1 - min(var(--p) * 1.6, 1)) * 8deg))}
 .pu .logo img{width:100%;height:100%;object-fit:contain}
@@ -214,7 +217,6 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   .pu .logo{width:min(100%,34vh)}
   .eps{gap:10px;margin-top:18px}
   .frame{width:min(100%,40vh);margin:0}
-  .s6 .big{font-size:30vw}
 }
 @media (prefers-reduced-motion:reduce){
   .np .eq i{animation:none}
@@ -310,7 +312,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
         </div>
         <div class="feature">
           <button class="yt" type="button" data-yt="f1WeHfvv0N0" aria-label="Play video: LTHrizzL3 live">
-            <img src="https://i.ytimg.com/vi/f1WeHfvv0N0/hqdefault.jpg" alt="" loading="lazy">
+            <img src="img/watch-poster.jpg" alt="" loading="lazy" width="1076" height="605">
             <span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
           </button>
         </div>
@@ -340,11 +342,11 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
   <section class="pin s6 dark" id="pull-up" data-scene aria-labelledby="ph">
     <div class="stage">
-      <div class="big" aria-hidden="true"><span>PULL</span><span>UP</span></div>
+      <div class="big" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="currentColor"/></svg></div>
       <div class="inner"><div class="wrap pu">
-        <div class="logo"><img src="img/pull-up-logo.jpg" alt="Pull Up — the podcast logo" loading="lazy" width="640" height="640"></div>
+        
         <div>
-          <div data-step="1"><div class="label" style="color:var(--red)">The podcast</div><h2 id="ph" class="h2" style="margin-top:8px">Pull Up</h2></div>
+          <div data-step="1"><div class="label">The podcast</div><h2 id="ph" class="h2" style="margin-top:8px">Pull Up</h2></div>
           <p data-step="2">Hosted by Jersey Jon. L3 pulled up. [One line on the episode.]</p>
           <div class="eps">
             <div class="slot" data-step="3"><span class="label" style="color:var(--red)">Episode</span><b>L3 pulls up</b></div>
