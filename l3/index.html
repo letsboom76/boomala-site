@@ -89,19 +89,30 @@ nav a{text-decoration:none;font-weight:700;font-size:14px;padding-block:10px;dis
 .pin.loose>.stage{position:relative;height:auto;min-height:100svh;padding-block:110px 80px}
 
 /* SCENE 1 — vibe */
-.s1{--len:170vh}
-.s1>.stage{padding-top:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
-.s1 .copy{padding:0 20px 0 max(40px,env(safe-area-inset-left,0px));position:relative;z-index:2}
-.motion .s1 .copy{transform:translateY(calc(var(--p) * -70px));opacity:calc(1 - var(--p) * .85)}
-.s1 h1{font-size:clamp(60px,9.6vw,156px);line-height:.84;letter-spacing:-.05em}
-.s1 .tag{font-size:clamp(22px,2.4vw,32px);font-weight:700;line-height:1.2;margin-top:24px}
+.s1{--len:200vh;background:var(--ink);color:var(--cream)}
+.s1>.stage{padding-top:0;display:block}
+.s1 .photo{position:absolute;left:50%;top:0;height:100%;width:min(75vh,58vw);transform:translateX(-50%);overflow:hidden;z-index:2}
+.s1 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.s1 .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,0) 55%,rgba(11,11,11,.75));pointer-events:none}
+.s1 .name{position:absolute;left:0;right:0;top:64%;margin:0;transform:translateY(-50%);text-align:center;font-weight:900;font-size:17.5vw;line-height:.8;letter-spacing:-.06em;white-space:nowrap;pointer-events:none}
+.s1 .name.back{z-index:1;color:var(--red)}
+.s1 .name.front{z-index:3;color:transparent;-webkit-text-stroke:2px var(--cream)}
+.motion .s1 .name.back{transform:translateY(-50%) translateX(calc(var(--p) * 8vw))}
+.motion .s1 .name.front{transform:translateY(-50%) translateX(calc(var(--p) * -8vw));opacity:calc(1 - var(--p) * .5)}
+.motion .s1 .photo{transform:translateX(-50%) scale(calc(1 - var(--p) * .18));border-radius:calc(var(--p) * 40px)}
+.motion .s1 .photo img{transform:scale(calc(1.15 - var(--p) * .15))}
+.s1 .top{position:absolute;left:0;right:0;top:84px;z-index:4;display:flex;justify-content:space-between;padding-inline:max(40px,env(safe-area-inset-left,0px))}
+.s1 .bottom{position:absolute;left:0;right:0;bottom:36px;z-index:4;display:flex;justify-content:space-between;align-items:end;gap:20px;padding-inline:max(40px,env(safe-area-inset-left,0px))}
+.motion .s1 .top,.motion .s1 .bottom{opacity:calc(1 - var(--p) * 2.2)}
+.s1 .tag{font-size:clamp(22px,2.2vw,30px);font-weight:900;line-height:1.1;letter-spacing:-.02em}
 .s1 .tag span{display:block}.s1 .tag .r{color:var(--red)}
-.s1 .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
-.s1 .photo{height:100%;position:relative;overflow:hidden}
-.s1 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform-origin:50% 40%}
-.motion .s1 .photo img{transform:scale(calc(1.12 - var(--p) * .12))}
-.s1 .photo::after{content:"";position:absolute;inset:18px;border:1px solid var(--red);pointer-events:none}
-.cue{position:absolute;left:40px;bottom:24px;z-index:3;color:var(--ink-2)}
+.s1 .ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+.s1 .btn{background:var(--cream);color:var(--ink);border-color:var(--cream)}
+.s1 .btn:hover{background:var(--red);border-color:var(--red);color:var(--cream)}
+.s1 .btn.ghost{background:transparent;color:var(--cream)}
+.cue{color:#9A907F}
+header.ondark .brand,header.ondark nav a{color:var(--cream)}
+header.ondark .brand img{filter:invert(1) sepia(.2)}
 
 /* SCENE 2 — statement */
 .s2{--len:220vh}
@@ -195,13 +206,14 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
 @media (max-width:900px){
   nav ul{gap:14px} nav li.hide-m{display:none}
-  .s1>.stage{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch}
-  .s1 .copy{padding:84px 20px 20px}
-  .s1 h1{font-size:clamp(56px,17vw,96px)}
-  .s1 .tag{margin-top:14px;font-size:22px}
-  .s1 .ctas{margin-top:18px}
-  .s1 .photo::after{inset:12px}
-  .cue{display:none}
+  .s1 .photo{width:100%}
+  .s1 .name{font-size:19vw;top:60%}
+  .s1 .name.front{color:var(--cream);-webkit-text-stroke:0;text-shadow:0 6px 30px rgba(0,0,0,.35)}
+  .s1 .top .label:first-child{color:var(--cream)!important}
+  .s1 .top{top:76px;padding-inline:20px}
+  .s1 .bottom{flex-direction:column;align-items:stretch;padding-inline:20px;bottom:24px}
+  .s1 .ctas{justify-content:flex-start}
+  .s1 .photo::after{background:linear-gradient(180deg,rgba(11,11,11,.35),rgba(11,11,11,0) 25%,rgba(11,11,11,0) 45%,rgba(11,11,11,.85))}
   .music,.pu,.eightrow{grid-template-columns:minmax(0,1fr);gap:22px}
   .s3 .coverbox{display:flex;gap:16px;align-items:end}
   .s3 .cover{width:min(40vw,24vh);flex:0 0 auto}
@@ -244,9 +256,11 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
   <section class="pin s1" id="top" data-scene aria-label="LTHrizzL3">
     <div class="stage">
-      <div class="copy">
-        <div class="label" style="color:var(--red)">3's BACK · out now</div>
-        <h1 style="margin-top:16px">LTHrizzL3</h1>
+      <div class="name back" aria-hidden="true">LTHrizzL3</div>
+      <div class="photo"><img src="img/hero-closeup.jpg" alt="LTHrizzL3 in the studio" width="960" height="1280" fetchpriority="high"></div>
+      <h1 class="name front">LTHrizzL3</h1>
+      <div class="top"><span class="label" style="color:var(--red)">3's BACK · out now</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
+      <div class="bottom">
         <p class="tag"><span>I'm from the Eight</span><span class="r">Do your shi 3</span></p>
         <div class="ctas">
           <button class="btn" type="button" id="heroPlay">
@@ -256,8 +270,6 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
           <a class="btn ghost" href="#watch">Watch</a>
         </div>
       </div>
-      <div class="photo"><img src="img/hero-closeup.jpg" alt="LTHrizzL3 in the studio" width="960" height="1280" fetchpriority="high"></div>
-      <div class="cue label" aria-hidden="true">Scroll ↓</div>
     </div>
   </section>
 
@@ -419,7 +431,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     var h=s.el.offsetHeight-ih; return h>0?Math.min(1,Math.max(0,-r.top/h)):0;
   }
   function frame(){
-    hdr.classList.toggle('solid', scrollY>innerHeight*0.6);
+    var past=scrollY>document.getElementById('top').offsetHeight-60; hdr.classList.toggle('solid', past); hdr.classList.toggle('ondark', !past);
     scenes.forEach(function(s){
       var p=reduce?1:prog(s);
       s.el.style.setProperty('--p',p.toFixed(4));
