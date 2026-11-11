@@ -52,14 +52,14 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
-html{scroll-padding-top:64px}
+html{scroll-padding-top:0}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.55;overflow-x:clip}
 img{max-width:100%;display:block}
 a{color:inherit} a:hover{color:var(--red)}
 :focus-visible{outline:2px solid var(--red);outline-offset:3px}
 h1,h2,h3,p{margin:0}
 h1,h2,h3{font-weight:900;letter-spacing:-.03em;text-wrap:balance}
-.wrap{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.wrap{width:100%;max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 .label{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 .skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;z-index:99;background:var(--ink);color:var(--cream);padding:10px 14px}
 
@@ -74,48 +74,53 @@ nav a{text-decoration:none;font-weight:700;font-size:14px;padding-block:10px;dis
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border:1.5px solid var(--ink);background:var(--ink);color:var(--cream);font-weight:900;font-size:15px;text-decoration:none;cursor:pointer;font-family:inherit;border-radius:999px;transition:background .2s,border-color .2s,color .2s}
 .btn:hover{background:var(--red);border-color:var(--red);color:var(--cream)}
 .btn.ghost{background:transparent;color:var(--ink)} .btn.ghost:hover{background:var(--ink);color:var(--cream)}
+.dark .btn.ghost{border-color:var(--cream);color:var(--cream)} .dark .btn.ghost:hover{background:var(--cream);color:var(--ink)}
+.dark{background:var(--ink);color:var(--cream)}
 
-.motion .rv{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
-.motion .rv.in{opacity:1;transform:none}
-.motion .rv.d1{transition-delay:.08s}.motion .rv.d2{transition-delay:.16s}.motion .rv.d3{transition-delay:.24s}
+/* ---------- the scene system: every section pins, a giant red mark grows behind it, and the content lights up step by step ---------- */
+.pin{position:relative;height:var(--len,210vh);--p:0}
+.pin>.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center;padding-top:60px}
+.inner{position:relative;z-index:2;width:100%}
+.big{position:absolute;z-index:1;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;font-weight:900;color:var(--red);line-height:.8;letter-spacing:-.07em;white-space:nowrap;opacity:.9}
+.motion .big{opacity:clamp(0,calc(var(--p) * 1.8),.9);transform:scale(calc(.55 + var(--p) * .55));will-change:transform,opacity}
+.motion [data-step]{opacity:.12;transform:translateY(26px);transition:opacity .55s cubic-bezier(.2,.7,.2,1),transform .55s cubic-bezier(.2,.7,.2,1)}
+.motion [data-step].on{opacity:1;transform:none}
+.pin.loose{height:auto}
+.pin.loose>.stage{position:relative;height:auto;min-height:100svh;padding-block:110px 80px}
 
 /* SCENE 1 — vibe */
-.s1{height:170vh;position:relative}
-.s1 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
-.s1 .copy{padding:0 20px 0 max(40px,env(safe-area-inset-left,0px));position:relative;z-index:2;will-change:transform,opacity}
+.s1{--len:170vh}
+.s1>.stage{padding-top:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center}
+.s1 .copy{padding:0 20px 0 max(40px,env(safe-area-inset-left,0px));position:relative;z-index:2}
+.motion .s1 .copy{transform:translateY(calc(var(--p) * -70px));opacity:calc(1 - var(--p) * .85)}
 .s1 h1{font-size:clamp(60px,9.6vw,156px);line-height:.84;letter-spacing:-.05em}
 .s1 .tag{font-size:clamp(22px,2.4vw,32px);font-weight:700;line-height:1.2;margin-top:24px}
 .s1 .tag span{display:block}.s1 .tag .r{color:var(--red)}
 .s1 .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
 .s1 .photo{height:100%;position:relative;overflow:hidden}
-.s1 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform-origin:50% 40%;will-change:transform}
+.s1 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;transform-origin:50% 40%}
+.motion .s1 .photo img{transform:scale(calc(1.12 - var(--p) * .12))}
 .s1 .photo::after{content:"";position:absolute;inset:18px;border:1px solid var(--red);pointer-events:none}
 .cue{position:absolute;left:40px;bottom:24px;z-index:3;color:var(--ink-2)}
 
 /* SCENE 2 — statement */
-.s2{height:220vh;position:relative;background:var(--ink);color:var(--cream)}
-.s2 .stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.s2 .eight{position:absolute;font-weight:900;font-size:min(110vh,90vw);line-height:.8;color:var(--red);opacity:.85;letter-spacing:-.08em;will-change:transform,opacity}
-.motion .s2 .eight{opacity:0}
-.s2 .words{position:relative;text-align:center;font-weight:900;font-size:clamp(44px,8vw,120px);line-height:.95;letter-spacing:-.04em}
-.s2 .w{display:block;transition:opacity .4s}
-.motion .s2 .w{opacity:.12}
-.motion .s2 .w.on{opacity:1}
-.s2 .w.red{color:var(--cream);-webkit-text-stroke:0}
-
-.scene{padding-block:clamp(80px,12vw,160px)}
-.scene-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:40px}
-.scene-head h2{font-size:clamp(48px,7vw,104px);line-height:.9}
+.s2{--len:220vh}
+.s2 .big{font-size:min(110vh,90vw)}
+.s2 .words{text-align:center;font-weight:900;font-size:clamp(44px,8vw,120px);line-height:.95;letter-spacing:-.04em}
+.s2 .words span{display:block}
 
 /* SCENE 3 — music */
-.music{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:64px;align-items:center}
+.s3 .big{font-size:min(120vh,95vw);justify-content:flex-start;padding-left:4vw}
+.music{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:64px;align-items:center}
 .cover{aspect-ratio:1/1;width:100%;background:var(--ink);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 40px 80px -40px rgba(11,11,11,.55)}
+.motion .s3 .cover{transform:scale(calc(.75 + min(var(--p) * 1.6, 1) * .25)) rotate(calc((1 - min(var(--p) * 1.6, 1)) * -6deg))}
 .cover .three{position:absolute;font-weight:900;font-size:min(440px,100vw);line-height:1;color:var(--cream);opacity:.07}
 .cover img{width:46%;filter:invert(1) sepia(.25);position:relative}
 .cover-cap{margin-top:18px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 .cover-cap h3{font-size:40px;line-height:1}
-.tracks{border-top:1px solid var(--line)}
-.track{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:18px;align-items:center;padding-block:18px;border-bottom:1px solid var(--line)}
+.h2{font-size:clamp(48px,7vw,104px);line-height:.9}
+.tracks{border-top:1px solid var(--line);margin-top:22px}
+.track{display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:18px;align-items:center;padding-block:16px;border-bottom:1px solid var(--line)}
 .play{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--red);background:var(--cream);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:transform .2s}
 .play:hover{transform:scale(1.06)}
 .track.on .play{background:var(--ink);border-color:var(--ink)}
@@ -123,55 +128,59 @@ nav a{text-decoration:none;font-weight:700;font-size:14px;padding-block:10px;dis
 .bar2{height:4px;background:var(--line);margin-top:10px;position:relative;cursor:pointer;border-radius:2px;overflow:hidden}
 .bar2 i{position:absolute;inset:0 auto 0 0;width:0;background:var(--red)}
 .tmeta{font-family:var(--mono);font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
-.stream{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.stream{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
 
 /* SCENE 4 — watch */
-.yt{position:relative;aspect-ratio:16/9;width:100%;background:var(--ink);overflow:hidden;border:0;padding:0;display:block;cursor:pointer;color:var(--cream)}
+.s4 .big svg{height:min(105vh,85vw);width:auto}
+.whead{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.live{display:flex;gap:10px;flex-wrap:wrap}
+.feature{overflow:hidden;max-width:min(100%,calc((100svh - 400px) * 16 / 9));margin:0 auto}
+.motion .feature{transform:scale(calc(.7 + min(var(--p) * 1.6, 1) * .3));border-radius:calc((1 - min(var(--p) * 1.6, 1)) * 32px)}
+.yt{position:relative;aspect-ratio:16/9;width:100%;background:#1A1A1A;overflow:hidden;border:0;padding:0;display:block;cursor:pointer;color:var(--cream)}
 .yt img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:opacity .3s,transform .6s}
 .yt:hover img{opacity:1;transform:scale(1.02)}
-.yt .pb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:88px;height:88px;border-radius:50%;background:var(--cream);box-shadow:0 0 0 2px var(--red);display:flex;align-items:center;justify-content:center}
+.yt .pb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:var(--cream);box-shadow:0 0 0 2px var(--red);display:flex;align-items:center;justify-content:center}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.feature{overflow:hidden;will-change:transform}
-.motion .feature{transform:scale(.88);border-radius:28px}
-.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:28px}
-.slot{aspect-ratio:16/9;border:1px dashed var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:16px;background:var(--cream-2)}
-.vcard h3{font-size:20px;margin-top:12px}
-.live{display:flex;gap:10px;flex-wrap:wrap}
+.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.slot{border:1px dashed var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:14px;background:#151515;min-height:84px}
+.slot b{font-size:15px}
 
-/* SCENE 5 — studio, horizontal pan */
-.s5{height:260vh;position:relative;background:var(--cream-2)}
-.s5 .stage{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
-.s5 .rail{display:flex;gap:18px;padding-left:max(20px,calc((100vw - 1240px)/2 + 20px));will-change:transform;margin-top:32px}
-.s5 figure{margin:0;flex:0 0 auto;width:min(40vh,62vw);aspect-ratio:3/4;overflow:hidden}
-.s5 figure img{width:100%;height:100%;object-fit:cover}
+/* SCENE 5 — studio pan */
+.s5{--len:270vh;background:var(--cream-2)}
+.s5>.stage{flex-direction:column;justify-content:center;align-items:stretch}
+.s5 .big{font-size:min(46vh,30vw);align-items:flex-end;padding-bottom:4vh}
+.rail{display:flex;gap:18px;padding-left:max(20px,calc((100vw - 1240px) / 2 + 20px));margin-top:28px;position:relative;z-index:2;will-change:transform}
+.rail figure{margin:0;flex:0 0 auto;width:min(40vh,62vw);aspect-ratio:3/4;overflow:hidden}
+.rail img{width:100%;height:100%;object-fit:cover}
 
-/* SCENE 6 — Pull Up: logo always fully visible */
-.s6{background:var(--ink);color:var(--cream)}
-.pu{display:grid;grid-template-columns:minmax(0,460px) minmax(0,1fr);gap:64px;align-items:center}
+/* SCENE 6 — Pull Up */
+.s6 .big{font-size:min(44vh,26vw);flex-direction:column;line-height:.78}
+.pu{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:64px;align-items:center}
 .pu .logo{width:100%;aspect-ratio:1/1;background:#0B0B0D;display:flex;align-items:center;justify-content:center;padding:6%;border:1px solid #2A2A2A;border-radius:24px}
+.motion .s6 .logo{transform:scale(calc(.7 + min(var(--p) * 1.6, 1) * .3)) rotate(calc((1 - min(var(--p) * 1.6, 1)) * 8deg))}
 .pu .logo img{width:100%;height:100%;object-fit:contain}
-.pu h2{font-size:clamp(52px,7vw,110px);line-height:.9}
 .pu p{color:#D9CFBC;max-width:46ch;margin-top:16px}
-.eps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
-.s6 .slot{background:#1A1A1A;color:var(--cream)}
+.eps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:26px}
 
 /* SCENE 7 — the Eight */
+.s7 .big{font-size:min(120vh,95vw);justify-content:flex-end;padding-right:6vw}
 .eightrow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
-.eightrow .frame{margin:0;border:1px solid var(--red);padding:12px;aspect-ratio:3/4;max-width:520px}
-.eightrow .frame img{width:100%;height:100%;object-fit:cover}
-.life{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0;padding:0;list-style:none}
-.life li{border:1px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:700;font-size:14px}
+.frame{margin:0 0 0 auto;border:1px solid var(--red);padding:12px;background:var(--cream);aspect-ratio:3/4;width:min(100%,62vh)}
+.frame img{width:100%;height:100%;object-fit:cover}
+.motion .s7 .frame{transform:scale(calc(.8 + min(var(--p) * 1.6, 1) * .2))}
 
 /* SCENE 8 — booking */
-.book{text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px}
-.book h2{font-size:clamp(64px,11vw,170px);line-height:.85}
+.s8{--len:190vh}
+.s8 .big{font-size:min(110vh,90vw)}
+.book{text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+.book h2{font-size:clamp(64px,12vw,190px);line-height:.85;display:flex;flex-direction:column}
 .email{font-family:var(--mono);font-size:18px;user-select:all;border-bottom:1px solid var(--red)}
-footer{border-top:1px solid var(--red);padding-block:28px;padding-bottom:max(28px,env(safe-area-inset-bottom,0px));font-size:13px;color:var(--ink-2)}
+footer{background:var(--ink);color:#B8AE9C;border-top:1px solid var(--red);padding-block:28px;padding-bottom:max(28px,env(safe-area-inset-bottom,0px));font-size:13px}
 footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
 /* now playing pill */
-.np{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);z-index:40;background:var(--ink);color:var(--cream);border-radius:999px;padding:8px 18px 8px 8px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,.7,.2,1);max-width:calc(100vw - 32px)}
+.np{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);z-index:40;background:var(--ink);color:var(--cream);border:1px solid #333;border-radius:999px;padding:8px 18px 8px 8px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,.7,.2,1);max-width:calc(100vw - 32px)}
 .np.show{transform:translate(-50%,0)}
 .np button{width:40px;height:40px;border-radius:50%;border:0;background:var(--cream);display:flex;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
 .np .t{font-weight:900;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -183,23 +192,31 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
 @media (max-width:900px){
   nav ul{gap:14px} nav li.hide-m{display:none}
-  .s1 .stage{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch}
+  .s1>.stage{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);align-items:stretch}
   .s1 .copy{padding:84px 20px 20px}
   .s1 h1{font-size:clamp(56px,17vw,96px)}
   .s1 .tag{margin-top:14px;font-size:22px}
   .s1 .ctas{margin-top:18px}
   .s1 .photo::after{inset:12px}
   .cue{display:none}
-  .music,.pu,.eightrow{grid-template-columns:minmax(0,1fr);gap:36px}
-  .vgrid{grid-template-columns:minmax(0,1fr)}
-  .pu .logo{max-width:420px}
+  .music,.pu,.eightrow{grid-template-columns:minmax(0,1fr);gap:22px}
+  .s3 .coverbox{display:flex;gap:16px;align-items:end}
+  .s3 .cover{width:min(40vw,24vh);flex:0 0 auto}
+  .cover-cap{flex-direction:column;gap:4px;margin:0}
+  .cover-cap h3{font-size:30px}
+  .h2{font-size:clamp(40px,12vw,64px)}
+  .track{grid-template-columns:44px minmax(0,1fr) auto;gap:12px;padding-block:10px}
+  .play{width:44px;height:44px}
+  .tname{font-size:20px}
+  .stream .btn{padding:0 18px}
+  .feature{max-width:100%}
+  .vgrid{gap:8px}.slot{min-height:64px;padding:8px}.slot b{font-size:12px}.slot .label{font-size:9px;letter-spacing:.1em}
+  .pu .logo{width:min(100%,34vh)}
+  .eps{gap:10px;margin-top:18px}
+  .frame{width:min(100%,40vh);margin:0}
+  .s6 .big{font-size:30vw}
 }
 @media (prefers-reduced-motion:reduce){
-  .s1,.s2,.s5{height:auto}
-  .s1 .stage,.s2 .stage,.s5 .stage{position:relative;height:auto}
-  .s1 .stage{min-height:100svh}
-  .s2 .stage{padding-block:120px}
-  .s5 .stage{padding-block:100px}.s5 .rail{overflow-x:auto;padding-bottom:12px}
   .np .eq i{animation:none}
 }
 </style>
@@ -223,9 +240,9 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
 <main id="main">
 
-  <section class="s1" id="top" aria-label="LTHrizzL3">
+  <section class="pin s1" id="top" data-scene aria-label="LTHrizzL3">
     <div class="stage">
-      <div class="copy" id="s1copy">
+      <div class="copy">
         <div class="label" style="color:var(--red)">3's BACK · out now</div>
         <h1 style="margin-top:16px">LTHrizzL3</h1>
         <p class="tag"><span>I'm from the Eight</span><span class="r">Do your shi 3</span></p>
@@ -237,74 +254,79 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
           <a class="btn ghost" href="#watch">Watch</a>
         </div>
       </div>
-      <div class="photo"><img id="s1img" src="img/hero-closeup.jpg" alt="LTHrizzL3 in the studio" width="960" height="1280" fetchpriority="high"></div>
+      <div class="photo"><img src="img/hero-closeup.jpg" alt="LTHrizzL3 in the studio" width="960" height="1280" fetchpriority="high"></div>
       <div class="cue label" aria-hidden="true">Scroll ↓</div>
     </div>
   </section>
 
-  <section class="s2" id="s2" aria-label="I'm from the Eight">
+  <section class="pin s2 dark" id="s2" data-scene aria-label="I'm from the Eight">
     <div class="stage">
-      <div class="eight" id="s2eight" aria-hidden="true">8</div>
-      <p class="words">
-        <span class="w">I'm from</span>
-        <span class="w red">the Eight</span>
-        <span class="w">Do your</span>
-        <span class="w red">shi 3</span>
-      </p>
+      <div class="big" aria-hidden="true">8</div>
+      <div class="inner"><p class="words">
+        <span data-step="1">I'm from</span>
+        <span data-step="2">the Eight</span>
+        <span data-step="3">Do your</span>
+        <span data-step="4">shi 3</span>
+      </p></div>
     </div>
   </section>
 
-  <section class="scene" id="music" aria-labelledby="mh">
-    <div class="wrap music">
-      <div class="rv">
-        <div class="cover" role="img" aria-label="3's BACK album cover"><div class="three" aria-hidden="true">3</div><img src="img/logo-black.png" alt=""></div>
-        <div class="cover-cap"><h3>3's BACK</h3><span class="label" style="color:var(--red)">Out now</span></div>
-      </div>
-      <div>
-        <div class="scene-head rv d1" style="margin-bottom:22px"><div><div class="label">The album</div><h2 id="mh" style="margin-top:10px">Press play</h2></div></div>
-        <div class="tracks rv d2">
-          <div class="track" data-name="ThrizzL3"><button class="play" type="button" aria-label="Play ThrizzL3"></button><div><div class="tname">ThrizzL3</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 1:50</div><audio preload="none" src="audio/thrizzl3.mp3"></audio></div>
-          <div class="track" data-name="I Want Her"><button class="play" type="button" aria-label="Play I Want Her"></button><div><div class="tname">I Want Her</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 2:15</div><audio preload="none" src="audio/i-want-her.mp3"></audio></div>
-          <div class="track" data-name="Aliyah"><button class="play" type="button" aria-label="Play Aliyah"></button><div><div class="tname">Aliyah</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 2:20</div><audio preload="none" src="audio/aliyah.mp3"></audio></div>
-        </div>
-        <div class="stream rv d3">
-          <a class="btn" href="[SPOTIFY URL]" target="_blank" rel="noopener">Spotify</a>
-          <a class="btn" href="[APPLE MUSIC URL]" target="_blank" rel="noopener">Apple Music</a>
-          <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="scene" id="watch" aria-labelledby="wh" style="padding-top:0">
-    <div class="wrap">
-      <div class="scene-head rv">
-        <div><div class="label">Videos · live</div><h2 id="wh" style="margin-top:10px">Watch</h2></div>
-        <div class="live">
-          <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a>
-          <a class="btn ghost" href="https://www.twitch.tv/lthrizzl3" target="_blank" rel="noopener">Twitch</a>
-          <a class="btn ghost" href="https://kick.com/lthrizzl3" target="_blank" rel="noopener">Kick</a>
-        </div>
-      </div>
-      <div class="feature" id="feature">
-        <button class="yt" type="button" data-yt="f1WeHfvv0N0" aria-label="Play video: LTHrizzL3 live">
-          <img src="https://i.ytimg.com/vi/f1WeHfvv0N0/hqdefault.jpg" alt="" loading="lazy">
-          <span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
-        </button>
-      </div>
-      <div class="vgrid">
-        <article class="vcard rv"><div class="slot"><div class="label" style="color:var(--red)">Coming soon</div><div style="font-weight:700">Coke Studio session</div></div><h3>Live at Coke Studio @ L.A. Live</h3></article>
-        <article class="vcard rv d1"><div class="slot"><div class="label" style="color:var(--red)">Coming soon</div><div style="font-weight:700">Music video</div></div><h3>ThrizzL3</h3></article>
-        <article class="vcard rv d2"><div class="slot"><div class="label" style="color:var(--red)">Coming soon</div><div style="font-weight:700">Pull Up clip</div></div><h3>L3 pulls up</h3></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="s5" id="studio" aria-labelledby="sh">
+  <section class="pin s3" id="music" data-scene aria-labelledby="mh">
     <div class="stage">
-      <div class="wrap scene-head" style="margin-bottom:0;width:100%">
-        <div><div class="label">In the studio</div><h2 id="sh" style="margin-top:10px">Coke Studio<br>@ L.A. Live</h2></div>
-      </div>
+      <div class="big" aria-hidden="true">3</div>
+      <div class="inner"><div class="wrap music">
+        <div class="coverbox">
+          <div class="cover" role="img" aria-label="3's BACK album cover"><div class="three" aria-hidden="true">3</div><img src="img/logo-black.png" alt=""></div>
+          <div class="cover-cap" data-step="1"><h3>3's BACK</h3><span class="label" style="color:var(--red)">Out now</span></div>
+        </div>
+        <div>
+          <div data-step="1"><div class="label">The album</div><h2 id="mh" class="h2" style="margin-top:8px">Press play</h2></div>
+          <div class="tracks">
+            <div class="track" data-step="2" data-name="ThrizzL3"><button class="play" type="button" aria-label="Play ThrizzL3"></button><div><div class="tname">ThrizzL3</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 1:50</div><audio preload="none" src="audio/thrizzl3.mp3"></audio></div>
+            <div class="track" data-step="3" data-name="I Want Her"><button class="play" type="button" aria-label="Play I Want Her"></button><div><div class="tname">I Want Her</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 2:15</div><audio preload="none" src="audio/i-want-her.mp3"></audio></div>
+            <div class="track" data-step="4" data-name="Aliyah"><button class="play" type="button" aria-label="Play Aliyah"></button><div><div class="tname">Aliyah</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 2:20</div><audio preload="none" src="audio/aliyah.mp3"></audio></div>
+          </div>
+          <div class="stream" data-step="5">
+            <a class="btn" href="[SPOTIFY URL]" target="_blank" rel="noopener">Spotify</a>
+            <a class="btn" href="[APPLE MUSIC URL]" target="_blank" rel="noopener">Apple Music</a>
+            <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin s4 dark" id="watch" data-scene aria-labelledby="wh">
+    <div class="stage">
+      <div class="big" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg></div>
+      <div class="inner"><div class="wrap">
+        <div class="whead">
+          <div data-step="1"><div class="label" style="color:var(--red)">Videos · live</div><h2 id="wh" class="h2" style="margin-top:8px">Watch</h2></div>
+          <div class="live" data-step="2">
+            <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a>
+            <a class="btn ghost" href="https://www.twitch.tv/lthrizzl3" target="_blank" rel="noopener">Twitch</a>
+            <a class="btn ghost" href="https://kick.com/lthrizzl3" target="_blank" rel="noopener">Kick</a>
+          </div>
+        </div>
+        <div class="feature">
+          <button class="yt" type="button" data-yt="f1WeHfvv0N0" aria-label="Play video: LTHrizzL3 live">
+            <img src="https://i.ytimg.com/vi/f1WeHfvv0N0/hqdefault.jpg" alt="" loading="lazy">
+            <span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
+          </button>
+        </div>
+        <div class="vgrid">
+          <div class="slot" data-step="3"><span class="label" style="color:var(--red)">Coming soon</span><b>Coke Studio session</b></div>
+          <div class="slot" data-step="4"><span class="label" style="color:var(--red)">Coming soon</span><b>ThrizzL3 video</b></div>
+          <div class="slot" data-step="5"><span class="label" style="color:var(--red)">Coming soon</span><b>Pull Up clip</b></div>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin s5" id="studio" data-scene aria-labelledby="sh">
+    <div class="stage">
+      <div class="big" aria-hidden="true">STUDIO</div>
+      <div class="inner"><div class="wrap"><div data-step="1"><div class="label">In the studio</div><h2 id="sh" class="h2" style="margin-top:8px">Coke Studio<br>@ L.A. Live</h2></div></div></div>
       <div class="rail" id="rail">
         <figure><img src="img/booth.jpg" alt="LTHrizzL3 recording in the vocal booth" loading="lazy" width="720" height="960"></figure>
         <figure><img src="img/jersey23.jpg" alt="LTHrizzL3 in a number 23 jersey" loading="lazy" width="720" height="960"></figure>
@@ -316,38 +338,46 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
-  <section class="scene s6" id="pull-up" aria-labelledby="ph">
-    <div class="wrap pu">
-      <div class="logo rv"><img src="img/pull-up-logo.jpg" alt="Pull Up — the podcast logo" loading="lazy" width="640" height="640"></div>
-      <div>
-        <div class="label rv" style="color:var(--red)">The podcast</div>
-        <h2 id="ph" class="rv d1" style="margin-top:10px">Pull Up</h2>
-        <p class="rv d2">Hosted by Jersey Jon. L3 pulled up. [One line on the episode.]</p>
-        <div class="eps rv d3">
-          <div class="slot"><div class="label" style="color:var(--red)">Episode</div><div style="font-weight:700">L3 pulls up</div></div>
-          <div class="slot"><div class="label" style="color:var(--red)">Clips</div><div style="font-weight:700">Best moments</div></div>
+  <section class="pin s6 dark" id="pull-up" data-scene aria-labelledby="ph">
+    <div class="stage">
+      <div class="big" aria-hidden="true"><span>PULL</span><span>UP</span></div>
+      <div class="inner"><div class="wrap pu">
+        <div class="logo"><img src="img/pull-up-logo.jpg" alt="Pull Up — the podcast logo" loading="lazy" width="640" height="640"></div>
+        <div>
+          <div data-step="1"><div class="label" style="color:var(--red)">The podcast</div><h2 id="ph" class="h2" style="margin-top:8px">Pull Up</h2></div>
+          <p data-step="2">Hosted by Jersey Jon. L3 pulled up. [One line on the episode.]</p>
+          <div class="eps">
+            <div class="slot" data-step="3"><span class="label" style="color:var(--red)">Episode</span><b>L3 pulls up</b></div>
+            <div class="slot" data-step="4"><span class="label" style="color:var(--red)">Clips</span><b>Best moments</b></div>
+          </div>
         </div>
-      </div>
+      </div></div>
     </div>
   </section>
 
-  <section class="scene" id="eight" aria-labelledby="eh">
-    <div class="wrap eightrow">
-      <div>
-        <div class="label rv">Where he's from</div>
-        <h2 id="eh" class="rv d1" style="font-size:clamp(48px,6vw,88px);line-height:.92;margin-top:10px">I'm from the Eight</h2>
-        <p class="rv d2" style="max-width:46ch;color:var(--ink-2);margin-top:16px">[Two or three lines from him about where he grew up.]</p>
-      </div>
-      <figure class="frame rv d1"><img src="img/lights.jpg" alt="LTHrizzL3 at the Urban Light lamp posts at night" loading="lazy" width="720" height="960"></figure>
+  <section class="pin s7" id="eight" data-scene aria-labelledby="eh">
+    <div class="stage">
+      <div class="big" aria-hidden="true">8</div>
+      <div class="inner"><div class="wrap eightrow">
+        <div>
+          <div class="label" data-step="1">Where he's from</div>
+          <h2 id="eh" class="h2" data-step="2" style="margin-top:8px">I'm from the Eight</h2>
+          <p data-step="3" style="max-width:46ch;color:var(--ink-2);margin-top:16px">[Two or three lines from him about where he grew up.]</p>
+        </div>
+        <figure class="frame"><img src="img/lights.jpg" alt="LTHrizzL3 at the Urban Light lamp posts at night" loading="lazy" width="720" height="960"></figure>
+      </div></div>
     </div>
   </section>
 
-  <section class="scene" id="booking" aria-labelledby="bh" style="border-top:1px solid var(--red)">
-    <div class="wrap book">
-      <div class="label rv">Booking · features · press</div>
-      <h2 id="bh" class="rv d1">Pull up</h2>
-      <div class="rv d2" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center"><span class="email" id="email">[booking@email.com]</span><button class="btn ghost" type="button" id="copy">Copy</button></div>
-      <a class="rv d3" href="https://www.instagram.com/lthrizzl3/" target="_blank" rel="noopener" style="font-weight:700">DM @lthrizzl3 on Instagram</a>
+  <section class="pin s8 dark" id="booking" data-scene aria-labelledby="bh">
+    <div class="stage">
+      <div class="big" aria-hidden="true">3</div>
+      <div class="inner"><div class="wrap book">
+        <div class="label" data-step="1">Booking · features · press</div>
+        <h2 id="bh"><span data-step="2">Pull</span><span data-step="3">up</span></h2>
+        <div data-step="4" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center"><span class="email" id="email">[booking@email.com]</span><button class="btn ghost" type="button" id="copy">Copy</button></div>
+        <a data-step="5" href="https://www.instagram.com/lthrizzl3/" target="_blank" rel="noopener" style="font-weight:700">DM @lthrizzl3 on Instagram</a>
+      </div></div>
     </div>
   </section>
 </main>
@@ -365,35 +395,42 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(!reduce) document.documentElement.classList.add('motion');
   var hdr=document.getElementById('hdr');
+  var scenes=[].slice.call(document.querySelectorAll('[data-scene]')).map(function(el){
+    var steps=[].slice.call(el.querySelectorAll('[data-step]')), n=0;
+    steps.forEach(function(s){n=Math.max(n,+s.dataset.step)});
+    return {el:el,steps:steps,n:n,inner:el.querySelector('.inner')};
+  });
+  var rail=document.getElementById('rail'), studio=document.getElementById('studio');
 
-  var rv=[].slice.call(document.querySelectorAll('.rv'));
-  if(!reduce && 'IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -10% 0px'});
-    rv.forEach(function(el){io.observe(el)});
-  } else rv.forEach(function(el){el.classList.add('in')});
-
-  var s1=document.querySelector('.s1'), s1img=document.getElementById('s1img'), s1copy=document.getElementById('s1copy');
-  var s2=document.getElementById('s2'), s2eight=document.getElementById('s2eight'), words=[].slice.call(document.querySelectorAll('.s2 .w'));
-  var s5=document.querySelector('.s5'), rail=document.getElementById('rail');
-  var feature=document.getElementById('feature');
-  function prog(el){var r=el.getBoundingClientRect(),h=el.offsetHeight-innerHeight;return h>0?Math.min(1,Math.max(0,-r.top/h)):0}
+  /* if a scene's content is taller than the screen, let it scroll normally instead of pinning */
+  function fit(){
+    scenes.forEach(function(s){
+      if(reduce){s.el.classList.add('loose');return}
+      if(!s.inner||s.el===studio){return}
+      s.el.classList.remove('loose');
+      if(s.inner.offsetHeight+90>innerHeight) s.el.classList.add('loose');
+    });
+  }
+  function prog(s){
+    var r=s.el.getBoundingClientRect(), ih=innerHeight;
+    if(s.el.classList.contains('loose')) return Math.min(1,Math.max(0,(ih*0.85-r.top)/(Math.max(r.height,ih)*0.55)));
+    var h=s.el.offsetHeight-ih; return h>0?Math.min(1,Math.max(0,-r.top/h)):0;
+  }
   function frame(){
     hdr.classList.toggle('solid', scrollY>innerHeight*0.6);
-    if(reduce) return;
-    var p1=prog(s1);
-    s1img.style.transform='scale('+(1.12-0.12*p1)+')';
-    s1copy.style.transform='translateY('+(-60*p1)+'px)'; s1copy.style.opacity=String(1-p1*0.85);
-    var p2=prog(s2);
-    s2eight.style.opacity=String(Math.min(.9,p2*1.4)); s2eight.style.transform='scale('+(0.6+0.5*p2)+')';
-    words.forEach(function(w,i){w.classList.toggle('on',p2>(i+0.5)/(words.length+1))});
-    var p5=prog(s5), max=rail.scrollWidth-innerWidth+40;
-    rail.style.transform='translateX('+(-Math.max(0,max)*p5)+'px)';
-    var r=feature.getBoundingClientRect(), t=Math.min(1,Math.max(0,(innerHeight-r.top)/(innerHeight*0.9)));
-    feature.style.transform='scale('+(0.88+0.12*t)+')'; feature.style.borderRadius=(28-28*t)+'px';
+    scenes.forEach(function(s){
+      var p=reduce?1:prog(s);
+      s.el.style.setProperty('--p',p.toFixed(4));
+      s.steps.forEach(function(st){st.classList.toggle('on', reduce || p>=(+st.dataset.step)/(s.n+1)*0.8)});
+      if(s.el===studio && !reduce){var max=rail.scrollWidth-innerWidth+40; rail.style.transform='translateX('+(-Math.max(0,max)*Math.min(1,p*1.1))+'px)'}
+    });
   }
   var ticking=false;
   function onScroll(){if(!ticking){ticking=true;requestAnimationFrame(function(){frame();ticking=false})}}
-  addEventListener('scroll',onScroll,{passive:true}); addEventListener('resize',onScroll); frame();
+  addEventListener('scroll',onScroll,{passive:true});
+  addEventListener('resize',function(){fit();onScroll()});
+  fit(); frame();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){fit();frame()});
 
   document.querySelectorAll('.yt[data-yt]').forEach(function(b){
     b.addEventListener('click',function(){
