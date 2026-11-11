@@ -205,7 +205,9 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 .np .eq i{width:3px;background:var(--red);animation:eq 1s infinite ease-in-out}
 .np .eq i:nth-child(2){animation-delay:.2s}.np .eq i:nth-child(3){animation-delay:.4s}
 @keyframes eq{0%,100%{height:4px}50%{height:14px}}
-.np.paused .eq i{animation:none;height:4px}
+.np.paused .eq i,.np.idle .eq i{animation:none;height:4px}
+.np.idle{background:var(--red);border-color:var(--red)}
+.np.idle .t{font-weight:700}
 
 @media (max-width:900px){
   nav ul{gap:14px} nav li.hide-m{display:none}
@@ -234,7 +236,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 }
 </style>
 </head>
-<body>
+<body data-theme="2">
 <a class="skip" href="#main">Skip to content</a>
 
 <header id="hdr">
@@ -303,6 +305,12 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
 
 
+<div class="np" id="np" role="region" aria-label="Music player">
+  <button type="button" id="npBtn" aria-label="Turn sound on"></button>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+  <span class="t" id="npT" aria-live="polite">ThrizzL3</span>
+</div>
+
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -356,25 +364,63 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     });
   });
 
-  var PLAY='<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg>',
-      PAUSE_L='<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M3 2h4v12H3zM9 2h4v12H9z" fill="#F2E8D5"/></svg>',
-      PAUSE_D='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 2h4v12H3zM9 2h4v12H9z" fill="#0B0B0B"/></svg>',
-      PLAY_D='<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg>';
-  var tracks=[].slice.call(document.querySelectorAll('.track')), np=document.createElement('div'), npBtn=document.getElementById('npBtn'), npT=document.getElementById('npT'), current=null;
+  /* ---- sound: one player for the whole page; each page has a theme song, then the album keeps looping ---- */
+  var ICON={
+    play:'<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg>',
+    pauseL:'<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true"><path d="M3 2h4v12H3zM9 2h4v12H9z" fill="#F2E8D5"/></svg>',
+    pauseD:'<svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><path d="M3 2h4v12H3zM9 2h4v12H9z" fill="#0B0B0B"/></svg>',
+    sound:'<svg viewBox="0 0 16 16" width="17" height="17" aria-hidden="true"><path d="M2 6h3l4-3v10l-4-3H2z" fill="#0B0B0B"/><path d="M11 5.5c1 .7 1.5 1.5 1.5 2.5s-.5 1.8-1.5 2.5M12.5 3.5c1.6 1.1 2.5 2.7 2.5 4.5s-.9 3.4-2.5 4.5" stroke="#0B0B0B" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>'
+  };
+  var LIST=[{name:'ThrizzL3',src:'audio/thrizzl3.mp3'},{name:'I Want Her',src:'audio/i-want-her.mp3'},{name:'Aliyah',src:'audio/aliyah.mp3'}];
+  var THEME=+(document.body.dataset.theme||0), VOL=0.55;
+  var au=new Audio(); au.preload='none';
+  var idx=THEME, started=false;
+  var rows=[].slice.call(document.querySelectorAll('.track'));
+  rows.forEach(function(r){var a=r.querySelector('audio'); if(a) a.remove()});
+  var np=document.getElementById('np'), npBtn=document.getElementById('npBtn'), npT=document.getElementById('npT');
+  function store(k,v){try{v===undefined?0:localStorage.setItem(k,v);return localStorage.getItem(k)}catch(e){return null}}
   function fmt(s){s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
-  function stopAll(except){tracks.forEach(function(t){if(t!==except)t.querySelector('audio').pause()})}
-  tracks.forEach(function(t){
-    var a=t.querySelector('audio'),b=t.querySelector('.play'),bar=t.querySelector('.bar2'),fill=bar.querySelector('i'),m=t.querySelector('.tmeta'),name=t.dataset.name;
-    b.innerHTML=PLAY;
-    b.addEventListener('click',function(){ if(a.paused){stopAll(t);a.play().catch(function(){})} else a.pause() });
-    a.addEventListener('play',function(){current=t;t.classList.add('on');b.innerHTML=PAUSE_L;b.setAttribute('aria-label','Pause '+name);npT.textContent=name;np.classList.add('show');np.classList.remove('paused');npBtn.innerHTML=PAUSE_D;npBtn.setAttribute('aria-label','Pause '+name)});
-    a.addEventListener('pause',function(){t.classList.remove('on');b.innerHTML=PLAY;b.setAttribute('aria-label','Play '+name);if(current===t){np.classList.add('paused');npBtn.innerHTML=PLAY_D;npBtn.setAttribute('aria-label','Play '+name)}});
-    a.addEventListener('timeupdate',function(){if(a.duration){fill.style.width=(a.currentTime/a.duration*100)+'%';m.textContent=fmt(a.currentTime)+' / '+fmt(a.duration)}});
-    a.addEventListener('ended',function(){var i=tracks.indexOf(t);if(tracks[i+1])tracks[i+1].querySelector('.play').click();else np.classList.remove('show')});
-    bar.addEventListener('click',function(e){if(a.duration){var r=bar.getBoundingClientRect();a.currentTime=(e.clientX-r.left)/r.width*a.duration}});
+  function ui(){
+    var playing=!au.paused;
+    rows.forEach(function(r,i){var on=playing&&i===idx; r.classList.toggle('on',on); var b=r.querySelector('.play'); b.innerHTML=on?ICON.pauseL:ICON.play; b.setAttribute('aria-label',(on?'Pause ':'Play ')+r.dataset.name)});
+    if(!started){np.classList.add('idle');npBtn.innerHTML=ICON.sound;npBtn.setAttribute('aria-label','Turn sound on');npT.textContent='Tap for sound · '+LIST[THEME].name;return}
+    np.classList.remove('idle');np.classList.toggle('paused',!playing);
+    npBtn.innerHTML=playing?ICON.pauseD:ICON.play; npBtn.setAttribute('aria-label',(playing?'Pause ':'Play ')+LIST[idx].name);
+    npT.textContent=LIST[idx].name;
+  }
+  function fadeIn(){au.volume=0;var v=0,t=setInterval(function(){v+=0.03;au.volume=Math.min(VOL,v);if(v>=VOL)clearInterval(t)},80)}
+  function play(i,fade){
+    if(i!==undefined&&i!==idx){idx=i;au.src=LIST[idx].src}
+    if(!au.src||au.src.indexOf(LIST[idx].src)<0) au.src=LIST[idx].src;
+    started=true; store('l3sound','on');
+    if(fade) fadeIn(); else au.volume=VOL;
+    au.play().catch(function(){}); ui();
+  }
+  function pause(){au.pause(); ui()}
+  au.addEventListener('play',ui); au.addEventListener('pause',ui);
+  au.addEventListener('ended',function(){play((idx+1)%LIST.length)});
+  au.addEventListener('timeupdate',function(){
+    var r=rows[idx]; if(!r||!au.duration) return;
+    r.querySelector('.bar2 i').style.width=(au.currentTime/au.duration*100)+'%';
+    r.querySelector('.tmeta').textContent=fmt(au.currentTime)+' / '+fmt(au.duration);
   });
-  if(npBtn) npBtn.addEventListener('click',function(){if(current)current.querySelector('.play').click()});
-  var hp=document.getElementById('heroPlay'); if(hp) hp.addEventListener('click',function(){tracks[0].querySelector('.play').click()});
+  rows.forEach(function(r,i){
+    r.querySelector('.play').addEventListener('click',function(){ if(i===idx&&!au.paused) {pause();store('l3sound','off')} else play(i) });
+    var bar=r.querySelector('.bar2');
+    bar.addEventListener('click',function(e){ if(i!==idx) play(i); var go=function(){var b=bar.getBoundingClientRect();au.currentTime=(e.clientX-b.left)/b.width*au.duration}; au.duration?go():au.addEventListener('loadedmetadata',go,{once:true}) });
+  });
+  npBtn.addEventListener('click',function(){ if(!au.paused){pause();store('l3sound','off')} else play(undefined,!started) });
+  var hp=document.getElementById('heroPlay'); if(hp) hp.addEventListener('click',function(){play(0); if(au.currentTime>1) au.currentTime=0});
+  function stopAll(){pause()}
+  /* first tap/click/key anywhere starts the page's theme song, unless they turned sound off */
+  function firstGesture(e){
+    document.removeEventListener('pointerdown',firstGesture,true); document.removeEventListener('keydown',firstGesture,true);
+    if(started||store('l3sound')==='off') return;
+    if(e.target.closest&&e.target.closest('.np,.play,.yt,#heroPlay,a[target="_blank"]')) return;
+    play(THEME,true);
+  }
+  document.addEventListener('pointerdown',firstGesture,true); document.addEventListener('keydown',firstGesture,true);
+  au.src=LIST[THEME].src; np.classList.add('show'); ui();
 
   var cp=document.getElementById('copy'),em=document.getElementById('email');
   if(cp) cp.addEventListener('click',function(){
