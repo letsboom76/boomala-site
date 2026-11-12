@@ -145,10 +145,21 @@ header.ondark .brand,header.ondark nav a{color:var(--cream)}
 header.ondark .brand img{filter:invert(1) sepia(.2)}
 
 /* SCENE 2 — statement */
-.s2{--len:220vh}
+.s2{--len:320vh;--m:clamp(0,calc((var(--p) - .42) / .18),1)}
 .s2 .big{font-size:min(110vh,90vw)}
+.s2 .glyph{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.9}
+.motion .s2 .glyph{opacity:clamp(0,calc(var(--p) * 2.2),.92);transform:scale(calc(.55 + min(var(--p) * 1.4, .55)))}
+.s2 .glyph .big{opacity:1;transform:none}
+.motion .s2 .g8{opacity:clamp(0,calc((1 - var(--m)) * 40),1);clip-path:inset(0 0 0 calc(var(--m) * 52%))}
+.motion .s2 .g3{opacity:clamp(0,calc(var(--m) * 40),1);clip-path:inset(0 0 0 calc((1 - var(--m)) * 52%))}
+.s2 .g8{display:none}.motion .s2 .g8{display:flex}
 .s2 .words{text-align:center;font-weight:900;font-size:clamp(44px,8vw,120px);line-height:.95;letter-spacing:-.04em}
 .s2 .words span{display:block}
+.motion .s2 .w1,.motion .s2 .w2{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
+.motion .s2 .inner{height:100%}
+.motion .s2 .w1{opacity:clamp(0,calc((.42 - var(--p)) * 12),1)}
+.motion .s2 .w2{opacity:clamp(0,calc((var(--p) - .5) * 12),1)}
+.s2 .w2{margin-top:40px}.motion .s2 .w2{margin-top:0}
 
 /* SCENE 3 — music */
 .s3 .big{font-size:min(120vh,95vw);justify-content:flex-start;padding-left:4vw}
@@ -318,7 +329,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       <div class="photo"><picture><source media="(max-width:900px)" srcset="img/hero-studio-tall.jpg"><img id="heroImg" src="img/hero-studio-wide.jpg" alt="LTHrizzL3 in the studio surrounded by speakers" width="1920" height="1080" fetchpriority="high"></picture><canvas id="fx" aria-hidden="true"></canvas></div>
       <div class="top"><span class="label">3's BACK · out now</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
       <div class="mid">
-        <p class="tag"><span>I'm from the Eight</span><span class="r">Do your shi 3</span></p>
+        <p class="tag"><span>I'm from the Eight</span></p>
         <div class="ctas">
           <button class="btn" type="button" id="heroPlay"><svg class="pi" viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg><span class="eqm" aria-hidden="true"><i></i><i></i><i></i></span><span id="hpT">Play ThrizzL3</span></button>
           <a class="btn ghost" href="#watch">Watch</a>
@@ -353,15 +364,13 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
-  <section class="pin s2 dark" id="s2" data-scene aria-label="I'm from the Eight">
+  <section class="pin s2 dark" id="s2" data-scene aria-label="I'm from the Eight. Do your shi 3">
     <div class="stage">
-      <div class="big" aria-hidden="true">8</div>
-      <div class="inner"><p class="words">
-        <span data-step="1">I'm from</span>
-        <span data-step="2">the Eight</span>
-        <span data-step="3">Do your</span>
-        <span data-step="4">shi 3</span>
-      </p></div>
+      <div class="glyph" aria-hidden="true"><div class="big g8">8</div><div class="big g3">3</div></div>
+      <div class="inner">
+        <p class="words w1"><span data-step="1" data-at=".05">I'm from</span><span data-step="2" data-at=".15">the Eight</span></p>
+        <p class="words w2"><span data-step="3" data-at=".6">Do your</span><span data-step="4" data-at=".7">shi 3</span></p>
+      </div>
     </div>
   </section>
 
@@ -461,7 +470,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   function fit(){
     scenes.forEach(function(s){
       if(reduce){s.el.classList.add('loose');return}
-      if(!s.inner||s.el===studio){return}
+      if(!s.inner||s.el===studio||s.el.id==='s2'){return}
       s.el.classList.remove('loose');
       if(s.inner.offsetHeight+90>innerHeight) s.el.classList.add('loose');
     });
@@ -476,7 +485,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     scenes.forEach(function(s){
       var p=reduce?1:prog(s);
       s.el.style.setProperty('--p',p.toFixed(4));
-      s.steps.forEach(function(st){st.classList.toggle('on', reduce || p>=(+st.dataset.step)/(s.n+1)*0.8)});
+      s.steps.forEach(function(st){st.classList.toggle('on', reduce || p>=(st.dataset.at?+st.dataset.at:(+st.dataset.step)/(s.n+1)*0.8))});
       if(s.el===studio && !reduce){var max=rail.scrollWidth-innerWidth+40; rail.style.transform='translateX('+(-Math.max(0,max)*Math.min(1,p*1.1))+'px)'}
     });
   }

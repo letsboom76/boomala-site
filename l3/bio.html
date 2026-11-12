@@ -143,10 +143,21 @@ header.ondark .brand img{filter:invert(1) sepia(.2)}
 .bgvid iframe{position:absolute;left:50%;top:50%;width:max(100vw,177.78vh);height:max(56.25vw,100vh);transform:translate(-50%,-50%);border:0;pointer-events:none}
 .bgvid::after{z-index:1}
 /* SCENE 2 — statement */
-.s2{--len:220vh}
+.s2{--len:320vh;--m:clamp(0,calc((var(--p) - .42) / .18),1)}
 .s2 .big{font-size:min(110vh,90vw)}
+.s2 .glyph{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.9}
+.motion .s2 .glyph{opacity:clamp(0,calc(var(--p) * 2.2),.92);transform:scale(calc(.55 + min(var(--p) * 1.4, .55)))}
+.s2 .glyph .big{opacity:1;transform:none}
+.motion .s2 .g8{opacity:clamp(0,calc((1 - var(--m)) * 40),1);clip-path:inset(0 0 0 calc(var(--m) * 52%))}
+.motion .s2 .g3{opacity:clamp(0,calc(var(--m) * 40),1);clip-path:inset(0 0 0 calc((1 - var(--m)) * 52%))}
+.s2 .g8{display:none}.motion .s2 .g8{display:flex}
 .s2 .words{text-align:center;font-weight:900;font-size:clamp(44px,8vw,120px);line-height:.95;letter-spacing:-.04em}
 .s2 .words span{display:block}
+.motion .s2 .w1,.motion .s2 .w2{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%)}
+.motion .s2 .inner{height:100%}
+.motion .s2 .w1{opacity:clamp(0,calc((.42 - var(--p)) * 12),1)}
+.motion .s2 .w2{opacity:clamp(0,calc((var(--p) - .5) * 12),1)}
+.s2 .w2{margin-top:40px}.motion .s2 .w2{margin-top:0}
 
 /* SCENE 3 — music */
 .s3 .big{font-size:min(120vh,95vw);justify-content:flex-start;padding-left:4vw}
@@ -316,7 +327,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       </div>
       <div class="top"><span class="label">Bio</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
       <div class="mid">
-        <p class="tag"><span>I'm from the Eight</span><span class="r">Do your shi 3</span></p>
+        <p class="tag"><span>I'm from the Eight</span></p>
         <div class="ctas"><a class="btn" href="index.html#music">Hear 3's BACK</a><a class="btn ghost" href="index.html#watch">Watch</a></div>
       </div>
       <h1 class="name">LTHrizzL<span class="three">3</span></h1>
