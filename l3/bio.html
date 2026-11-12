@@ -105,6 +105,21 @@ body.locked{overflow:hidden}
 
 
 /* ---- bio chapters ---- */
+.pull.small{font-size:clamp(20px,2.2vw,28px)}
+.pull{color:var(--ink)!important}.dark .pull{color:var(--red)!important}.court .pull{color:var(--cream)!important}
+.heart .big svg{height:min(80vh,70vw);width:auto}
+.heart .eightrow .frame{margin:0}
+.talkrow{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px;align-items:center}
+.talkrow .frame{margin:0}
+.q2 .lines3{text-align:left;margin-top:16px}.q2 .lines3 li{font-size:clamp(28px,3.8vw,60px)}
+.q2 .lines3 li:nth-child(2){color:var(--red)}
+.sunset{position:absolute;inset:0;z-index:1;overflow:hidden}
+.sunset img{width:100%;height:100%;object-fit:cover}
+.sunset::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.55),rgba(11,11,11,.25) 45%,rgba(11,11,11,.7))}
+.motion .sunset img{transform:scale(calc(1.15 - var(--p) * .15))}
+.faith .inner{color:var(--cream)!important}
+.met .big{font-size:min(110vh,90vw)}
+.met .inner{color:var(--ink)}
 .bgvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .motion .bgvid video{transform:scale(calc(1.08 - var(--p) * .08))}
 .q1 .big{font-size:min(130vh,110vw);line-height:.6;align-items:flex-start;padding-top:12vh}
@@ -119,7 +134,7 @@ body.locked{overflow:hidden}
 .court .lines path,.court .lines circle{stroke-dasharray:1;stroke-dashoffset:0}
 .motion .court .lines path,.motion .court .lines circle{stroke-dashoffset:calc(1 - min(var(--p) * 1.5, 1))}
 .court .inner{text-align:center}.court .body{margin-inline:auto;max-width:60ch}
-.court{--len:300vh}
+.court{--len:340vh}
 .stats{list-style:none;margin:26px auto 6px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:900px}
 .stats li{border:1px solid rgba(200,16,46,.7);background:rgba(11,11,11,.72);padding:14px 8px}
 .stats b{display:block;font-weight:900;font-size:clamp(30px,4vw,56px);line-height:1;letter-spacing:-.03em;color:var(--cream)}
@@ -142,7 +157,8 @@ body.locked{overflow:hidden}
 .album .big{font-size:min(120vh,95vw)}
 .album .inner{color:var(--ink)}
 @media (max-width:900px){
-  .workrow{grid-template-columns:minmax(0,1fr);gap:20px}
+  .workrow,.talkrow{grid-template-columns:minmax(0,1fr);gap:20px}
+  .talkrow .frame,.heart .frame{width:min(100%,30vh)}
   .body{font-size:16px}
   .q1 .big{padding-top:18vh}
   .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stats li{padding:10px 6px}.stats b{font-size:28px}
@@ -399,7 +415,8 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
         <div>
           <div class="label" data-step="1">Chapter 1 · Where he's from</div>
           <h2 id="eh" class="h2" data-step="2" style="margin-top:8px">I'm from the Eight</h2>
-          <p class="body" data-step="3">[Where he grew up in the Eight, in his own words. What the block was like, who raised him, what it gave him.]</p>
+          <p class="body" data-step="3">Pacoima. Van Nuys. North Hills. Northridge. He came up all over the Valley.</p>
+          <p class="pull" data-step="4">&ldquo;I remember where I'm from. I was raised in it. It showed me a different side of life, and I just wanted better for myself.&rdquo;</p>
         </div>
         <figure class="frame"><img src="img/lights.jpg" alt="LTHrizzL3 at the Urban Light lamp posts at night" loading="lazy" width="720" height="960"></figure>
       </div></div>
@@ -429,18 +446,36 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
           <li data-step="6"><b>&rsquo;74</b><span>drafted by the 76ers</span></li>
           <li data-step="7"><b>2023</b><span>Towson Hall of Fame</span></li>
         </ul>
-        <p class="body" data-step="8">[His own years on the court: where he played, what position.] Then the son of Spoon traded the hardwood for the booth.</p>
+        <p class="body" data-step="8">He played more than half his life. By his count, a top-10 player in the state of California. His little brother Chris was the football star, and the plan was the NFL.</p>
+        <p class="pull" data-step="9" style="color:var(--cream)">&ldquo;We got to outwork everybody.&rdquo;</p>
       </div></div>
     </div>
   </section>
 
-  <section class="pin work" id="work" data-scene aria-labelledby="wkh">
+  <section class="pin heart" id="heart-ch" data-scene aria-labelledby="hh">
+    <div class="stage">
+      <div class="big" aria-hidden="true"><svg viewBox="0 0 48 44"><path d="M24 42S2 28 2 14A11 11 0 0 1 24 8a11 11 0 0 1 22 6c0 14-22 28-22 28z" fill="currentColor"/></svg></div>
+      <div class="inner"><div class="wrap eightrow">
+        <figure class="frame"><img src="img/bio-book.jpg" alt="LTHrizzL3 writing in the trail book at Red Rock" loading="lazy" width="900" height="1200"></figure>
+        <div>
+          <div class="label" data-step="1">Chapter 3 · Where he gets his heart</div>
+          <h2 id="hh" class="h2" data-step="2" style="margin-top:8px">Mom</h2>
+          <p class="body" data-step="3">He and his brother lost their mom young.</p>
+          <p class="pull" data-step="4">&ldquo;That woman was the best woman in the world. That's where I get my heart from.&rdquo;</p>
+          <p class="body" data-step="5">Now he's a dad of two boys. At the top of Red Rock he signed the trail book and wrote about his son.</p>
+          <p class="pull small" data-step="6">&ldquo;Spend as much time as you can with your kids. You're going to miss those moments.&rdquo;</p>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin work dark" id="work" data-scene aria-labelledby="wkh">
     <div class="stage">
       <div class="big" aria-hidden="true">3</div>
       <div class="inner"><div class="wrap workrow">
         <figure class="wide"><img src="img/bio-work.jpg" alt="LTHrizzL3 playing guitar at the mic in the studio" loading="lazy" width="1600" height="900"></figure>
         <div>
-          <div class="label" data-step="1">Chapter 3 · The work</div>
+          <div class="label" data-step="1">Chapter 4 · The work</div>
           <h2 id="wkh" class="h2" data-step="2" style="margin-top:8px">Do your shi 3</h2>
           <p class="body" data-step="3">That's what he says when the work starts: in the booth, on the guitar, writing it out.</p>
           <p class="pull" data-step="4">&ldquo;I'd rather get deep.&rdquo;</p>
@@ -449,25 +484,43 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
-  <section class="pin q2 dark" id="talk" data-scene aria-label="How he talks">
+  <section class="pin q2" id="talk" data-scene aria-label="How he talks">
     <div class="stage">
-      <div class="inner"><div class="wrap">
-        <div class="label" data-step="1" style="text-align:center;color:var(--red)">Chapter 4 · Straight up</div>
-        <ul class="lines3">
-          <li data-step="2">&ldquo;Energy don't lie.&rdquo;</li>
-          <li data-step="3">&ldquo;I'm going to tell you how it is.&rdquo;</li>
-          <li data-step="4">&ldquo;I could say what's from my heart.&rdquo;</li>
-        </ul>
+      <div class="inner"><div class="wrap talkrow">
+        <figure class="frame"><img src="img/bio-summit.jpg" alt="LTHrizzL3 at the summit of Red Rock" loading="lazy" width="900" height="1200"></figure>
+        <div>
+          <div class="label" data-step="1" style="color:var(--red)">Chapter 5 · Straight up</div>
+          <ul class="lines3">
+            <li data-step="2">&ldquo;Energy don't lie.&rdquo;</li>
+            <li data-step="3">&ldquo;Those are crystals. I see right through you.&rdquo;</li>
+            <li data-step="4">&ldquo;Who are you when nobody's looking?&rdquo;</li>
+            <li data-step="5">&ldquo;I hate bullies.&rdquo;</li>
+          </ul>
+          <p class="body" data-step="6">Passionate. Relentless. A man of his word.</p>
+        </div>
       </div></div>
     </div>
   </section>
 
-  <section class="pin faith" id="faith" data-scene aria-labelledby="fh">
+  <section class="pin faith dark" id="faith" data-scene aria-labelledby="fh">
     <div class="stage">
-      <div class="big" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 4v40M10 16h28" stroke="currentColor" stroke-width="6" stroke-linecap="square" fill="none"/></svg></div>
+      <div class="sunset" aria-hidden="true"><img src="img/bio-sunset.jpg" alt="" loading="lazy" width="1920" height="1440"></div>
       <div class="inner"><div class="wrap" style="text-align:center">
-        <div class="label" data-step="1">Chapter 5 · Walk in faith</div>
-        <h2 id="fh" class="h2 fq" data-step="2" style="margin-top:12px">&ldquo;Whatever you do in the dark will come to light.&rdquo;</h2>
+        <div class="label" data-step="1">Chapter 6 · Walk in faith</div>
+        <h2 id="fh" class="h2 fq" data-step="2" style="margin-top:12px">&ldquo;God is love. I'm a man of God.&rdquo;</h2>
+        <p class="body" data-step="3" style="margin-inline:auto;color:var(--cream)">&ldquo;Whatever you do in the dark will come to light.&rdquo;</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin met" id="met" data-scene aria-labelledby="mth">
+    <div class="stage">
+      <div class="big" aria-hidden="true">?</div>
+      <div class="inner"><div class="wrap" style="text-align:center">
+        <div class="label" data-step="1">Chapter 7 · How it started</div>
+        <h2 id="mth" class="h2" data-step="2" style="margin-top:8px">&ldquo;Are you an artist?&rdquo;</h2>
+        <p class="body" data-step="3" style="margin-inline:auto">Jersey Jon saw the way he dressed at his kids' school and asked. His son jumped in: he's got a song called Prada.</p>
+        <p class="pull" data-step="4">&ldquo;I'm glad that's the energy I'm giving off.&rdquo;</p>
       </div></div>
     </div>
   </section>
@@ -475,7 +528,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   <section class="pin s5 dark" id="studio" data-scene aria-labelledby="sh">
     <div class="stage">
       <div class="big" aria-hidden="true">L.A.</div>
-      <div class="inner"><div class="wrap"><div data-step="1"><div class="label" style="color:var(--red)">Chapter 6 · Oct 20, 2026</div><h2 id="sh" class="h2" style="margin-top:8px">Coke Studio<br>@ L.A. Live</h2></div></div></div>
+      <div class="inner"><div class="wrap"><div data-step="1"><div class="label" style="color:var(--red)">Chapter 8 · Oct 20, 2026</div><h2 id="sh" class="h2" style="margin-top:8px">Coke Studio<br>@ L.A. Live</h2></div></div></div>
       <div class="rail" id="rail">
         <figure><img src="img/bio-red-t.jpg" alt="LTHrizzL3 under red light at the Coke Studio session" loading="lazy" width="608" height="810"></figure>
         <figure><img src="img/bio-aliyah-t.jpg" alt="LTHrizzL3 performing Aliyah on stage" loading="lazy" width="608" height="810"></figure>
@@ -489,7 +542,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     <div class="stage">
       <div class="big" aria-hidden="true">3</div>
       <div class="inner"><div class="wrap" style="text-align:center">
-        <div class="label" data-step="1">Chapter 7 · Now</div>
+        <div class="label" data-step="1">Chapter 9 · Now</div>
         <h2 id="ah" class="h2" data-step="2" style="margin-top:8px;font-size:clamp(64px,12vw,180px)">3's BACK</h2>
         <p class="body" data-step="3" style="margin:14px auto 0">The album. Out now.</p>
         <div data-step="4" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px"><button class="btn" type="button" data-song="0">Play ThrizzL3</button><a class="btn ghost" href="index.html#music">All the songs</a></div>
