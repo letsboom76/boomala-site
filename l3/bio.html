@@ -76,6 +76,32 @@ nav a{white-space:nowrap;text-decoration:none;font-weight:700;font-size:14px;pad
 .dark .btn.ghost{border-color:var(--cream);color:var(--cream)} .dark .btn.ghost:hover{background:var(--cream);color:var(--ink)}
 .dark{background:var(--ink);color:var(--cream)}
 
+
+/* menu: full-screen blur over the page, big list, everything else dims on hover */
+.menu-btn{display:inline-flex;align-items:center;gap:10px;background:none;border:0;font:inherit;font-weight:900;font-size:15px;color:inherit;cursor:pointer;padding:10px 0;min-height:44px}
+.menu-btn i{display:block;width:22px;height:2px;background:currentColor;box-shadow:0 6px 0 currentColor;margin-top:-6px}
+header.ondark .menu-btn,header.menu-open .menu-btn,header.menu-open .brand{color:var(--cream)}
+header.menu-open .brand img{filter:invert(1) sepia(.2)}
+header.menu-open{background:transparent!important;border-color:transparent!important;backdrop-filter:none!important}
+.menu{position:fixed;inset:0;z-index:29;background:rgba(20,16,14,.42);backdrop-filter:blur(36px) saturate(1.25);-webkit-backdrop-filter:blur(36px) saturate(1.25);color:var(--cream);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s;overflow-y:auto}
+.menu.open{opacity:1;visibility:visible;transition:opacity .35s}
+.menu .wrap{padding-top:calc(76px + env(safe-area-inset-top,0px));padding-bottom:60px}
+.tabs{display:flex;gap:28px;margin-bottom:34px}
+.tabs button{background:none;border:0;padding:6px 0;font:inherit;font-weight:800;font-size:16px;color:rgba(242,232,213,.45);cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--cream)}
+.mlist{list-style:none;margin:0;padding:0;display:none}
+.mlist.on{display:block}
+.mlist a,.mlist button{display:inline-block;background:none;border:0;padding:3px 0;font:inherit;font-weight:800;font-size:clamp(28px,3.4vw,40px);line-height:1.2;letter-spacing:-.02em;color:var(--cream);text-decoration:none;cursor:pointer;text-align:left;transition:opacity .2s}
+.mlist:hover a,.mlist:hover button,.mlist:focus-within a,.mlist:focus-within button{opacity:.32}
+.mlist a:hover,.mlist button:hover,.mlist a:focus-visible,.mlist button:focus-visible{opacity:1!important;color:var(--cream)}
+.mlist .now::after{content:"  ●";color:var(--red);font-size:.5em;vertical-align:middle}
+.mlist .gap{height:22px}
+.menu .foot{margin-top:40px;color:rgba(242,232,213,.6)}
+.motion .menu.open .mlist.on li{animation:mi .5s cubic-bezier(.2,.7,.2,1) both}
+.motion .menu.open .mlist.on li:nth-child(2){animation-delay:.03s}.motion .menu.open .mlist.on li:nth-child(3){animation-delay:.06s}.motion .menu.open .mlist.on li:nth-child(4){animation-delay:.09s}.motion .menu.open .mlist.on li:nth-child(5){animation-delay:.12s}.motion .menu.open .mlist.on li:nth-child(6){animation-delay:.15s}.motion .menu.open .mlist.on li:nth-child(7){animation-delay:.18s}.motion .menu.open .mlist.on li:nth-child(8){animation-delay:.21s}
+@keyframes mi{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+body.locked{overflow:hidden}
+
 /* ---------- the scene system: every section pins, a giant red mark grows behind it, and the content lights up step by step ---------- */
 .pin{position:relative;height:var(--len,210vh);--p:0}
 .pin>.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center;padding-top:60px}
@@ -242,17 +268,44 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 <header id="hdr">
   <div class="wrap bar">
     <a class="brand" href="index.html" aria-label="LTHrizzL3 home"><img src="img/logo-black.png" alt="" width="34" height="34"><span>LTHrizzL3</span></a>
-    <nav aria-label="Main">
-      <ul>
-        <li><a href="index.html#music">Music</a></li>
-        <li class="hide-m"><a href="index.html#watch">Watch</a></li>
-        <li class="hide-m"><a href="index.html#pull-up">Pull Up</a></li>
-        <li><a href="bio.html" aria-current="page">Bio</a></li>
-        <li><a href="#booking">Hit us up</a></li>
-      </ul>
-    </nav>
+    <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="menu"><i aria-hidden="true"></i><span id="menuLbl">Menu</span></button>
   </div>
 </header>
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" aria-selected="true" data-tab="explore">Explore</button>
+      <button type="button" role="tab" aria-selected="false" data-tab="songs">Songs</button>
+      <button type="button" role="tab" aria-selected="false" data-tab="follow">Follow</button>
+    </div>
+    <ul class="mlist on" data-list="explore">
+      <li><a href="index.html#top">Home</a></li>
+      <li><a href="index.html#music">Music</a></li>
+      <li><a href="index.html#watch">Watch</a></li>
+      <li><a href="index.html#studio">In the Studio</a></li>
+      <li><a href="index.html#pull-up">Pull Up</a></li>
+      <li><a href="bio.html">Bio</a></li>
+      <li class="gap" aria-hidden="true"></li>
+      <li><a href="#booking">Hit us up</a></li>
+    </ul>
+    <ul class="mlist" data-list="songs">
+      <li><button type="button" data-song="0">ThrizzL3</button></li>
+      <li><button type="button" data-song="1">I Want Her</button></li>
+      <li><button type="button" data-song="2">Aliyah</button></li>
+      <li class="gap" aria-hidden="true"></li>
+      <li><a href="[SPOTIFY URL]" target="_blank" rel="noopener">Spotify</a></li>
+      <li><a href="[APPLE MUSIC URL]" target="_blank" rel="noopener">Apple Music</a></li>
+    </ul>
+    <ul class="mlist" data-list="follow">
+      <li><a href="https://www.instagram.com/lthrizzl3/" target="_blank" rel="noopener">Instagram</a></li>
+      <li><a href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a href="https://www.twitch.tv/lthrizzl3" target="_blank" rel="noopener">Twitch</a></li>
+      <li><a href="https://kick.com/lthrizzl3" target="_blank" rel="noopener">Kick</a></li>
+    </ul>
+    <div class="foot label">3's BACK · out now</div>
+  </div>
+</div>
+
 
 <main id="main">
 
@@ -383,6 +436,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   function ui(){
     var playing=!au.paused;
     rows.forEach(function(r,i){var on=playing&&i===idx; r.classList.toggle('on',on); var b=r.querySelector('.play'); b.innerHTML=on?ICON.pauseL:ICON.play; b.setAttribute('aria-label',(on?'Pause ':'Play ')+r.dataset.name)});
+    document.querySelectorAll('[data-song]').forEach(function(b){b.classList.toggle('now',playing&&+b.dataset.song===idx)});
     if(!started){np.classList.add('idle');npBtn.innerHTML=ICON.sound;npBtn.setAttribute('aria-label','Turn sound on');npT.textContent='Tap for sound · '+LIST[THEME].name;return}
     np.classList.remove('idle');np.classList.toggle('paused',!playing);
     npBtn.innerHTML=playing?ICON.pauseD:ICON.play; npBtn.setAttribute('aria-label',(playing?'Pause ':'Play ')+LIST[idx].name);
@@ -416,11 +470,24 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   function firstGesture(e){
     document.removeEventListener('pointerdown',firstGesture,true); document.removeEventListener('keydown',firstGesture,true);
     if(started||store('l3sound')==='off') return;
-    if(e.target.closest&&e.target.closest('.np,.play,.yt,#heroPlay,a[target="_blank"]')) return;
+    if(e.target.closest&&e.target.closest('.np,.play,.yt,#heroPlay,#menuBtn,.menu,a[target="_blank"]')) return;
     play(THEME,true);
   }
   document.addEventListener('pointerdown',firstGesture,true); document.addEventListener('keydown',firstGesture,true);
   au.src=LIST[THEME].src; np.classList.add('show'); ui();
+
+
+  /* menu */
+  var menu=document.getElementById('menu'), mb=document.getElementById('menuBtn'), ml=document.getElementById('menuLbl');
+  function setMenu(o){menu.classList.toggle('open',o);hdr.classList.toggle('menu-open',o);document.body.classList.toggle('locked',o);mb.setAttribute('aria-expanded',o);ml.textContent=o?'Close':'Menu'; if(o){var f=menu.querySelector('.mlist.on a,.mlist.on button'); f&&f.focus()}}
+  mb.addEventListener('click',function(){setMenu(!menu.classList.contains('open'))});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&menu.classList.contains('open')){setMenu(false);mb.focus()}});
+  menu.querySelectorAll('.tabs button').forEach(function(t){t.addEventListener('click',function(){
+    menu.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected',x===t)});
+    menu.querySelectorAll('.mlist').forEach(function(l){l.classList.toggle('on',l.dataset.list===t.dataset.tab)});
+  })});
+  menu.querySelectorAll('.mlist a').forEach(function(a){a.addEventListener('click',function(){if(a.target!=='_blank')setMenu(false)})});
+  menu.querySelectorAll('[data-song]').forEach(function(b){b.addEventListener('click',function(){var i=+b.dataset.song; if(i===idx&&!au.paused){pause();store('l3sound','off')}else play(i)})});
 
   var cp=document.getElementById('copy'),em=document.getElementById('email');
   if(cp) cp.addEventListener('click',function(){
