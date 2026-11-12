@@ -624,7 +624,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     menu.querySelectorAll('.mlist').forEach(function(l){l.classList.toggle('on',l.dataset.list===t.dataset.tab)});
   })});
   menu.querySelectorAll('.mlist a').forEach(function(a){a.addEventListener('click',function(){if(a.target!=='_blank')setMenu(false)})});
-  menu.querySelectorAll('[data-song]').forEach(function(b){b.addEventListener('click',function(){var i=+b.dataset.song; if(i===idx&&!au.paused){pause();store('l3sound','off')}else play(i)})});
+  document.querySelectorAll('[data-song]').forEach(function(b){b.addEventListener('click',function(){var i=+b.dataset.song; if(i===idx&&!au.paused){pause();store('l3sound','off')}else play(i)})});
 
   var cp=document.getElementById('copy'),em=document.getElementById('email');
   if(cp) cp.addEventListener('click',function(){

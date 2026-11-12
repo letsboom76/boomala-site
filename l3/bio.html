@@ -22,6 +22,7 @@
 <meta name="twitter:title" content="LTHrizzL3 — I'm from the Eight">
 <meta name="twitter:description" content="The album 3's BACK, out now.">
 <meta name="twitter:image" content="https://lthrizzl3.com/img/og.jpg">
+<link rel="preload" as="image" href="img/bio-reel-poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
@@ -101,6 +102,44 @@ header.menu-open{background:transparent!important;border-color:transparent!impor
 .motion .menu.open .mlist.on li:nth-child(2){animation-delay:.03s}.motion .menu.open .mlist.on li:nth-child(3){animation-delay:.06s}.motion .menu.open .mlist.on li:nth-child(4){animation-delay:.09s}.motion .menu.open .mlist.on li:nth-child(5){animation-delay:.12s}.motion .menu.open .mlist.on li:nth-child(6){animation-delay:.15s}.motion .menu.open .mlist.on li:nth-child(7){animation-delay:.18s}.motion .menu.open .mlist.on li:nth-child(8){animation-delay:.21s}
 @keyframes mi{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 body.locked{overflow:hidden}
+
+
+/* ---- bio chapters ---- */
+.bgvid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.motion .bgvid video{transform:scale(calc(1.08 - var(--p) * .08))}
+.q1 .big{font-size:min(130vh,110vw);line-height:.6;align-items:flex-start;padding-top:12vh}
+.quote{text-align:center}
+.qt{font-weight:900;font-size:clamp(44px,7.5vw,116px);line-height:.95;letter-spacing:-.04em}
+.qt span{display:block}.qt .r{color:var(--cream)}
+.qs{font-size:clamp(20px,2.2vw,30px);font-weight:700;max-width:30ch;margin:28px auto 0;color:#E9DFCC}
+.qa{margin-top:22px;color:#B8AE9C}
+.body{max-width:46ch;color:var(--ink-2);margin-top:16px;font-size:18px}
+.dark .body{color:#D9CFBC}
+.court .lines{position:absolute;z-index:1;left:50%;top:50%;width:min(92vw,110vh);height:auto;transform:translate(-50%,-50%);color:var(--red);opacity:.85}
+.court .lines path,.court .lines circle{stroke-dasharray:1;stroke-dashoffset:0}
+.motion .court .lines path,.motion .court .lines circle{stroke-dashoffset:calc(1 - min(var(--p) * 1.5, 1))}
+.court .inner{text-align:center}.court .body{margin-inline:auto}
+.work .big{font-size:min(120vh,95vw);justify-content:flex-start;padding-left:2vw}
+.workrow{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:center}
+.wide{margin:0;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--red);padding:10px;background:var(--cream)}
+.wide img{width:100%;height:100%;object-fit:cover}
+.motion .work .wide{transform:scale(calc(.85 + min(var(--p) * 1.6, 1) * .15))}
+.pull{font-weight:900;font-size:clamp(28px,3vw,42px);letter-spacing:-.02em;margin-top:22px;color:var(--red)}
+.lines3{list-style:none;margin:26px 0 0;padding:0;text-align:center}
+.lines3 li{font-weight:900;font-size:clamp(36px,6.4vw,100px);line-height:1.02;letter-spacing:-.04em}
+.lines3 li:nth-child(2){color:var(--red)}
+.faith .big svg{height:min(90vh,80vw);width:auto}
+.fq{max-width:16ch;margin-inline:auto;font-size:clamp(40px,6.4vw,96px)!important;line-height:.98!important}
+.faith .inner{color:var(--ink)}
+.s5 .big{font-size:min(60vh,40vw)}
+.s5.dark{background:var(--ink)}
+.album .big{font-size:min(120vh,95vw)}
+.album .inner{color:var(--ink)}
+@media (max-width:900px){
+  .workrow{grid-template-columns:minmax(0,1fr);gap:20px}
+  .body{font-size:16px}
+  .q1 .big{padding-top:18vh}
+}
 
 /* ---------- the scene system: every section pins, a giant red mark grows behind it, and the content lights up step by step ---------- */
 .pin{position:relative;height:var(--len,210vh);--p:0}
@@ -323,7 +362,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   <section class="pin s1" id="top" data-scene aria-label="LTHrizzL3">
     <div class="stage">
       <div class="photo bgvid">
-        <div class="vid" id="bgvid" data-yt="f1WeHfvv0N0" aria-hidden="true"></div>
+        <video id="reel" autoplay muted loop playsinline preload="auto" poster="img/bio-reel-poster.jpg" aria-hidden="true"><source src="video/bio-reel.mp4" type="video/mp4"></video>
       </div>
       <div class="top"><span class="label">Bio</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
       <div class="mid">
@@ -334,20 +373,111 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
+  <section class="pin q1 dark" id="heart" data-scene aria-label="In his words">
+    <div class="stage">
+      <div class="big" aria-hidden="true">&ldquo;</div>
+      <div class="inner"><div class="wrap quote">
+        <p class="qt"><span data-step="1">I pour out my heart.</span><span data-step="2" class="r">I go through music.</span></p>
+        <p class="qs" data-step="3">I get to tell my story and I find out that I'm not alone.</p>
+        <p class="label qa" data-step="4">LTHrizzL3 · on Pull Up</p>
+      </div></div>
+    </div>
+  </section>
+
   <section class="pin s7" id="eight" data-scene aria-labelledby="eh">
     <div class="stage">
       <div class="big" aria-hidden="true">8</div>
       <div class="inner"><div class="wrap eightrow">
         <div>
-          <div class="label" data-step="1">Where he's from</div>
+          <div class="label" data-step="1">Chapter 1 · Where he's from</div>
           <h2 id="eh" class="h2" data-step="2" style="margin-top:8px">I'm from the Eight</h2>
-          <div data-step="3" style="max-width:52ch;color:var(--ink-2);margin-top:16px;display:grid;gap:14px">
-            <p>[Where he grew up in the Eight, in his words.]</p>
-            <p>[How he started rapping.]</p>
-            <p>[What 3's BACK is about.]</p>
-          </div>
+          <p class="body" data-step="3">[Where he grew up in the Eight, in his own words. What the block was like, who raised him, what it gave him.]</p>
         </div>
         <figure class="frame"><img src="img/lights.jpg" alt="LTHrizzL3 at the Urban Light lamp posts at night" loading="lazy" width="720" height="960"></figure>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin court dark" id="court" data-scene aria-labelledby="ch">
+    <div class="stage">
+      <svg class="lines" viewBox="0 0 500 470" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="currentColor" stroke-width="3">
+          <path pathLength="1" d="M10 10H490V460H10Z"/>
+          <path pathLength="1" d="M170 10V200H330V10"/>
+          <path pathLength="1" d="M190 200A60 60 0 0 0 310 200"/>
+          <path pathLength="1" d="M40 10V140A210 210 0 0 0 460 140V10"/>
+          <path pathLength="1" d="M190 460A60 60 0 0 1 310 460"/>
+          <path pathLength="1" d="M225 45H275"/>
+          <circle pathLength="1" cx="250" cy="57" r="9"/>
+        </g>
+      </svg>
+      <div class="inner"><div class="wrap">
+        <div class="label" data-step="1" style="color:var(--red)">Chapter 2 · The court</div>
+        <h2 id="ch" class="h2" data-step="2" style="margin-top:8px">Before the mic,<br>it was the court.</h2>
+        <p class="body" data-step="3">[His basketball years: where he played, what position, how far he took it, and the day he chose music over the game.]</p>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin work" id="work" data-scene aria-labelledby="wkh">
+    <div class="stage">
+      <div class="big" aria-hidden="true">3</div>
+      <div class="inner"><div class="wrap workrow">
+        <figure class="wide"><img src="img/bio-work.jpg" alt="LTHrizzL3 playing guitar at the mic in the studio" loading="lazy" width="1600" height="900"></figure>
+        <div>
+          <div class="label" data-step="1">Chapter 3 · The work</div>
+          <h2 id="wkh" class="h2" data-step="2" style="margin-top:8px">Do your shi 3</h2>
+          <p class="body" data-step="3">That's what he says when the work starts: in the booth, on the guitar, writing it out.</p>
+          <p class="pull" data-step="4">&ldquo;I'd rather get deep.&rdquo;</p>
+        </div>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin q2 dark" id="talk" data-scene aria-label="How he talks">
+    <div class="stage">
+      <div class="inner"><div class="wrap">
+        <div class="label" data-step="1" style="text-align:center;color:var(--red)">Chapter 4 · Straight up</div>
+        <ul class="lines3">
+          <li data-step="2">&ldquo;Energy don't lie.&rdquo;</li>
+          <li data-step="3">&ldquo;I'm going to tell you how it is.&rdquo;</li>
+          <li data-step="4">&ldquo;I could say what's from my heart.&rdquo;</li>
+        </ul>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin faith" id="faith" data-scene aria-labelledby="fh">
+    <div class="stage">
+      <div class="big" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 4v40M10 16h28" stroke="currentColor" stroke-width="6" stroke-linecap="square" fill="none"/></svg></div>
+      <div class="inner"><div class="wrap" style="text-align:center">
+        <div class="label" data-step="1">Chapter 5 · Walk in faith</div>
+        <h2 id="fh" class="h2 fq" data-step="2" style="margin-top:12px">&ldquo;Whatever you do in the dark will come to light.&rdquo;</h2>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="pin s5 dark" id="studio" data-scene aria-labelledby="sh">
+    <div class="stage">
+      <div class="big" aria-hidden="true">L.A.</div>
+      <div class="inner"><div class="wrap"><div data-step="1"><div class="label" style="color:var(--red)">Chapter 6 · Oct 20, 2026</div><h2 id="sh" class="h2" style="margin-top:8px">Coke Studio<br>@ L.A. Live</h2></div></div></div>
+      <div class="rail" id="rail">
+        <figure><img src="img/bio-red-t.jpg" alt="LTHrizzL3 under red light at the Coke Studio session" loading="lazy" width="608" height="810"></figure>
+        <figure><img src="img/bio-aliyah-t.jpg" alt="LTHrizzL3 performing Aliyah on stage" loading="lazy" width="608" height="810"></figure>
+        <figure><img src="img/bio-smile-t.jpg" alt="LTHrizzL3 smiling mid-take" loading="lazy" width="608" height="810"></figure>
+        <figure><img src="img/bio-shadow-t.jpg" alt="LTHrizzL3 playing guitar under pink light" loading="lazy" width="608" height="810"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="pin album" id="album" data-scene aria-labelledby="ah">
+    <div class="stage">
+      <div class="big" aria-hidden="true">3</div>
+      <div class="inner"><div class="wrap" style="text-align:center">
+        <div class="label" data-step="1">Chapter 7 · Now</div>
+        <h2 id="ah" class="h2" data-step="2" style="margin-top:8px;font-size:clamp(64px,12vw,180px)">3's BACK</h2>
+        <p class="body" data-step="3" style="margin:14px auto 0">The album. Out now.</p>
+        <div data-step="4" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px"><button class="btn" type="button" data-song="0">Play ThrizzL3</button><a class="btn ghost" href="index.html#music">All the songs</a></div>
       </div></div>
     </div>
   </section>
@@ -378,7 +508,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!reduce) document.documentElement.classList.add('motion');
+  if(!reduce) document.documentElement.classList.add('motion'); else {var rv=document.getElementById('reel'); if(rv){rv.removeAttribute('autoplay');rv.pause()}}
   var hdr=document.getElementById('hdr');
   var scenes=[].slice.call(document.querySelectorAll('[data-scene]')).map(function(el){
     var steps=[].slice.call(el.querySelectorAll('[data-step]')), n=0;
@@ -498,7 +628,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     menu.querySelectorAll('.mlist').forEach(function(l){l.classList.toggle('on',l.dataset.list===t.dataset.tab)});
   })});
   menu.querySelectorAll('.mlist a').forEach(function(a){a.addEventListener('click',function(){if(a.target!=='_blank')setMenu(false)})});
-  menu.querySelectorAll('[data-song]').forEach(function(b){b.addEventListener('click',function(){var i=+b.dataset.song; if(i===idx&&!au.paused){pause();store('l3sound','off')}else play(i)})});
+  document.querySelectorAll('[data-song]').forEach(function(b){b.addEventListener('click',function(){var i=+b.dataset.song; if(i===idx&&!au.paused){pause();store('l3sound','off')}else play(i)})});
 
   var cp=document.getElementById('copy'),em=document.getElementById('email');
   if(cp) cp.addEventListener('click',function(){
@@ -507,15 +637,6 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   });
 })();
 </script>
-<script>
-(function(){
-  var v=document.getElementById('bgvid'); if(!v||matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var id=v.dataset.yt, f=document.createElement('iframe');
-  f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&mute=1&loop=1&playlist='+id+'&controls=0&modestbranding=1&playsinline=1&rel=0&disablekb=1&iv_load_policy=3&start=60';
-  f.title='Background video'; f.tabIndex=-1; f.allow='autoplay; encrypted-media'; f.setAttribute('aria-hidden','true');
-  f.addEventListener('load',function(){setTimeout(function(){v.classList.add('on')},1200)});
-  v.appendChild(f);
-})();
-</script>
+
 </body>
 </html>
