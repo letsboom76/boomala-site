@@ -118,7 +118,13 @@ body.locked{overflow:hidden}
 .court .lines{position:absolute;z-index:1;left:50%;top:50%;width:min(92vw,110vh);height:auto;transform:translate(-50%,-50%);color:var(--red);opacity:.85}
 .court .lines path,.court .lines circle{stroke-dasharray:1;stroke-dashoffset:0}
 .motion .court .lines path,.motion .court .lines circle{stroke-dashoffset:calc(1 - min(var(--p) * 1.5, 1))}
-.court .inner{text-align:center}.court .body{margin-inline:auto}
+.court .inner{text-align:center}.court .body{margin-inline:auto;max-width:60ch}
+.court{--len:300vh}
+.stats{list-style:none;margin:26px auto 6px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:900px}
+.stats li{border:1px solid rgba(200,16,46,.7);background:rgba(11,11,11,.72);padding:14px 8px}
+.stats b{display:block;font-weight:900;font-size:clamp(30px,4vw,56px);line-height:1;letter-spacing:-.03em;color:var(--cream)}
+.stats span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#C9BFAE;margin-top:8px}
+.court .h2{font-size:clamp(40px,5.6vw,84px)}
 .work .big{font-size:min(120vh,95vw);justify-content:flex-start;padding-left:2vw}
 .workrow{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:56px;align-items:center}
 .wide{margin:0;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--red);padding:10px;background:var(--cream)}
@@ -139,6 +145,8 @@ body.locked{overflow:hidden}
   .workrow{grid-template-columns:minmax(0,1fr);gap:20px}
   .body{font-size:16px}
   .q1 .big{padding-top:18vh}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.stats li{padding:10px 6px}.stats b{font-size:28px}
+  .court .body{font-size:14px}
 }
 
 /* ---------- the scene system: every section pins, a giant red mark grows behind it, and the content lights up step by step ---------- */
@@ -414,7 +422,14 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       <div class="inner"><div class="wrap">
         <div class="label" data-step="1" style="color:var(--red)">Chapter 2 · The court</div>
         <h2 id="ch" class="h2" data-step="2" style="margin-top:8px">Before the mic,<br>it was the court.</h2>
-        <p class="body" data-step="3">[His basketball years: where he played, what position, how far he took it, and the day he chose music over the game.]</p>
+        <p class="body" data-step="3">Basketball runs in the family. His father, Larry &ldquo;Spoon&rdquo; Witherspoon, out of Baltimore City College, put up 51 in one night at Towson in 1973. No Tiger had ever scored 50. A year later the Philadelphia 76ers drafted him, the first Towson player ever picked by an NBA team.</p>
+        <ul class="stats">
+          <li data-step="4"><b>51</b><span>points in one game, 1973</span></li>
+          <li data-step="5"><b>1,546</b><span>career points in three seasons</span></li>
+          <li data-step="6"><b>&rsquo;74</b><span>drafted by the 76ers</span></li>
+          <li data-step="7"><b>2023</b><span>Towson Hall of Fame</span></li>
+        </ul>
+        <p class="body" data-step="8">[His own years on the court: where he played, what position.] Then the son of Spoon traded the hardwood for the booth.</p>
       </div></div>
     </div>
   </section>
