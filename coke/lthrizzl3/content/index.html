@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Road to SoFi: L3's six-month content game plan, prepared by BOOMaLA.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>L3 · Road to SoFi</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: L3's own colorway. Black hero with his hand mark and Urban Light photo, cream body, red as the one accent line.
+   Sections: his words, five pillars, the week, the math, six months, who we bring in, his calls, close. */
+:root{
+  --cream:#f3ecdf; --paper:#fbf7ef; --ink:#151212; --muted:#5f5650; --line:#ddd2bf;
+  --black:#0f0d0d; --onblack:#f3ecdf; --onblack-muted:#b9ad9c; --red:#c8102e; --red-soft:#f6dcd9;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root{
+  --cream:#141111; --paper:#1c1817; --ink:#f0e8da; --muted:#b3a796; --line:#352e2a;
+  --black:#090808; --red:#ec3b4f; --red-soft:#3a1a1c; color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+.wrap{max-width:920px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-transform:uppercase;line-height:.95;margin:0;text-wrap:balance}
+h2{font-size:clamp(2.4rem,7.5vw,3.8rem);font-weight:900;letter-spacing:-.005em}
+h3{font-size:1.45rem;font-weight:800;letter-spacing:.02em}
+p{margin:0}
+.label{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.head{display:grid;gap:12px;margin-bottom:30px}
+.intro{color:var(--muted);max-width:38em}
+section{padding-block:64px}
+section+section{border-top:1px solid var(--line)}
+
+/* hero */
+.hero{background:var(--black);color:var(--onblack);position:relative;overflow:hidden;border-bottom:3px solid var(--red)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px;align-items:end;padding-block:48px 56px;position:relative;z-index:1}
+.hero .mark{position:absolute;right:-60px;top:-30px;width:min(520px,70vw);opacity:.07;pointer-events:none}
+.hero .top{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.hero .top img{width:38px}
+.hero .top span{font-family:var(--mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--onblack-muted)}
+.hero h1{font-size:clamp(4.2rem,15vw,9rem);font-weight:900;letter-spacing:-.01em;line-height:.82}
+.hero h1 em{font-style:normal;color:var(--red);display:block}
+.hero .lede{margin-top:24px;font-size:1.15rem;max-width:30em;color:#e6dccb}
+.hero .by{margin-top:22px;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;color:var(--onblack-muted)}
+.frame{position:relative;border:1px solid var(--red);padding:8px;background:#000}
+.frame img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.frame figcaption{position:absolute;left:18px;bottom:16px;font-family:var(--display);font-weight:900;font-size:1.6rem;text-transform:uppercase;color:var(--onblack);letter-spacing:.02em;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+@media (max-width:720px){.hero .wrap{grid-template-columns:1fr}.frame{max-width:340px}}
+
+/* quotes */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.q{border-left:3px solid var(--red);padding:4px 0 4px 18px;display:grid;gap:10px}
+.q p{font-family:var(--display);font-weight:800;font-size:1.65rem;line-height:1.05;text-transform:uppercase}
+.q span{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* pillars */
+.pillars{display:grid;gap:18px}
+.pillar{display:grid;grid-template-columns:150px minmax(0,1fr);gap:22px;background:var(--paper);border:1px solid var(--line);padding:16px;align-items:start}
+.pillar img{width:150px;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line)}
+.pillar .b{display:grid;gap:10px;padding-top:4px}
+.pillar .n{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+.pillar p{color:var(--muted)}
+.pillar .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;padding:4px 8px;border:1px solid var(--line);border-radius:999px;color:var(--ink);background:var(--cream)}
+.pillar.lead{border-color:var(--red);box-shadow:inset 3px 0 0 var(--red)}
+.hold{margin-top:18px;color:var(--muted);font-size:.95rem}
+@media (max-width:560px){.pillar{grid-template-columns:96px minmax(0,1fr);gap:14px}.pillar img{width:96px}}
+
+/* week */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.day{background:var(--paper);border:1px solid var(--line);padding:14px 12px 16px;display:grid;gap:8px;align-content:start;min-height:210px}
+.day .d{font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;color:var(--muted)}
+.day h3{font-size:1.15rem;line-height:1;overflow-wrap:anywhere}
+.day p{font-size:.86rem;color:var(--muted);line-height:1.4}
+.day .p{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-top:auto}
+.day.hot{background:var(--black);border-color:var(--black);color:var(--onblack)}
+.day.hot .d,.day.hot p{color:var(--onblack-muted)}
+.day.hot h3{color:var(--onblack)}
+@media (max-width:1000px){.week{grid-template-columns:repeat(4,minmax(0,1fr))}.day{min-height:0}}
+@media (max-width:620px){.week{grid-template-columns:repeat(2,minmax(0,1fr))}.day:last-child{grid-column:1/-1}}
+.stories{margin-top:16px;font-size:.95rem;color:var(--muted)}
+.stories b{color:var(--ink)}
+
+/* math */
+.math{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.stat{background:var(--paper);padding:22px 20px;display:grid;gap:6px;align-content:start}
+.stat .v{font-family:var(--display);font-weight:900;font-size:3.6rem;line-height:.9;color:var(--red);font-variant-numeric:tabular-nums}
+.stat .k{font-weight:700}
+.stat p{font-size:.92rem;color:var(--muted)}
+.eq{margin-top:22px;background:var(--black);color:var(--onblack);padding:22px 24px;display:grid;gap:6px}
+.eq strong{font-family:var(--display);font-size:clamp(1.6rem,5vw,2.3rem);font-weight:900;text-transform:uppercase;line-height:1}
+.eq strong i{font-style:normal;color:var(--red)}
+.eq span{color:var(--onblack-muted);font-size:.95rem}
+
+/* road */
+.road{display:grid;position:relative}
+.m{display:grid;grid-template-columns:5.2rem minmax(0,1fr);gap:22px;padding-bottom:30px;position:relative}
+.m::before{content:"";position:absolute;left:2.6rem;top:5.2rem;bottom:0;width:2px;background:var(--line)}
+.m:last-child::before{display:none}
+.mo{width:5.2rem;height:5.2rem;border-radius:50%;border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:1.6rem;text-transform:uppercase;background:var(--cream)}
+.m .b{display:grid;gap:8px;padding-top:8px}
+.m ul{margin:0;padding-left:1.1em;display:grid;gap:4px;color:var(--muted)}
+.m.key .mo{background:var(--red);border-color:var(--red);color:#fff}
+.m.key h3{color:var(--red)}
+.gate{display:grid;grid-template-columns:5.2rem minmax(0,1fr);gap:22px;padding-bottom:30px;align-items:center;position:relative}
+.gate::before{content:"";position:absolute;left:2.6rem;top:0;bottom:0;width:2px;background:var(--line)}
+.gate i{justify-self:center;width:22px;height:22px;transform:rotate(45deg);border:2px solid var(--red);background:var(--cream);position:relative;z-index:1}
+.gate span{font-family:var(--mono);font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+@media (max-width:520px){.m,.gate{grid-template-columns:3.6rem minmax(0,1fr);gap:14px}.mo{width:3.6rem;height:3.6rem;font-size:1.15rem}.m::before{left:1.8rem;top:3.6rem}.gate::before{left:1.8rem}}
+
+/* partners */
+.partners{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.pt.wide{grid-column:span 2}
+@media (max-width:760px){.partners{grid-template-columns:1fr}.pt.wide{grid-column:auto}}
+.pt{background:var(--paper);padding:20px;display:grid;gap:8px;align-content:start}
+.pt .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.pt p{font-size:.94rem;color:var(--muted)}
+.pt.first{background:var(--black);color:var(--onblack)}
+.pt.first .k{color:var(--red)}
+.pt.first p{color:var(--onblack-muted)}
+.pt.first h3{color:var(--onblack)}
+
+/* calls */
+.calls{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.calls button{width:100%;text-align:left;display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;align-items:start;background:var(--paper);border:1px solid var(--line);padding:16px;font:inherit;color:inherit;cursor:pointer}
+.calls button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.box{width:24px;height:24px;border:2px solid var(--ink);display:grid;place-items:center;margin-top:1px}
+.box svg{width:14px;height:14px;opacity:0}
+.calls button[aria-pressed="true"] .box{background:var(--red);border-color:var(--red)}
+.calls button[aria-pressed="true"] .box svg{opacity:1}
+.calls button[aria-pressed="true"] .t{color:var(--muted)}
+
+/* close */
+.close{background:var(--black);color:var(--onblack);border-top:3px solid var(--red)}
+.close .wrap{padding-block:72px;display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:32px;align-items:center}
+.close h2{color:var(--onblack);font-size:clamp(3rem,11vw,6rem)}
+.close h2 em{font-style:normal;color:var(--red)}
+.close p{color:var(--onblack-muted);margin-top:16px;max-width:32em}
+.close img{width:160px}
+@media (max-width:600px){.close .wrap{grid-template-columns:1fr}.close img{width:110px}}
+footer{background:var(--black);color:var(--onblack-muted);font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;border-top:1px solid #2a2423}
+footer .wrap{padding-block:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{color:var(--onblack)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="mark" src="../img/logo-cream.png" alt="">
+  <div class="wrap">
+    <div>
+      <div class="top"><img src="../img/logo-cream.png" alt="L3 hand mark"><span>L3 · Content game plan · Dec 2026 to May 2027</span></div>
+      <h1>Road<em>to SoFi</em></h1>
+      <p class="lede">You laid it out yourself: up at 5, putting in the work, your kids are the why, and SoFi is where it ends up. This is how we put that on camera every day for the next six months.</p>
+      <p class="by">From Jersey Jon · BOOMaLA</p>
+    </div>
+    <figure class="frame" style="margin:0">
+      <img src="../img/light.jpg" alt="L3 leaning on a lamp post at Urban Light in LA">
+      <figcaption>I'm from the 8</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">The game plan, in your words</span><h2>You already wrote the brief</h2></div>
+    <div class="quotes">
+      <div class="q"><p>"Figure out a problem that everybody has and fix it and talk about it."</p><span>The content</span></div>
+      <div class="q"><p>"My kids need me and I'm not going to stop."</p><span>The why</span></div>
+      <div class="q"><p>"Once videos take off, the other stuff will follow."</p><span>The patience</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">What you talk about</span><h2>Five pillars</h2>
+      <p class="intro">Real Talk leads. You named it, and the podcast clips already prove it. The music and the grind carry the weekly shows. The other two keep it human.</p></div>
+    <div class="pillars">
+      <article class="pillar lead"><img src="../img/blue.jpg" alt="L3 thinking, hand to his forehead">
+        <div class="b"><span class="n">01 · Leads the page</span><h3>Real Talk</h3>
+          <p>What men keep in. Taking someone back. What a good woman is. You can't change nobody, but you can change you. One problem per clip, your fix at the end. The comments pick the next topic.</p>
+          <div class="tags"><span class="tag">I Took Her Back</span><span class="tag">Men Keep A Lot In</span><span class="tag">Can't Change Nobody</span><span class="tag">Not Gonna Bottle It In</span></div></div></article>
+      <article class="pillar"><img src="../img/light-b.jpg" alt="L3 at Urban Light in black and white">
+        <div class="b"><span class="n">02</span><h3>The Music</h3>
+          <p>Live and acoustic sessions, new songs and freestyles. This is where "Do your shi 3" lives.</p>
+          <div class="tags"><span class="tag">Live Session</span><span class="tag">Acoustic</span><span class="tag">Aaliyah Stage</span><span class="tag">Freestyles</span></div></div></article>
+      <article class="pillar"><img src="../img/hoodie.jpg" alt="L3 in a hoodie and cap">
+        <div class="b"><span class="n">03</span><h3>The Grind</h3>
+          <p>5 a.m. wake-up, Eric Thomas in your ears, push-ups and squats at home or the gym. "Look good, feel good." No rap before 12: gospel, church music and old-school R&amp;B to start the day. We shoot it in your words, without anybody else's audio.</p></div></article>
+      <article class="pillar"><img src="../img/redcap.jpg" alt="L3 walking in a white hoodie">
+        <div class="b"><span class="n">04</span><h3>Day in the Life</h3>
+          <p>Outfits, fit changes, cooking, home. The softer side lives on @3forthrizzl3.</p></div></article>
+      <article class="pillar"><img src="../img/laugh.jpg" alt="L3 laughing">
+        <div class="b"><span class="n">05</span><h3>The Why</h3>
+          <p>Being a dad on the way up, and your basketball days. You decide what gets shown and how. Nothing goes up you haven't said yes to.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">Every week</span><h2>The week</h2>
+      <p class="intro">Same shows, same days, so people know when to come back.</p></div>
+    <div class="week">
+      <div class="day"><span class="d">MON</span><h3>5 A.M. Monday</h3><p>The morning routine and your message to start the week.</p><span class="p">The Grind</span></div>
+      <div class="day"><span class="d">TUE</span><h3>Real Talk Tuesday</h3><p>A podcast clip: one problem, your fix.</p><span class="p">Real Talk</span></div>
+      <div class="day"><span class="d">WED</span><h3>Fit Check</h3><p>The outfit change, also posted on @3forthrizzl3.</p><span class="p">Day in the Life</span></div>
+      <div class="day hot"><span class="d">THU</span><h3>Thrizzle Thursday</h3><p>A session clip or song snippet.</p><span class="p">The Music</span></div>
+      <div class="day hot"><span class="d">FRI</span><h3>Freestyle Friday</h3><p>Every other week to start. Weekly once we have takes banked.</p><span class="p">The Music</span></div>
+      <div class="day"><span class="d">SAT</span><h3>Pull Up</h3><p>A Pull Up LA clip, posted as a collab with @jerseyjon76.</p><span class="p">Real Talk</span></div>
+      <div class="day"><span class="d">SUN</span><h3>Reset</h3><p>Gospel, family, the week ahead. Stories, or one quiet post.</p><span class="p">The Why</span></div>
+    </div>
+    <p class="stories"><b>Stories every day:</b> behind the scenes, polls on the next Real Talk topic, reposts and countdowns to drops.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">3 to 5 a day</span><h2>The math</h2>
+      <p class="intro">You said three a day minimum. We hit it every day without running out of clips.</p></div>
+    <div class="math">
+      <div class="stat"><span class="v">17</span><span class="k">Clips already cut</span><p>Ready to post: podcast, sessions, Meet L3.</p></div>
+      <div class="stat"><span class="v">1</span><span class="k">Reel a day</span><p>The main post, on the weekly schedule above.</p></div>
+      <div class="stat"><span class="v">2–4</span><span class="k">Stories a day</span><p>They keep you active every day without burning clips.</p></div>
+      <div class="stat"><span class="v">12–15</span><span class="k">Reels per shoot day</span><p>One half-day every two weeks fills the next two weeks.</p></div>
+    </div>
+    <div class="eq"><strong>1 reel + 2–4 stories = <i>3–5 a day</i></strong><span>Each shoot day: a Pull Up episode, 2–3 freestyles, a fit change and B-roll.</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">December to May</span><h2>Six months</h2>
+      <p class="intro">Coke Studio is closed for the buildout. December and January run on the clips we have plus our own shoot days. Then the plan is for you to be one of the first artists in the new rooms.</p></div>
+    <div class="road">
+      <div class="m"><div class="mo">Dec</div><div class="b"><h3>Launch the system</h3><ul><li>Your new IG look goes live and the weekly shows start</li><li>Meet L3 teaser drops</li><li>Shoot day 1 at the Hollywood stage: 5 A.M. Monday and Pull Up episode 2</li></ul></div></div>
+      <div class="m"><div class="mo">Jan</div><div class="b"><h3>Build the home</h3><ul><li>Your website goes live: video first, with your music and a Pull Up section</li><li>First music video, cut from session footage</li><li>Gym, barber and stylist on board</li></ul></div></div>
+      <div class="gate"><i></i><span>Coke Studio reopens · date coming</span></div>
+      <div class="m key"><div class="mo">Feb</div><div class="b"><h3>First through the new Coke rooms</h3><ul><li>Your Coke Studio session in the rebuilt rooms</li><li>Pull Up in Coke's new podcast studio, if they're taking outside shows</li><li>A crossover with TAP</li></ul></div></div>
+      <div class="m"><div class="mo">Mar</div><div class="b"><h3>Release and features</h3><ul><li>Coke session release on YouTube and IG</li><li>Freestyle Friday goes weekly</li><li>Collab with another Coke Studio artist · guest spot on Dr. Slava's podcast</li></ul></div></div>
+      <div class="m"><div class="mo">Apr</div><div class="b"><h3>Run what's working</h3><ul><li>Lean into the two pillars with the most saves and shares</li><li>Second music video</li><li>Basketball run content</li></ul></div></div>
+      <div class="m"><div class="mo">May</div><div class="b"><h3>Six-month check</h3><ul><li>Recap film: Road to SoFi, the first six months</li><li>Compare to Dec 1, then plan the next six</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">Who we bring in</span><h2>The team around you</h2>
+      <p class="intro">Each partner puts you in front of a new crowd. Coke Studio comes first.</p></div>
+    <div class="partners">
+      <div class="pt first wide"><span class="k">First move</span><h3>Coke Studio</h3><p>A session in the rebuilt rooms, plus Coke's new podcast studio for Pull Up.</p></div>
+      <div class="pt"><span class="k">Home base</span><h3>The Hollywood stage</h3><p>Our studio for shoot days every other week while Coke is closed.</p></div>
+      <div class="pt"><span class="k">On camera</span><h3>Hats</h3><p>A spot in our studio show. Your jabs were made for it.</p></div>
+      <div class="pt"><span class="k">Feature</span><h3>TAP</h3><p>A duet or crossover. Her I SEE YOU campaign fits your Real Talk.</p></div>
+      <div class="pt"><span class="k">Feature</span><h3>Coke Studio artists</h3><p>Stephany Camacho, plus the global contest winner when they're in LA.</p></div>
+      <div class="pt"><span class="k">Guest spot</span><h3>Dr. Slava's podcast</h3><p>You on "men keep a lot in."</p></div>
+      <div class="pt"><span class="k">5 A.M. Monday</span><h3>A local gym</h3><p>A location and a trainer for the morning shows.</p></div>
+      <div class="pt"><span class="k">Fit Check</span><h3>Barber and stylist</h3><p>Shoot-day looks, tagged on every post.</p></div>
+      <div class="pt"><span class="k">Freestyle Friday</span><h3>Producers</h3><p>New beats every round, producer credited.</p></div>
+      <div class="pt wide"><span class="k">The Why</span><h3>Basketball</h3><p>Pickup runs and league games. I'll run with you.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">Your calls</span><h2>Before December</h2>
+      <p class="intro">These are your decisions. Tap each one off as we settle it.</p></div>
+    <ul class="calls" id="calls">
+      <li><button type="button" aria-pressed="false" data-k="sofi"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">"Road to SoFi" as the line, and saying SoFi out loud</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="kids"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Your kids on camera: yes or no, and how</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="story"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">How much of your family and basketball story to tell</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="titles"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Song titles, and the clean masters for the session clips</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="fri"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Freestyle Friday: weekly or every other week to start</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="first"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Whether "I Took Her Back" goes first</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="creator"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Switch @lthrizzl3 to a Creator account so we can schedule posts</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="shoot"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">A shoot day every other week that works with your schedule</span></button></li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<section class="close" style="padding:0">
+  <div class="wrap">
+    <div><h2>Stick to the <em>game plan.</em></h2>
+      <p>Even if the views aren't there right away. One clip takes off and the rest follows. Let's work.</p></div>
+    <img src="../img/logo-cream.png" alt="L3 hand mark">
+  </div>
+</section>
+<footer><div class="wrap"><span>Prepared for L3 by Jersey Jon</span><a href="/">boomala.com</a></div></footer>
+
+<script>
+(function(){
+  var KEY='l3-content-calls', saved={};
+  try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+  var btns=document.querySelectorAll('#calls button');
+  btns.forEach(function(b){
+    var k=b.getAttribute('data-k');
+    if(saved[k]) b.setAttribute('aria-pressed','true');
+    b.addEventListener('click',function(){
+      var on=b.getAttribute('aria-pressed')!=='true';
+      b.setAttribute('aria-pressed',on?'true':'false');
+      saved[k]=on;
+      try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(e){}
+    });
+  });
+})();
+</script>
+</body>
+</html>
