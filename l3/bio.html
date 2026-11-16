@@ -137,7 +137,7 @@ body.locked{overflow:hidden}
 .court{--len:340vh}
 .stats{list-style:none;margin:26px auto 6px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:900px}
 .stats li{border:1px solid rgba(200,16,46,.7);background:rgba(11,11,11,.72);padding:14px 8px}
-.stats b{display:block;font-weight:900;font-size:clamp(30px,4vw,56px);line-height:1;letter-spacing:-.03em;color:var(--cream)}
+.stats b{display:block;font-variant-numeric:tabular-nums;font-weight:900;font-size:clamp(30px,4vw,56px);line-height:1;letter-spacing:-.03em;color:var(--cream)}
 .stats span{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#C9BFAE;margin-top:8px}
 .court .h2{font-size:clamp(40px,5.6vw,84px)}
 .work .big{font-size:min(120vh,95vw);justify-content:flex-start;padding-left:2vw}
@@ -353,14 +353,14 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       <button type="button" role="tab" aria-selected="false" data-tab="follow">Follow</button>
     </div>
     <ul class="mlist on" data-list="explore">
-      <li><a href="index.html#top">Home</a></li>
-      <li><a href="index.html#music">Music</a></li>
-      <li><a href="index.html#watch">Watch</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="music.html">Music</a></li>
+      <li><a href="watch.html">Watch</a></li>
       <li><a href="index.html#studio">In the Studio</a></li>
-      <li><a href="index.html#pull-up">Pull Up</a></li>
+      <li><a href="pullup.html">Pull Up</a></li>
       <li><a href="bio.html">Bio</a></li>
       <li class="gap" aria-hidden="true"></li>
-      <li><a href="#booking">Hit us up</a></li>
+      <li><a href="contact.html">Hit us up</a></li>
     </ul>
     <ul class="mlist" data-list="songs">
       <li><button type="button" data-song="0">ThrizzL3</button></li>
@@ -439,12 +439,12 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       <div class="inner"><div class="wrap">
         <div class="label" data-step="1" style="color:var(--red)">Chapter 2 · The court</div>
         <h2 id="ch" class="h2" data-step="2" style="margin-top:8px">Before the mic,<br>it was the court.</h2>
-        <p class="body" data-step="3">Basketball runs in the family. His father, Larry &ldquo;Spoon&rdquo; Witherspoon, out of Baltimore City College, put up 51 in one night at Towson in 1973. No Tiger had ever scored 50. A year later the Philadelphia 76ers drafted him, the first Towson player ever picked by an NBA team.</p>
-        <ul class="stats">
-          <li data-step="4"><b>51</b><span>points in one game, 1973</span></li>
-          <li data-step="5"><b>1,546</b><span>career points in three seasons</span></li>
-          <li data-step="6"><b>&rsquo;74</b><span>drafted by the 76ers</span></li>
-          <li data-step="7"><b>2023</b><span>Towson Hall of Fame</span></li>
+        <p class="body" data-step="3">Basketball runs in the family. His father, Larry &ldquo;Spoon&rdquo; Witherspoon, is in the Towson Athletics Hall of Fame.</p>
+        <ul class="stats" aria-label="Career stats">
+          <li data-step="4"><b class="spin" aria-hidden="true">00</b><span>Buckets</span></li>
+          <li data-step="5"><b class="spin" aria-hidden="true">00</b><span>Dimes</span></li>
+          <li data-step="6"><b class="spin" aria-hidden="true">00</b><span>Boards</span></li>
+          <li data-step="7"><b class="spin" aria-hidden="true">00</b><span>Ws</span></li>
         </ul>
         <p class="body" data-step="8">He played more than half his life. By his count, a top-10 player in the state of California. His little brother Chris was the football star, and the plan was the NFL.</p>
         <p class="pull" data-step="9" style="color:var(--cream)">&ldquo;We got to outwork everybody.&rdquo;</p>
@@ -698,6 +698,13 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   menu.querySelectorAll('.mlist a').forEach(function(a){a.addEventListener('click',function(){if(a.target!=='_blank')setMenu(false)})});
   document.querySelectorAll('[data-song]').forEach(function(b){b.addEventListener('click',function(){var i=+b.dataset.song; if(i===idx&&!au.paused){pause();store('l3sound','off')}else play(i)})});
 
+  /* court stats: the counters keep rolling and never land */
+  (function(){var sp=[].slice.call(document.querySelectorAll('.spin')); if(!sp.length) return;
+    if(reduce){sp.forEach(function(e){e.textContent='\u2014'});return}
+    var court=document.getElementById('court'), on=false;
+    new IntersectionObserver(function(es){on=es[0].isIntersecting}).observe(court);
+    setInterval(function(){ if(!on) return; sp.forEach(function(e,i){var n=Math.floor(Math.random()*(i===3?100:1000)); e.textContent=String(n).padStart(i===3?2:3,'0')}) },70);
+  })();
   var cp=document.getElementById('copy'),em=document.getElementById('email');
   if(cp) cp.addEventListener('click',function(){
     function sel(){var r=document.createRange();r.selectNodeContents(em);var s=getSelection();s.removeAllRanges();s.addRange(r);cp.textContent='Selected'}
