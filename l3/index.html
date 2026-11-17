@@ -6,7 +6,6 @@
 <title>LTHrizzL3 (L3) | Hip-Hop Artist from the Eight, Los Angeles</title>
 <meta name="description" content="LTHrizzL3 is a hip-hop artist from the San Fernando Valley. Stream 3's BACK, watch his Coke Studio sessions and his podcast, The Thrizzl3 Effect. New single Aliyah dropping soon.">
 <link rel="canonical" href="https://lthrizzl3.com/">
-<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F2E8D5">
 <meta name="robots" content="max-image-preview:large, max-video-preview:-1">
 <link rel="icon" href="favicon.png" type="image/png">
@@ -266,7 +265,9 @@ header.ondark .brand img{filter:invert(1) sepia(.2)}
 .yt:hover img{opacity:1;transform:scale(1.02)}
 .yt .pb{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:84px;height:84px;border-radius:50%;background:var(--cream);box-shadow:0 0 0 2px var(--red);display:flex;align-items:center;justify-content:center}
 .yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.yt.v{aspect-ratio:9/16}.yt .ycap{position:absolute;left:0;right:0;bottom:0;padding:28px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#F2E8D5;font-size:14px;font-weight:700;text-align:left;pointer-events:none}.yt .pb{pointer-events:none}.ygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;margin-top:30px}.ygrid.w{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+
+.vgrid .yt .pb{width:56px;height:56px}.vgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
 .slot{border:1px dashed var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;text-align:center;padding:14px;background:#151515;min-height:84px}
 .slot b{font-size:15px}
 .s4 .slot{background:var(--cream-2)}
@@ -351,7 +352,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   .tname{font-size:20px}
   .stream .btn{padding:0 18px}
   .feature{max-width:100%}
-  .vgrid{gap:8px}.slot{min-height:64px;padding:8px}.slot b{font-size:12px}.slot .label{font-size:9px;letter-spacing:.1em}
+  .vgrid{gap:8px}.vgrid .yt .pb{width:40px;height:40px}.vgrid .yt .pb svg{width:14px;height:14px}.vgrid .ycap{font-size:11px;padding:16px 6px 5px}.slot{min-height:64px;padding:8px}.slot b{font-size:12px}.slot .label{font-size:9px;letter-spacing:.1em}
   .pu .logo{width:min(100%,34vh)}
   .eps{gap:10px;margin-top:18px}
   .frame{width:min(100%,40vh);margin:0}
@@ -475,11 +476,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
             <span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span>
           </button>
         </div>
-        <div class="vgrid">
-          <div class="slot" data-step="3"><span class="label" style="color:var(--red)">Coming soon</span><b>Coke Studio session</b></div>
-          <div class="slot" data-step="4"><span class="label" style="color:var(--red)">Coming soon</span><b>ThrizzL3 video</b></div>
-          <div class="slot" data-step="5"><span class="label" style="color:var(--red)">Coming soon</span><b>Thrizzl3 Effect clip</b></div>
-        </div>
+        <div class="vgrid"><button class="yt" type="button" data-step="3" data-yt="sAT50NrWC6Y" aria-label="Play video: Remind Em"><img src="https://i.ytimg.com/vi/sAT50NrWC6Y/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span><b class="ycap">Remind Em</b></button><button class="yt" type="button" data-step="4" data-yt="SlMOxe7NkU4" aria-label="Play video: Adias"><img src="https://i.ytimg.com/vi/SlMOxe7NkU4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span><b class="ycap">Adias</b></button><button class="yt" type="button" data-step="5" data-yt="VlDbuJnSpy8" aria-label="Play video: Lunch with L3"><img src="https://i.ytimg.com/vi/VlDbuJnSpy8/hqdefault.jpg" alt="" loading="lazy" width="480" height="360"><span class="pb" aria-hidden="true"><svg viewBox="0 0 16 16" width="26" height="26"><path d="M4 2l10 6-10 6z" fill="#0B0B0B"/></svg></span><b class="ycap">Lunch with L3</b></button></div>
       </div></div>
     </div>
   </section>
@@ -576,7 +573,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       f.src='https://www.youtube-nocookie.com/embed/'+b.getAttribute('data-yt')+'?autoplay=1&rel=0';
       f.title=b.getAttribute('aria-label')||'YouTube video';
       f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'; f.allowFullscreen=true;
-      var box=document.createElement('div'); box.className='yt'; box.appendChild(f); b.replaceWith(box);
+      var box=document.createElement('div'); box.className=b.className; box.appendChild(f); b.replaceWith(box);
       stopAll();
     });
   });
