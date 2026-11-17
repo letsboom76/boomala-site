@@ -231,6 +231,9 @@ header.ondark .brand img{filter:invert(1) sepia(.2)}
 .motion .s2 .w2{opacity:clamp(0,calc((var(--p) - .5) * 12),1)}
 .s2 .w2{margin-top:40px}.motion .s2 .w2{margin-top:0}
 
+.s2.simple{--len:200vh;--m:0!important}
+.motion .s2.simple .w1{opacity:1}
+.motion .s2.simple .glyph{transform:scale(calc(.5 + min(var(--p) * 1.3, .6)))}
 /* SCENE 3 — music */
 .s3 .big{font-size:min(120vh,95vw);justify-content:flex-start;padding-left:4vw}
 .music{display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:64px;align-items:center}
@@ -444,12 +447,11 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
     </div>
   </section>
 
-  <section class="pin s2 dark" id="s2" data-scene aria-label="I'm from the Eight. Do your shi 3">
+  <section class="pin s2 dark simple" id="s2" data-scene aria-label="I'm from the Eight">
     <div class="stage">
-      <div class="glyph" aria-hidden="true"><div class="big g8">8</div><div class="big g3">3</div></div>
+      <div class="glyph" aria-hidden="true"><div class="big g8">8</div></div>
       <div class="inner">
-        <p class="words w1"><span data-step="1" data-at=".05">I'm from</span><span data-step="2" data-at=".15">the Eight</span></p>
-        <p class="words w2"><span data-step="3" data-at=".6">Do your</span><span data-step="4" data-at=".7">shi 3</span></p>
+        <p class="words w1"><span data-step="1" data-at=".12">I'm from</span><span data-step="2" data-at=".35">the Eight</span></p>
       </div>
     </div>
   </section>

@@ -432,6 +432,16 @@ html:not(.motion) .lglyph .g3{display:none}
 .shr.now{border-left-color:var(--red)}.shr.now .shi{background:var(--red);color:var(--cream)}
 .soonr{cursor:default;opacity:.75}.soonr .shi{background:transparent;border:1.5px dashed var(--red);color:var(--red)}
 @media (max-width:900px){.songs-hero{left:16px!important;right:16px!important;bottom:calc(19.5vw * .8 + 18px)!important}.shr{padding:6px 10px 6px 6px}.shi{width:34px;height:34px}.sh{gap:3px}}
+
+.albums{display:grid;gap:28px;margin-top:30px}
+.alb{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:48px;align-items:center}
+.alb h3{font-size:clamp(48px,6vw,88px);line-height:.9;letter-spacing:-.04em;margin:8px 0 18px}
+.atl{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.atl button{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;width:100%;padding:12px 0;background:none;border:0;border-bottom:1px solid var(--line);font:inherit;font-weight:900;font-size:22px;color:var(--ink);cursor:pointer;text-align:left}
+.atl .ai{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--red);display:flex;align-items:center;justify-content:center}
+.atl .ad{font-family:var(--mono);font-size:12px;font-weight:400;color:var(--ink-2)}
+.atl button.now .ai{background:var(--red);color:var(--cream);border-color:var(--red)}
+@media (max-width:800px){.alb{grid-template-columns:minmax(0,1fr);gap:22px}.alb .cover{max-width:300px}}
 /* now playing pill */
 .np{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);z-index:40;background:var(--ink);color:var(--cream);border:1px solid #333;border-radius:999px;padding:8px 18px 8px 8px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,.7,.2,1);max-width:calc(100vw - 32px)}
 .np.show{transform:translate(-50%,0)}
@@ -536,6 +546,43 @@ html:not(.motion) .lglyph .g3{display:none}
     </div>
   </section>
 
+
+
+  <section class="pin s2 dark" id="s2" data-scene aria-label="I'm from the Eight. Do your shi 3">
+    <div class="stage">
+      <div class="glyph" aria-hidden="true"><div class="big g8">8</div><div class="big g3">3</div></div>
+      <div class="inner">
+        <p class="words w1"><span data-step="1" data-at=".05">I'm from</span><span data-step="2" data-at=".15">the Eight</span></p>
+        <p class="words w2"><span data-step="3" data-at=".6">Do your</span><span data-step="4" data-at=".7">shi 3</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-sec" id="album" aria-labelledby="alh">
+    <div class="wrap">
+      <div class="label" style="color:var(--red)">Albums</div>
+      <h2 id="alh" class="h2" style="margin-top:8px">The albums</h2>
+      <div class="albums">
+        <article class="alb">
+          <div class="cover" role="img" aria-label="3's BACK album cover"><div class="three" aria-hidden="true">3</div><img src="img/logo-black.png" alt=""></div>
+          <div class="alb-b">
+            <span class="label" style="color:var(--red)">Out now</span>
+            <h3>3's BACK</h3>
+            <ol class="atl">
+              <li><button type="button" data-song="0"><span class="ai"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg></span>ThrizzL3<span class="ad">1:50</span></button></li>
+              <li><button type="button" data-song="1"><span class="ai"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg></span>I Want Her<span class="ad">2:15</span></button></li>
+            </ol>
+            <div class="stream">
+              <a class="btn" href="[SPOTIFY URL]" target="_blank" rel="noopener">Spotify</a>
+              <a class="btn" href="[APPLE MUSIC URL]" target="_blank" rel="noopener">Apple Music</a>
+              <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="lines-sc dark" id="lines" aria-label="In his words">
     <div class="stage">
       <div class="lglyph" aria-hidden="true"><span class="g8">8</span><span class="g3">3</span></div>
@@ -543,31 +590,6 @@ html:not(.motion) .lglyph .g3{display:none}
         <div class="label" style="text-align:center;color:var(--cream)">In his words</div>
         <ol class="lq"><li>&ldquo;I pour out my heart.&rdquo;</li><li>&ldquo;I go through music.&rdquo;</li><li>&ldquo;I get to tell my story and I find out I'm not alone.&rdquo;</li><li>&ldquo;Energy don't lie.&rdquo;</li><li>&ldquo;I'm going to tell you how it is.&rdquo;</li><li>&ldquo;I'd rather get deep.&rdquo;</li><li>&ldquo;I'm passionate. I'm relentless.&rdquo;</li><li>&ldquo;Do your shi 3.&rdquo;</li></ol>
         <div class="ldots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      </div></div>
-    </div>
-  </section>
-
-  <section class="pin s3"  id="album" data-scene aria-labelledby="mh">
-    <div class="stage">
-      <div class="big" aria-hidden="true">3</div>
-      <div class="inner"><div class="wrap music">
-        <div class="coverbox">
-          <div class="cover" role="img" aria-label="3's BACK album cover"><div class="three" aria-hidden="true">3</div><img src="img/logo-black.png" alt=""></div>
-          <div class="cover-cap" data-step="1"><h3>3's BACK</h3><span class="label" style="color:var(--red)">Out now</span></div>
-        </div>
-        <div>
-          <div data-step="1"><div class="label">The album</div><h2 id="mh" class="h2" style="margin-top:8px">Press play</h2></div>
-          <div class="tracks">
-            <div class="track" data-step="2" data-name="ThrizzL3"><button class="play" type="button" aria-label="Play ThrizzL3"></button><div><div class="tname">ThrizzL3</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 1:50</div><audio preload="none" src="audio/thrizzl3.mp3"></audio></div>
-            <div class="track" data-step="3" data-name="I Want Her"><button class="play" type="button" aria-label="Play I Want Her"></button><div><div class="tname">I Want Her</div><div class="bar2"><i></i></div></div><div class="tmeta">0:00 / 2:15</div><audio preload="none" src="audio/i-want-her.mp3"></audio></div>
-            <div class="track-soon" data-step="4"><span class="sb" aria-hidden="true">Soon</span><div><div class="tname">Aliyah</div></div><div class="ds">Dropping soon</div></div>
-          </div>
-          <div class="stream" data-step="5">
-            <a class="btn" href="[SPOTIFY URL]" target="_blank" rel="noopener">Spotify</a>
-            <a class="btn" href="[APPLE MUSIC URL]" target="_blank" rel="noopener">Apple Music</a>
-            <a class="btn ghost" href="https://www.youtube.com/@3forthrizzl3" target="_blank" rel="noopener">YouTube</a>
-          </div>
-        </div>
       </div></div>
     </div>
   </section>
@@ -619,7 +641,7 @@ html:not(.motion) .lglyph .g3{display:none}
   function fit(){
     scenes.forEach(function(s){
       if(reduce){s.el.classList.add('loose');return}
-      if(!s.inner||s.el===studio){return}
+      if(!s.inner||s.el===studio||s.el.id==='s2'){return}
       s.el.classList.remove('loose');
       if(s.inner.offsetHeight+90>innerHeight) s.el.classList.add('loose');
     });
@@ -634,7 +656,7 @@ html:not(.motion) .lglyph .g3{display:none}
     scenes.forEach(function(s){
       var p=reduce?1:prog(s);
       s.el.style.setProperty('--p',p.toFixed(4));
-      s.steps.forEach(function(st){st.classList.toggle('on', reduce || p>=(+st.dataset.step)/(s.n+1)*0.8)});
+      s.steps.forEach(function(st){st.classList.toggle('on', reduce || p>=(st.dataset.at?+st.dataset.at:(+st.dataset.step)/(s.n+1)*0.8))});
       if(s.el===studio && !reduce){var max=rail.scrollWidth-innerWidth+40; rail.style.transform='translateX('+(-Math.max(0,max)*Math.min(1,p*1.1))+'px)'}
     });
   }
