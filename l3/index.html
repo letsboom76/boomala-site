@@ -27,7 +27,7 @@
 <meta name="twitter:title" content="LTHrizzL3 (L3) | Hip-Hop Artist from the Eight, Los Angeles">
 <meta name="twitter:description" content="LTHrizzL3 is a hip-hop artist from the San Fernando Valley. Stream 3's BACK, watch his Coke Studio sessions and his podcast, The Thrizzl3 Effect. New single Aliyah dropping soon.">
 <meta name="twitter:image" content="https://lthrizzl3.com/img/og-index.jpg">
-<link rel="preload" as="image" href="img/hero-home.jpg">
+<link rel="preload" as="image" href="img/hero-studio-wide.jpg" media="(min-width:901px)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
@@ -188,7 +188,7 @@ body.locked{overflow:hidden}
 .s1{--len:200vh;background:var(--ink);color:var(--cream)}
 .s1>.stage{padding-top:0;display:block}
 .s1 .photo{position:absolute;inset:0;overflow:hidden;z-index:1}
-.s1 .photo img,.s1 .photo video.hv{width:100%;height:100%;object-fit:cover;object-position:50% 50%}
+.s1 .photo img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
 .s1 .photo::after{z-index:1}
 #fx{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
 #heroPlay.on{background:var(--red);border-color:var(--red);color:var(--cream)}
@@ -338,7 +338,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
 @media (max-width:900px){
   nav ul{gap:14px} nav li.hide-m{display:none}
-  .s1 .photo img,.s1 .photo video.hv{object-position:66% 50%}
+  .s1 .photo img{object-position:56% 50%}
   .s1 .name{font-size:19.5vw;left:16px}
   .s1 .top{top:76px;padding-inline:20px}
   .s1 .mid{left:20px;right:20px;bottom:calc(19.5vw * .8 + 22px);gap:16px}
@@ -411,7 +411,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 
   <section class="pin s1" id="top" data-scene aria-label="LTHrizzL3">
     <div class="stage">
-      <div class="photo"><img src="img/hero-home.jpg" alt="LTHrizzL3 playing guitar at Coke Studio @ L.A. Live" width="1600" height="900" fetchpriority="high"><video id="heroVid" class="hv" autoplay muted loop playsinline preload="auto" poster="img/hero-home.jpg" aria-hidden="true"><source src="video/hv-home.mp4" type="video/mp4"></video><canvas id="fx" aria-hidden="true"></canvas></div>
+      <div class="photo"><picture><source media="(max-width:900px)" srcset="img/hero-studio-tall.jpg"><img id="heroImg" src="img/hero-studio-wide.jpg" alt="LTHrizzL3 in the studio surrounded by speakers" width="1920" height="1080" fetchpriority="high"></picture><canvas id="fx" aria-hidden="true"></canvas></div>
       <div class="top"><span class="label">3's BACK · out now</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
       <div class="mid">
         <p class="tag"><span>I'm from the Eight</span></p>
@@ -637,9 +637,9 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
   }
   var cv=document.getElementById('fx');
   if(cv){
-    var g=cv.getContext('2d'), img=document.getElementById('heroVid'), hero=document.getElementById('top');
-    /* where he sits in the 1600x900 hero video: the rings come off him */
-    var SRC={w:1600,h:900,x:1000,y:440,r:120};
+    var g=cv.getContext('2d'), img=document.getElementById('heroImg'), hero=document.getElementById('top');
+    var SPK=[[60,602,34],[246,566,30],[784,654,28],[960,756,30],[246,940,40],[114,926,32]];
+    var MAP={wide:{oy:380,s:1920/1076,w:1920,h:1080},tall:{oy:0,s:960/1076,w:960,h:1229}};
     var waves=[], lvl=0, avg=0, lastBeat=0, t0=performance.now();
     function frameFx(now){
       requestAnimationFrame(frameFx);
@@ -647,8 +647,9 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       var dpr=Math.min(2,devicePixelRatio||1), W=cv.clientWidth, H=cv.clientHeight;
       if(cv.width!==Math.round(W*dpr)||cv.height!==Math.round(H*dpr)){cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr)}
       g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,W,H);
+      var m=(img.currentSrc||img.src).indexOf('tall')>-1?MAP.tall:MAP.wide;
       var cs=getComputedStyle(img), op=cs.objectPosition.split(' '), px=parseFloat(op[0])/100, py=parseFloat(op[1]||'50')/100;
-      var sc=Math.max(W/SRC.w,H/SRC.h), ox=(W-SRC.w*sc)*px, oy=(H-SRC.h*sc)*py;
+      var sc=Math.max(W/m.w,H/m.h), ox=(W-m.w*sc)*px, oy=(H-m.h*sc)*py;
       var k=1, tr=cs.transform; if(tr&&tr!=='none'){k=parseFloat(tr.split('(')[1])||1}
       var playing=!au.paused&&an, bass=0;
       if(playing){ an.getByteFrequencyData(bins); for(var i=1;i<7;i++) bass+=bins[i]; bass=bass/6/255 }
@@ -656,15 +657,15 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       lvl+= (bass-lvl)*.5; avg+=(lvl-avg)*.04;
       var beat=playing&&lvl>avg*1.18&&lvl>.45&&now-lastBeat>260; if(beat) lastBeat=now;
       var pump=playing?Math.max(0,(lvl-.3)/.7):lvl;
-      var X=W/2+(SRC.x*sc+ox-W/2)*k, Y=H/2+(SRC.y*sc+oy-H/2)*k, R=SRC.r*sc*k;
-      /* the room breathes red at the edges with the bass */
-      var edge=g.createRadialGradient(W/2,H/2,Math.min(W,H)*.35,W/2,H/2,Math.max(W,H)*.75);
-      edge.addColorStop(0,'rgba(200,16,46,0)'); edge.addColorStop(1,'rgba(200,16,46,'+(pump*.45)+')');
-      g.fillStyle=edge; g.fillRect(0,0,W,H);
-      var glow=g.createRadialGradient(X,Y,R*.3,X,Y,R*(1.6+pump*1.6));
-      glow.addColorStop(0,'rgba(200,16,46,'+(pump*.22)+')'); glow.addColorStop(1,'rgba(200,16,46,0)');
-      g.fillStyle=glow; g.beginPath(); g.arc(X,Y,R*(1.6+pump*1.6),0,7); g.fill();
-      if(beat) waves.push({x:X,y:Y,r:R,a:.7});
+      SPK.forEach(function(p){
+        var X=W/2+((p[0]*m.s)*sc+ox-W/2)*k, Y=H/2+(((p[1]-m.oy)*m.s)*sc+oy-H/2)*k, R=p[2]*m.s*sc*k;
+        if(X<-R||X>W+R||Y<-R||Y>H+R) return;
+        var glow=g.createRadialGradient(X,Y,R*.2,X,Y,R*(1.8+pump*2.2));
+        glow.addColorStop(0,'rgba(200,16,46,'+(.18+pump*.55)+')'); glow.addColorStop(1,'rgba(200,16,46,0)');
+        g.fillStyle=glow; g.beginPath(); g.arc(X,Y,R*(1.8+pump*2.2),0,7); g.fill();
+        g.strokeStyle='rgba(242,232,213,'+(.25+pump*.6)+')'; g.lineWidth=1.5; g.beginPath(); g.arc(X,Y,R*(1+pump*.22),0,7); g.stroke();
+        if(beat) waves.push({x:X,y:Y,r:R*1.1,a:.75});
+      });
       waves=waves.filter(function(w){ w.r+=3+w.r*.035; w.a*=.94; g.strokeStyle='rgba(200,16,46,'+w.a+')'; g.lineWidth=2; g.beginPath(); g.arc(w.x,w.y,w.r,0,7); g.stroke(); return w.a>.03 });
       if(playing){
         var N=48, bw=W/N; g.fillStyle='rgba(200,16,46,.5)';
