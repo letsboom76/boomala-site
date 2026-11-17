@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Music | LTHrizzL3 — 3's BACK, Prada, L3 and Aliyah</title>
+<title>Music | LTHrizzL3 — Prada, L3, 3's BACK and Aliyah</title>
 <meta name="description" content="Listen to LTHrizzL3: the album 3's BACK, fan favorites Prada and L3, and the new single Aliyah, dropping soon.">
 <link rel="canonical" href="https://lthrizzl3.com/music.html">
 <meta name="robots" content="noindex, nofollow">
@@ -421,6 +421,17 @@ html:not(.motion) .lglyph .g3{display:none}
 @media (max-width:700px){.best{grid-template-columns:1fr}}
 .s1 .photo video.hv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .motion .s1 .photo video.hv{transform:scale(calc(1.12 - var(--p) * .12))}
+
+.songs-hero{bottom:calc(16.5vw * .8 + 22px)!important;max-width:520px}
+.sh{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:4px}
+.shr{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:center;width:100%;padding:8px 14px 8px 8px;background:rgba(11,11,11,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:0;border-left:3px solid transparent;color:var(--cream);text-decoration:none;font:inherit;cursor:pointer;text-align:left}
+.shr:hover{border-left-color:var(--red);color:var(--cream)}
+.shi{width:40px;height:40px;border-radius:50%;background:var(--cream);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.shn{font-weight:900;font-size:clamp(20px,2vw,28px);letter-spacing:-.02em;line-height:1.1}
+.sht{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#C9BFAE}
+.shr.now{border-left-color:var(--red)}.shr.now .shi{background:var(--red);color:var(--cream)}
+.soonr{cursor:default;opacity:.75}.soonr .shi{background:transparent;border:1.5px dashed var(--red);color:var(--red)}
+@media (max-width:900px){.songs-hero{left:16px!important;right:16px!important;bottom:calc(19.5vw * .8 + 18px)!important}.shr{padding:6px 10px 6px 6px}.shi{width:34px;height:34px}.sh{gap:3px}}
 /* now playing pill */
 .np{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);z-index:40;background:var(--ink);color:var(--cream);border:1px solid #333;border-radius:999px;padding:8px 18px 8px 8px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,.7,.2,1);max-width:calc(100vw - 32px)}
 .np.show{transform:translate(-50%,0)}
@@ -507,15 +518,21 @@ html:not(.motion) .lglyph .g3{display:none}
 
 <main id="main">
 
-  <section class="pin s1" id="top" data-scene aria-label="3's BACK">
+  <section class="pin s1" id="top" data-scene aria-label="Music">
     <div class="stage">
       <div class="photo"><img src="img/hero-music.jpg" alt="LTHrizzL3" width="1920" height="1080" fetchpriority="high"><video class="hv" autoplay muted loop playsinline preload="auto" poster="img/hero-music.jpg" aria-hidden="true"><source src="video/hv-music.mp4" type="video/mp4"></video></div>
       <div class="top"><span class="label">Music</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
-      <div class="mid">
-        <p class="tag"><span>Out now</span></p>
-        <div class="ctas"><button class="btn" type="button" data-song="0">Play the album</button><a class="btn ghost" href="watch.html">Watch</a></div>
+      <div class="mid songs-hero">
+        <div class="label" style="color:var(--cream)">Press play</div>
+        <ol class="sh">
+          <li><a class="shr" href="[PRADA LINK]" target="_blank" rel="noopener"><span class="shi"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M6 3h7v7M13 3L4 12" stroke="currentColor" stroke-width="2" fill="none"/></svg></span><span class="shn">Prada</span><span class="sht">Fan favorite</span></a></li>
+          <li><a class="shr" href="[L3 LINK]" target="_blank" rel="noopener"><span class="shi"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true"><path d="M6 3h7v7M13 3L4 12" stroke="currentColor" stroke-width="2" fill="none"/></svg></span><span class="shn">L3</span><span class="sht">Fan favorite</span></a></li>
+          <li><button class="shr" type="button" data-song="0"><span class="shi"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg></span><span class="shn">ThrizzL3</span><span class="sht">3's BACK</span></button></li>
+          <li><button class="shr" type="button" data-song="1"><span class="shi"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 2l10 6-10 6z" fill="currentColor"/></svg></span><span class="shn">I Want Her</span><span class="sht">3's BACK</span></button></li>
+          <li><span class="shr soonr"><span class="shi">&bull;</span><span class="shn">Aliyah</span><span class="sht" style="color:var(--red)">Dropping soon</span></span></li>
+        </ol>
       </div>
-      <h1 class="name">3's BACK</h1>
+      <h1 class="name">Music</h1>
     </div>
   </section>
 
@@ -527,17 +544,6 @@ html:not(.motion) .lglyph .g3{display:none}
         <ol class="lq"><li>&ldquo;I pour out my heart.&rdquo;</li><li>&ldquo;I go through music.&rdquo;</li><li>&ldquo;I get to tell my story and I find out I'm not alone.&rdquo;</li><li>&ldquo;Energy don't lie.&rdquo;</li><li>&ldquo;I'm going to tell you how it is.&rdquo;</li><li>&ldquo;I'd rather get deep.&rdquo;</li><li>&ldquo;I'm passionate. I'm relentless.&rdquo;</li><li>&ldquo;Do your shi 3.&rdquo;</li></ol>
         <div class="ldots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
       </div></div>
-    </div>
-  </section>
-
-  <section class="page-sec" id="best">
-    <div class="wrap">
-      <div class="label" style="color:var(--red)">The ones people play</div>
-      <h2 class="h2" style="margin-top:8px">His best</h2>
-      <div class="best">
-        <article class="bcard"><span class="bn">01</span><h3>Prada</h3><p>His most-played song.</p><a class="btn" href="[PRADA LINK]" target="_blank" rel="noopener">Listen</a></article>
-        <article class="bcard"><span class="bn">02</span><h3>L3</h3><p>The name says it.</p><a class="btn" href="[L3 LINK]" target="_blank" rel="noopener">Listen</a></article>
-      </div>
     </div>
   </section>
 
