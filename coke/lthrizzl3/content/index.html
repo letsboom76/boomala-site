@@ -102,6 +102,23 @@ section+section{border-top:1px solid var(--line)}
 .eq strong i{font-style:normal;color:var(--red)}
 .eq span{color:var(--onblack-muted);font-size:.95rem}
 
+/* slots, drops, cycle */
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.slot,.cw{background:var(--paper);border:1px solid var(--line);padding:16px;display:grid;gap:8px;align-content:start}
+.slot .t,.cw .t,.drop .dt{font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.slot p,.drop p{font-size:.9rem;color:var(--muted)}
+.slot.hot,.cw.hot{background:var(--black);border-color:var(--black);color:var(--onblack)}
+.slot.hot p,.cw.hot ul{color:var(--onblack-muted)}.slot.hot h3,.cw.hot h3{color:var(--onblack)}
+.drops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.drop{background:var(--paper);border:1px solid var(--line);padding:16px;display:grid;gap:6px;align-content:start}
+.drop h3{font-size:1.7rem}
+.drop.key{background:var(--red);border-color:var(--red);color:#fff}
+.drop.key .dt,.drop.key p{color:#fff}
+.cycle{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
+.cw ul{margin:0;padding-left:1.1em;display:grid;gap:4px;color:var(--muted);font-size:.9rem}
+@media (max-width:820px){.cycle{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.slots,.drops{grid-template-columns:1fr}.cycle{grid-template-columns:1fr}}
+
 /* road */
 .road{display:grid;position:relative}
 .m{display:grid;grid-template-columns:5.2rem minmax(0,1fr);gap:22px;padding-bottom:30px;position:relative}
@@ -228,29 +245,58 @@ footer a{color:var(--onblack)}
 
 <section>
   <div class="wrap">
-    <div class="head"><span class="label">3 to 5 a day</span><h2>The math</h2>
-      <p class="intro">You said three a day minimum. We hit it every day without running out of clips.</p></div>
-    <div class="math">
-      <div class="stat"><span class="v">17</span><span class="k">Clips already cut</span><p>Ready to post: podcast, sessions, Meet L3.</p></div>
-      <div class="stat"><span class="v">1</span><span class="k">Reel a day</span><p>The main post, on the weekly schedule above.</p></div>
-      <div class="stat"><span class="v">2–4</span><span class="k">Stories a day</span><p>They keep you active every day without burning clips.</p></div>
-      <div class="stat"><span class="v">12–15</span><span class="k">Reels per shoot day</span><p>One half-day every two weeks fills the next two weeks.</p></div>
+    <div class="head"><span class="label">3 a day, minimum</span><h2>The math</h2>
+      <p class="intro">Three posts a day, every day, and every video also goes up as a YouTube Short. Your "no rap before 12" rule sets the clock.</p></div>
+    <div class="slots">
+      <div class="slot"><span class="t">7 a.m.</span><h3>Before 12</h3><p>The grind, a message, gospel or old-school R&amp;B under it. No rap.</p></div>
+      <div class="slot"><span class="t">12 p.m.</span><h3>After 12</h3><p>The music: a snippet, a session clip, or Prada/L3, So Fine or Remind Em as the sound.</p></div>
+      <div class="slot hot"><span class="t">7 p.m.</span><h3>The show</h3><p>That day's weekly show from the schedule above. The main post.</p></div>
     </div>
-    <div class="eq"><strong>1 reel + 2–4 stories = <i>3–5 a day</i></strong><span>Each shoot day: a Pull Up episode, 2–3 freestyles, a fit change and B-roll.</span></div>
+    <div class="math" style="margin-top:22px">
+      <div class="stat"><span class="v">21</span><span class="k">Posts a week</span><p>3 a day on IG, each video also a YouTube Short.</p></div>
+      <div class="stat"><span class="v">17</span><span class="k">Clips already cut</span><p>The first week and a half, ready to go.</p></div>
+      <div class="stat"><span class="v">12–15</span><span class="k">Per shoot day</span><p>One half-day every week, not every two.</p></div>
+      <div class="stat"><span class="v">7</span><span class="k">From your phone</span><p>One clip a day you shoot yourself: 5 a.m., the fit, the studio.</p></div>
+    </div>
+    <div class="eq"><strong>Shoot day + your phone = <i>21 a week</i></strong><span>Plus stories every day. Each long clip gets cut 2–3 ways with different hooks, so nothing runs dry.</span></div>
   </div>
 </section>
+
+<section>
+  <div class="wrap">
+    <div class="head"><span class="label">A new song every month</span><h2>The drops</h2>
+      <p class="intro">One release the second Friday of every month, Aliyah first. Each drop gets four weeks of content behind it, so no song comes out cold.</p></div>
+    <div class="drops">
+      <div class="drop key"><span class="dt">Fri Dec 11</span><h3>Aliyah</h3><p>The first drop. The Coke Studio stage footage in the white jacket is the visual.</p></div>
+      <div class="drop"><span class="dt">Fri Jan 8</span><h3>Drop 2</h3><p>Your pick from the vault.</p></div>
+      <div class="drop"><span class="dt">Fri Feb 12</span><h3>Drop 3</h3><p>From the Live Session.</p></div>
+      <div class="drop"><span class="dt">Fri Mar 12</span><h3>Drop 4</h3><p>The Pull Up feature.</p></div>
+      <div class="drop"><span class="dt">Fri Apr 9</span><h3>Drop 5</h3><p>With the second music video.</p></div>
+      <div class="drop"><span class="dt">Fri May 14</span><h3>Drop 6</h3><p>Six-month mark.</p></div>
+    </div>
+    <h3 style="margin-top:40px">Every drop, the same four weeks</h3>
+    <div class="cycle">
+      <div class="cw"><span class="t">3 weeks out</span><h3>Lock it</h3><ul><li>Master and cover art done</li><li>Upload to DistroKid and pitch it on Spotify for Artists</li><li>Pre-save link in your bio</li></ul></div>
+      <div class="cw"><span class="t">2 weeks out</span><h3>Tell the story</h3><ul><li>Real Talk Tuesday: what the song is about, in your words</li><li>Thrizzle Thursday: the 15-second hook</li><li>Pre-save in stories</li></ul></div>
+      <div class="cw"><span class="t">Drop week</span><h3>Count it down</h3><ul><li>Countdown in stories every day</li><li>Freestyle Friday becomes Drop Friday</li><li>Video or visualizer on YouTube, plus a Reel and a Short</li><li>Your website plays the new song first</li></ul></div>
+      <div class="cw hot"><span class="t">3 weeks after</span><h3>Ride it</h3><ul><li>The new song is the sound under every 12 p.m. post</li><li>Acoustic version, and a Pull Up clip about it</li><li>Repost every fan who uses the sound</li></ul></div>
+    </div>
+    <p class="stories"><b>Your top three keep working:</b> Prada/L3, So Fine and Remind Em are already the ones people play. They carry the 12 p.m. posts between drops, and live versions of them go in the February session.</p>
+  </div>
+</section>
+
 
 <section>
   <div class="wrap">
     <div class="head"><span class="label">December to May</span><h2>Six months</h2>
       <p class="intro">December and January run on the clips we already have plus our own shoot days. February is the big one: a full live session.</p></div>
     <div class="road">
-      <div class="m"><div class="mo">Dec</div><div class="b"><h3>Launch the system</h3><ul><li>Your new IG look goes live and the weekly shows start</li><li>Meet L3 teaser drops</li><li>Shoot day 1 on location: 5 A.M. Monday and Pull Up episode 2</li></ul></div></div>
-      <div class="m"><div class="mo">Jan</div><div class="b"><h3>Build the home</h3><ul><li>Your website goes live: video first, with your music and a Pull Up section</li><li>First music video, cut from session footage</li><li>Gym, barber and stylist on board</li></ul></div></div>
-      <div class="m key"><div class="mo">Feb</div><div class="b"><h3>The Live Session</h3><ul><li>One full live session, shot on location</li><li>Cut into a long-form YouTube release plus a month of reels</li><li>Pull Up episode recorded the same day</li></ul></div></div>
-      <div class="m"><div class="mo">Mar</div><div class="b"><h3>Release and features</h3><ul><li>Live Session release on YouTube and IG</li><li>Freestyle Friday goes weekly</li><li>A feature with an artist who pulls up on Pull Up</li></ul></div></div>
-      <div class="m"><div class="mo">Apr</div><div class="b"><h3>Run what's working</h3><ul><li>Lean into the two pillars with the most saves and shares</li><li>Second music video</li><li>Basketball run content</li></ul></div></div>
-      <div class="m"><div class="mo">May</div><div class="b"><h3>Six-month check</h3><ul><li>Recap film: Road to SoFi, the first six months</li><li>Compare to Dec 1, then plan the next six</li></ul></div></div>
+      <div class="m"><div class="mo">Dec</div><div class="b"><h3>Launch the system</h3><ul><li>Your new IG look goes live and the weekly shows start</li><li>Meet L3 teaser drops</li><li><b>Fri Dec 11: Aliyah</b></li><li>Shoot day 1 on location: 5 A.M. Monday and Pull Up episode 2</li></ul></div></div>
+      <div class="m"><div class="mo">Jan</div><div class="b"><h3>Build the home</h3><ul><li>Your website goes live: video first, with your music and a Pull Up section</li><li>First music video, cut from session footage</li><li><b>Fri Jan 8: drop 2</b></li><li>Gym, barber and stylist on board</li></ul></div></div>
+      <div class="m key"><div class="mo">Feb</div><div class="b"><h3>The Live Session</h3><ul><li>One full live session, shot on location</li><li>Cut into a long-form YouTube release plus a month of reels</li><li>Pull Up episode recorded the same day</li><li><b>Fri Feb 12: drop 3</b></li></ul></div></div>
+      <div class="m"><div class="mo">Mar</div><div class="b"><h3>Release and features</h3><ul><li>Live Session release on YouTube and IG</li><li>Freestyle Friday goes weekly</li><li>A feature with an artist who pulls up on Pull Up</li><li><b>Fri Mar 12: drop 4</b></li></ul></div></div>
+      <div class="m"><div class="mo">Apr</div><div class="b"><h3>Run what's working</h3><ul><li>Lean into the two pillars with the most saves and shares</li><li>Second music video</li><li><b>Fri Apr 9: drop 5</b></li><li>Basketball run content</li></ul></div></div>
+      <div class="m"><div class="mo">May</div><div class="b"><h3>Six-month check</h3><ul><li>Recap film: Road to SoFi, the first six months</li><li><b>Fri May 14: drop 6</b></li><li>Compare to Dec 1, then plan the next six</li></ul></div></div>
     </div>
   </div>
 </section>
@@ -281,7 +327,11 @@ footer a{color:var(--onblack)}
       <li><button type="button" aria-pressed="false" data-k="fri"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Freestyle Friday: weekly or every other week to start</span></button></li>
       <li><button type="button" aria-pressed="false" data-k="first"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Whether "I Took Her Back" goes first</span></button></li>
       <li><button type="button" aria-pressed="false" data-k="creator"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Switch @lthrizzl3 to a Creator account so we can schedule posts</span></button></li>
-      <li><button type="button" aria-pressed="false" data-k="shoot"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">A shoot day every other week that works with your schedule</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="shoot"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">A half-day shoot every week that works with your schedule</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="aliyah"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Aliyah: the final master and cover art, uploaded by Nov 20 for a Dec 11 drop</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="vault"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Which finished songs go out January through May, in order</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="portrait"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Clear the Aaliyah portrait from the stage backdrop before it goes in Aliyah's visuals</span></button></li>
+      <li><button type="button" aria-pressed="false" data-k="shorts"><span class="box"><svg viewBox="0 0 14 14" fill="none" stroke="#fff" stroke-width="2.4"><path d="M2 7.5l3.2 3L12 3.5"/></svg></span><span class="t">Set up YouTube Shorts on @3forthrizzl3, or a separate music channel</span></button></li>
     </ul>
   </div>
 </section>
