@@ -1,0 +1,20 @@
+{
+ "name": "LTHrizzL3",
+ "short_name": "L3",
+ "start_url": "/",
+ "display": "standalone",
+ "background_color": "#F2E8D5",
+ "theme_color": "#C8102E",
+ "icons": [
+  {
+   "src": "img/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "img/apple-touch-icon.png",
+   "sizes": "180x180",
+   "type": "image/png"
+  }
+ ]
+}

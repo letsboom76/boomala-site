@@ -3,45 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Music — LTHrizzL3 | 3's BACK Out Now</title>
-<meta name="description" content="Listen to 3's BACK by LTHrizzL3: ThrizzL3 and I Want Her. New single Aliyah dropping soon.">
+<title>Music | LTHrizzL3 — 3's BACK, Prada, L3 and Aliyah</title>
+<meta name="description" content="Listen to LTHrizzL3: the album 3's BACK, fan favorites Prada and L3, and the new single Aliyah, dropping soon.">
 <link rel="canonical" href="https://lthrizzl3.com/music.html">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F2E8D5">
+<meta name="robots" content="max-image-preview:large, max-video-preview:-1">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<meta property="og:type" content="profile">
+<link rel="manifest" href="site.webmanifest">
+<link rel="sitemap" type="application/xml" href="sitemap.xml">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="LTHrizzL3">
-<meta property="og:title" content="LTHrizzL3 — I'm from the Eight">
-<meta property="og:description" content="The album 3's BACK, out now. Music, videos and live streams.">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Music | LTHrizzL3 — 3's BACK, Prada, L3 and Aliyah">
+<meta property="og:description" content="Listen to LTHrizzL3: the album 3's BACK, fan favorites Prada and L3, and the new single Aliyah, dropping soon.">
 <meta property="og:url" content="https://lthrizzl3.com/music.html">
-<meta property="og:image" content="https://lthrizzl3.com/img/og.jpg">
+<meta property="og:image" content="https://lthrizzl3.com/img/og-music.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LTHrizzL3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LTHrizzL3 — I'm from the Eight">
-<meta name="twitter:description" content="The album 3's BACK, out now.">
-<meta name="twitter:image" content="https://lthrizzl3.com/img/og.jpg">
+<meta name="twitter:title" content="Music | LTHrizzL3 — 3's BACK, Prada, L3 and Aliyah">
+<meta name="twitter:description" content="Listen to LTHrizzL3: the album 3's BACK, fan favorites Prada and L3, and the new single Aliyah, dropping soon.">
+<meta name="twitter:image" content="https://lthrizzl3.com/img/og-music.jpg">
 <link rel="preload" as="image" href="img/hero-music.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  "name": "LTHrizzL3",
-  "alternateName": "L3",
-  "genre": "Hip-Hop",
-  "url": "https://lthrizzl3.com/",
-  "image": "https://lthrizzl3.com/img/og.jpg",
-  "foundingLocation": {"@type": "Place", "name": "Los Angeles, California"},
-  "sameAs": ["https://www.instagram.com/lthrizzl3/", "https://www.youtube.com/@3forthrizzl3", "https://www.twitch.tv/lthrizzl3", "https://kick.com/lthrizzl3"],
-  "album": {"@type": "MusicAlbum", "name": "3's BACK", "byArtist": {"@type": "MusicGroup", "name": "LTHrizzL3"}},
-  "track": [
-    {"@type": "MusicRecording", "name": "ThrizzL3"},
-    {"@type": "MusicRecording", "name": "I Want Her"}
-  ]
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "MusicGroup",
+   "@id": "https://lthrizzl3.com/#artist",
+   "name": "LTHrizzL3",
+   "alternateName": [
+    "L3",
+    "Thrizzl3"
+   ],
+   "genre": [
+    "Hip-Hop",
+    "R&B"
+   ],
+   "url": "https://lthrizzl3.com/",
+   "image": "https://lthrizzl3.com/img/og-index.jpg",
+   "description": "LTHrizzL3 (L3) is a hip-hop artist from the San Fernando Valley, Los Angeles. I'm from the Eight.",
+   "foundingLocation": {
+    "@type": "Place",
+    "name": "Los Angeles, California"
+   },
+   "sameAs": [
+    "https://www.instagram.com/lthrizzl3/",
+    "https://www.instagram.com/3forthrizzl3/",
+    "https://www.youtube.com/@3forthrizzl3",
+    "https://www.twitch.tv/lthrizzl3",
+    "https://kick.com/lthrizzl3"
+   ]
+  },
+  {
+   "@type": "MusicAlbum",
+   "@id": "https://lthrizzl3.com/music.html#album",
+   "name": "3's BACK",
+   "byArtist": {
+    "@id": "https://lthrizzl3.com/#artist"
+   },
+   "albumReleaseType": "https://schema.org/AlbumRelease",
+   "numTracks": 2,
+   "track": [
+    {
+     "@type": "MusicRecording",
+     "name": "ThrizzL3",
+     "duration": "PT1M50S",
+     "byArtist": {
+      "@id": "https://lthrizzl3.com/#artist"
+     }
+    },
+    {
+     "@type": "MusicRecording",
+     "name": "I Want Her",
+     "duration": "PT2M15S",
+     "byArtist": {
+      "@id": "https://lthrizzl3.com/#artist"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://lthrizzl3.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Music",
+     "item": "https://lthrizzl3.com/music.html"
+    }
+   ]
+  },
+  {
+   "@type": "MusicRecording",
+   "name": "Prada",
+   "byArtist": {
+    "@id": "https://lthrizzl3.com/#artist"
+   }
+  },
+  {
+   "@type": "MusicRecording",
+   "name": "L3",
+   "byArtist": {
+    "@id": "https://lthrizzl3.com/#artist"
+   }
+  }
+ ]
 }
 </script>
 <style>
@@ -339,6 +419,8 @@ html:not(.motion) .lglyph .g3{display:none}
 .bcard p{color:#C9BFAE}
 .bcard .btn{justify-self:start;background:var(--cream);color:var(--ink);border-color:var(--cream)}
 @media (max-width:700px){.best{grid-template-columns:1fr}}
+.s1 .photo video.hv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.motion .s1 .photo video.hv{transform:scale(calc(1.12 - var(--p) * .12))}
 /* now playing pill */
 .np{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);z-index:40;background:var(--ink);color:var(--cream);border:1px solid #333;border-radius:999px;padding:8px 18px 8px 8px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,.7,.2,1);max-width:calc(100vw - 32px)}
 .np.show{transform:translate(-50%,0)}
@@ -427,7 +509,7 @@ html:not(.motion) .lglyph .g3{display:none}
 
   <section class="pin s1" id="top" data-scene aria-label="3's BACK">
     <div class="stage">
-      <div class="photo"><img src="img/hero-music.jpg" alt="LTHrizzL3" width="1920" height="1080" fetchpriority="high"></div>
+      <div class="photo"><img src="img/hero-music.jpg" alt="LTHrizzL3" width="1920" height="1080" fetchpriority="high"><video class="hv" autoplay muted loop playsinline preload="auto" poster="img/hero-music.jpg" aria-hidden="true"><source src="video/hv-music.mp4" type="video/mp4"></video></div>
       <div class="top"><span class="label">Music</span><span class="label cue" aria-hidden="true">Scroll ↓</span></div>
       <div class="mid">
         <p class="tag"><span>Out now</span></p>
@@ -518,7 +600,7 @@ html:not(.motion) .lglyph .g3{display:none}
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!reduce) document.documentElement.classList.add('motion'); else {var rv=document.getElementById('reel'); if(rv){rv.removeAttribute('autoplay');rv.pause()}}
+  if(!reduce) document.documentElement.classList.add('motion'); else document.querySelectorAll('video[autoplay]').forEach(function(v){v.removeAttribute('autoplay');v.pause()});
   var hdr=document.getElementById('hdr');
   var scenes=[].slice.call(document.querySelectorAll('[data-scene]')).map(function(el){
     var steps=[].slice.call(el.querySelectorAll('[data-step]')), n=0;

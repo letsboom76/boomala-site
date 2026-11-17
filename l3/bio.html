@@ -3,45 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bio — LTHrizzL3 | Rapper from the Eight, Los Angeles</title>
-<meta name="description" content="The story of LTHrizzL3, a rapper from the Eight in Los Angeles, and his album 3's BACK.">
+<title>Bio | LTHrizzL3 — From the Eight to the Mic</title>
+<meta name="description" content="The story of LTHrizzL3: coming up in the San Fernando Valley, basketball, faith, being a dad, and the music.">
 <link rel="canonical" href="https://lthrizzl3.com/bio.html">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F2E8D5">
+<meta name="robots" content="max-image-preview:large, max-video-preview:-1">
 <link rel="icon" href="favicon.png" type="image/png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
-<meta property="og:type" content="profile">
+<link rel="manifest" href="site.webmanifest">
+<link rel="sitemap" type="application/xml" href="sitemap.xml">
+<meta property="og:type" content="website">
 <meta property="og:site_name" content="LTHrizzL3">
-<meta property="og:title" content="LTHrizzL3 — I'm from the Eight">
-<meta property="og:description" content="The album 3's BACK, out now. Music, videos and live streams.">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="Bio | LTHrizzL3 — From the Eight to the Mic">
+<meta property="og:description" content="The story of LTHrizzL3: coming up in the San Fernando Valley, basketball, faith, being a dad, and the music.">
 <meta property="og:url" content="https://lthrizzl3.com/bio.html">
-<meta property="og:image" content="https://lthrizzl3.com/img/og.jpg">
+<meta property="og:image" content="https://lthrizzl3.com/img/og-bio.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="LTHrizzL3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="LTHrizzL3 — I'm from the Eight">
-<meta name="twitter:description" content="The album 3's BACK, out now.">
-<meta name="twitter:image" content="https://lthrizzl3.com/img/og.jpg">
+<meta name="twitter:title" content="Bio | LTHrizzL3 — From the Eight to the Mic">
+<meta name="twitter:description" content="The story of LTHrizzL3: coming up in the San Fernando Valley, basketball, faith, being a dad, and the music.">
+<meta name="twitter:image" content="https://lthrizzl3.com/img/og-bio.jpg">
 <link rel="preload" as="image" href="img/bio-reel-poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap">
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@type": "MusicGroup",
-  "name": "LTHrizzL3",
-  "alternateName": "L3",
-  "genre": "Hip-Hop",
-  "url": "https://lthrizzl3.com/",
-  "image": "https://lthrizzl3.com/img/og.jpg",
-  "foundingLocation": {"@type": "Place", "name": "Los Angeles, California"},
-  "sameAs": ["https://www.instagram.com/lthrizzl3/", "https://www.youtube.com/@3forthrizzl3", "https://www.twitch.tv/lthrizzl3", "https://kick.com/lthrizzl3"],
-  "album": {"@type": "MusicAlbum", "name": "3's BACK", "byArtist": {"@type": "MusicGroup", "name": "LTHrizzL3"}},
-  "track": [
-    {"@type": "MusicRecording", "name": "ThrizzL3"},
-    {"@type": "MusicRecording", "name": "I Want Her"}
-  ]
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "MusicGroup",
+   "@id": "https://lthrizzl3.com/#artist",
+   "name": "LTHrizzL3",
+   "alternateName": [
+    "L3",
+    "Thrizzl3"
+   ],
+   "genre": [
+    "Hip-Hop",
+    "R&B"
+   ],
+   "url": "https://lthrizzl3.com/",
+   "image": "https://lthrizzl3.com/img/og-index.jpg",
+   "description": "LTHrizzL3 (L3) is a hip-hop artist from the San Fernando Valley, Los Angeles. I'm from the Eight.",
+   "foundingLocation": {
+    "@type": "Place",
+    "name": "Los Angeles, California"
+   },
+   "sameAs": [
+    "https://www.instagram.com/lthrizzl3/",
+    "https://www.instagram.com/3forthrizzl3/",
+    "https://www.youtube.com/@3forthrizzl3",
+    "https://www.twitch.tv/lthrizzl3",
+    "https://kick.com/lthrizzl3"
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://lthrizzl3.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Bio",
+     "item": "https://lthrizzl3.com/bio.html"
+    }
+   ]
+  },
+  {
+   "@type": "ProfilePage",
+   "url": "https://lthrizzl3.com/bio.html",
+   "mainEntity": {
+    "@id": "https://lthrizzl3.com/#artist"
+   }
+  }
+ ]
 }
 </script>
 <style>
@@ -580,7 +625,7 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(!reduce) document.documentElement.classList.add('motion'); else {var rv=document.getElementById('reel'); if(rv){rv.removeAttribute('autoplay');rv.pause()}}
+  if(!reduce) document.documentElement.classList.add('motion'); else document.querySelectorAll('video[autoplay]').forEach(function(v){v.removeAttribute('autoplay');v.pause()});
   var hdr=document.getElementById('hdr');
   var scenes=[].slice.call(document.querySelectorAll('[data-scene]')).map(function(el){
     var steps=[].slice.call(el.querySelectorAll('[data-step]')), n=0;
