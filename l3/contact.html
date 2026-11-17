@@ -315,6 +315,16 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
 @media (max-width:900px){.track-soon{grid-template-columns:44px minmax(0,1fr) auto;gap:12px;padding-block:10px}.track-soon .sb{width:44px;height:44px}}
 .mlist .soon{display:inline-block;padding:3px 0;font-weight:800;font-size:clamp(28px,3.4vw,40px);line-height:1.2;letter-spacing:-.02em;color:rgba(242,232,213,.45)}
 .mlist .soon small{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-left:10px;vertical-align:middle}
+
+.cform{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px;max-width:860px}
+.cform label{display:grid;gap:6px;font-weight:700;font-size:14px}
+.cform label em{font-style:normal;font-weight:400;color:var(--ink-2)}
+.cform input,.cform select,.cform textarea{font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--ink);background:#FBF7EF;color:var(--ink);border-radius:0;width:100%}
+.cform input:focus,.cform select:focus,.cform textarea:focus{outline:2px solid var(--red);outline-offset:1px}
+.cform .full{grid-column:1/-1}
+.fr{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.fmsg{font-weight:700}.fmsg.err{color:var(--red)}
+@media (max-width:700px){.cform{grid-template-columns:1fr}}
 /* now playing pill */
 .np{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translate(-50%,160%);z-index:40;background:var(--ink);color:var(--cream);border:1px solid #333;border-radius:999px;padding:8px 18px 8px 8px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 40px -16px rgba(0,0,0,.6);transition:transform .45s cubic-bezier(.2,.7,.2,1);max-width:calc(100vw - 32px)}
 .np.show{transform:translate(-50%,0)}
@@ -375,7 +385,6 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       <li><a href="index.html">Home</a></li>
       <li><a href="music.html">Music</a></li>
       <li><a href="watch.html">Watch</a></li>
-      <li><a href="index.html#studio">In the Studio</a></li>
       <li><a href="pullup.html">Pull Up</a></li>
       <li><a href="bio.html">Bio</a></li>
       <li class="gap" aria-hidden="true"></li>
@@ -411,6 +420,23 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
         <div class="ctas"><a class="btn" href="#booking">Get in touch</a><a class="btn ghost" href="music.html">Hear the album</a></div>
       </div>
       <h1 class="name">Hit us up</h1>
+    </div>
+  </section>
+
+  <section class="page-sec" id="form">
+    <div class="wrap">
+      <div class="label" style="color:var(--red)">Booking · features · press</div>
+      <h2 class="h2" style="margin-top:8px">Tell us what you need</h2>
+      <form class="cform" id="cform" novalidate>
+        <label>Name<input name="name" autocomplete="name" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Phone <em>optional</em><input name="phone" type="tel" autocomplete="tel"></label>
+        <label>What's it for<select name="type" required><option value="">Pick one</option><option>Book a show</option><option>Feature</option><option>Press or interview</option><option>Brand partnership</option><option>Something else</option></select></label>
+        <label>Date <em>optional</em><input name="date" type="date"></label>
+        <label>City or venue <em>optional</em><input name="where"></label>
+        <label class="full">Message<textarea name="message" rows="5" required></textarea></label>
+        <div class="full fr"><button class="btn" type="submit">Send it</button><span class="fmsg" id="fmsg" role="status"></span></div>
+      </form>
     </div>
   </section>
 
@@ -573,6 +599,21 @@ footer .links{display:flex;gap:16px;flex-wrap:wrap}
       c.classList.add('on'); v.controls=true; v.play().catch(function(){});
     });
   });
+
+
+  /* contact form: until a booking inbox is connected, it opens the visitor's email app with everything filled in */
+  (function(){var f=document.getElementById('cform'); if(!f) return; var msg=document.getElementById('fmsg');
+    var TO=(document.getElementById('email')||{}).textContent||'';
+    f.addEventListener('submit',function(e){e.preventDefault();
+      var d=new FormData(f), miss=[];
+      ['name','email','type','message'].forEach(function(k){if(!String(d.get(k)||'').trim())miss.push(k)});
+      if(miss.length){msg.className='fmsg err';msg.textContent='Fill in your name, email, what it\'s for and a message.';f.querySelector('[name='+miss[0]+']').focus();return}
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(TO)){msg.className='fmsg err';msg.textContent='Booking email is coming soon. DM @lthrizzl3 on Instagram for now.';return}
+      var body=['Name: '+d.get('name'),'Email: '+d.get('email'),'Phone: '+(d.get('phone')||'-'),'For: '+d.get('type'),'Date: '+(d.get('date')||'-'),'Where: '+(d.get('where')||'-'),'',d.get('message')].join('\n');
+      location.href='mailto:'+TO.trim()+'?subject='+encodeURIComponent(d.get('type')+' for LTHrizzL3 from '+d.get('name'))+'&body='+encodeURIComponent(body);
+      msg.className='fmsg';msg.textContent='Opening your email app.';
+    });
+  })();
 
   var cp=document.getElementById('copy'),em=document.getElementById('email');
   if(cp) cp.addEventListener('click',function(){
