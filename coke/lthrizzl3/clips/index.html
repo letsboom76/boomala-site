@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>L3 Clip Calendar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style id="page-style">
+/* Layout: one column — summary strip, tabs, then the drop list grouped by week. */
+:root{
+  --bg:#f3ecdf; --surface:#fbf7ef; --ink:#151212; --muted:#5f5650; --line:#ddd2bf;
+  --l3:#c8102e; --jj:#b98a1e; --pu:#2b5fd9; --good:#1f7a45; --warn:#b86a00;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Figtree",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141111; --surface:#1c1817; --ink:#f0e8da; --muted:#b3a796; --line:#352e2a;
+    --l3:#ec3b4f; --jj:#e3b54a; --pu:#6f9bff; --good:#4cc97f; --warn:#f0a43c; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141111; --surface:#1c1817; --ink:#f0e8da; --muted:#b3a796; --line:#352e2a;
+  --l3:#ec3b4f; --jj:#e3b54a; --pu:#6f9bff; --good:#4cc97f; --warn:#f0a43c; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:28px 18px 64px;display:grid;gap:22px}
+header h1{font:900 52px/.95 var(--display);letter-spacing:.01em;margin:0;text-transform:uppercase;text-wrap:balance}
+header p{margin:8px 0 0;color:var(--muted);max-width:62ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.pill i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.s-L3 i{background:var(--l3)} .s-WBW i{background:var(--jj)} .s-PU i{background:var(--pu)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.stat b{display:block;font:800 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--muted)}
+.bar{height:5px;border-radius:3px;background:var(--line);margin-top:8px;overflow:hidden}
+.bar>div{height:100%;background:var(--good)}
+.next{background:var(--ink);color:var(--bg);border-radius:12px;padding:14px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.next .k{font:800 14px var(--display);letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.next .v{font-weight:600}
+nav.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+nav.tabs button{font:600 14px var(--body);background:none;border:0;color:var(--muted);padding:10px 12px;border-bottom:3px solid transparent;cursor:pointer}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--l3)}
+button:focus-visible,input:focus-visible,summary:focus-visible,a:focus-visible{outline:2px solid var(--pu);outline-offset:2px;border-radius:4px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:600 12px var(--body);padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.week h2{font:800 20px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.show{display:inline-block;font:800 13px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.wk div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px}
+.wk b{display:block;font:800 13px var(--display);letter-spacing:.08em;color:var(--muted)}
+.wk span{font-size:12px;font-weight:600;line-height:1.25;display:block}
+@media (max-width:620px){.wk{grid-template-columns:repeat(4,1fr)}}
+.back{font-size:13px;color:var(--muted)} .back a{color:var(--ink)}
+.drop{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:86px 1fr auto;gap:6px 14px;align-items:start;margin-bottom:8px}
+.drop.L3{border-left-color:var(--l3)} .drop.WBW{border-left-color:var(--jj)} .drop.PU{border-left-color:var(--pu)}
+.drop.today{box-shadow:0 0 0 2px var(--ink) inset}
+.when{font-variant-numeric:tabular-nums}
+.when b{display:block;font:800 24px/1 var(--display)}
+.when span{font-size:12px;color:var(--muted)}
+.what{min-width:0} .what h3{margin:0;font-size:16px;line-height:1.3}
+.what .file{font:500 12px var(--mono);color:var(--muted);word-break:break-all}
+.what .cap{margin:6px 0 0;font-size:14px;color:var(--muted)}
+.meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.plats{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.plat{display:inline-flex;align-items:center;gap:5px;font:600 12px var(--body);border:1px solid var(--line);border-radius:8px;padding:5px 8px;cursor:pointer;user-select:none;background:var(--bg)}
+.plat input{margin:0;accent-color:var(--good)}
+.plat.on{border-color:var(--good);color:var(--good)}
+.copy{font:600 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 9px;cursor:pointer}
+.copy.ok{color:var(--good);border-color:var(--good)}
+.alldone{grid-column:1/-1;font-size:12px;color:var(--good);font-weight:600}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 16px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;padding:10px 0;font-size:16px}
+details ol{padding-left:22px;margin:4px 0 14px} details li{margin:5px 0}
+.note a,details a{color:var(--ink)} .note{border-left:3px solid var(--l3);padding:8px 12px;background:var(--bg);border-radius:6px;font-size:14px;margin:0 0 14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600}
+.tablewrap{overflow-x:auto}
+.save{font-size:12px;color:var(--muted)}
+[hidden]{display:none !important}
+@media (max-width:620px){
+  header h1{font-size:34px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .drop{grid-template-columns:64px 1fr}
+  .plats{grid-column:1/-1;justify-content:flex-start}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+(function(){
+var TAGS = {
+  L3talk:"#LTHrizzL3 #hiphop #motivation #basketball #mindset",
+  L3music:"#LTHrizzL3 #newmusic #studiosession #hiphop #rap",
+  WBW:"#WhoBeatsWho #JerseyJon #LTHrizzL3 #trashtalk #competition",
+  PU:"#PullUpLA #JerseyJon #LTHrizzL3 #podcast #realtalk"
+};
+var SHOWS = {1:"No Rap Before 12",2:"The Thrizzl3 Effect",3:"Rythm & 3",4:"3's Up 🎤",5:"Fit Check",6:"Effect clips",0:"Off The Clock"};
+var SLOT = {"7:00 AM":"Before 12","12:00 PM":"The music","7:00 PM":"The show","4:00 PM":"Collab"};
+// id, date, time, series, file, hook, caption, tagset, why it fits the day
+var DROPS = [
+ ["BB09","2026-11-23","7:00 AM","L3","L3_BB09_They-Quit-I-Dont","They Quit. I Don't.","Most people quit before they get there. I don't.","L3talk","A grind message to start the week. No rap in it."],
+ ["BB02","2026-11-24","7:00 AM","L3","L3_BB02_Mental-Peace","I Love My Mental Peace","Don't care about looks no more. I care how you treat me.","L3talk","Real talk ahead of tonight's Thrizzl3 Effect."],
+ ["WBW00","2026-11-24","4:00 PM","WBW","WBW00_Who-Can-Beat-Who","Who Beats Who? (premise)","Every Tuesday, me vs. @lthrizzl3. New sport every week. Who beats who?","WBW","Who Beats Who is every Tuesday. Jon posts, you accept the collab."],
+ ["MV02","2026-11-25","7:00 PM","L3","L3_MV02_Cant-Stop-Thinking-Bout-You","Can't Stop Thinking Bout You","What you doing? Come through.","L3music","Your R&B side, so it's the Rythm & 3 show."],
+ ["MV01","2026-11-26","12:00 PM","L3","L3_MV01_Its-Bout-To-Get-Lit","It's Bout To Get Lit","They put my music on when I walk in. 👑","L3music","The noon music post on 3's Up day."],
+ ["BB04","2026-11-27","7:00 PM","L3","L3_BB04_Changed-My-Whole-Image","Why I Changed My Whole Image","Changed my whole image because the rooms I'm walking into matter.","L3talk","Fit Check is about the image. This is why it matters."],
+ ["PU01","2026-11-28","7:00 PM","PU","PU01_What-Do-You-See-In-Me","What Do You See In Me?","He flipped the question on me.","PU","Saturday's collab slot with @jerseyjon76."],
+ ["BB16","2026-11-29","7:00 PM","L3","L3_BB16_Bubbles","My Basketball Was Named Bubbles","Before L3, my basketball's name was Bubbles.","L3talk","Off The Clock: the story behind you."],
+ ["BB17","2026-11-30","7:00 AM","L3","L3_BB17_Five-Stadiums","Five Stadiums Sold Out","Five stadiums sold out. Believe me or not.","L3talk","The goal you wake up to. No rap in it."],
+ ["BB05","2026-12-01","7:00 AM","L3","L3_BB05_Its-Not-I-Its-We","It's Not I, It's We","It's not I. It's we.","L3talk","Real talk ahead of tonight's Thrizzl3 Effect."],
+ ["WBW01","2026-12-01","4:00 PM","WBW","WBW01_Golf-Ill-Kill-You","Golf: I'll Kill You In Golf","He says he'll kill me in golf. We'll see.","WBW","Who Beats Who Tuesday."],
+ ["BB20","2026-12-02","7:00 AM","L3","L3_BB20_Worst-They-Can-Say-Is-No","The Worst They Can Say Is No","Advice to my younger self: the worst they can say is no.","L3talk","Morning message before the R&B show."],
+ ["BB13","2026-12-03","7:00 AM","L3","L3_BB13_If-I-Eat-We-All-Win","If I Eat, We All Win","If I eat, we all eat. That's the team.","L3talk","Morning message before tonight's 3's Up."],
+ ["MV03","2026-12-04","7:00 PM","L3","L3_MV03_Prada-Balenciaga-Off-Whites","Prada, Balenciaga, Off-Whites","Prada, Balenciaga or some off-whites.","L3music","A song about the fit, on Fit Check night."],
+ ["PU02","2026-12-05","7:00 PM","PU","PU02_Like-A-Lion","Does Defense Win In Life?","Does defense win in life? @lthrizzl3 says go hunt.","PU","Saturday's collab slot with @jerseyjon76."],
+ ["BB07","2026-12-06","7:00 PM","L3","L3_BB07_Why-I-Play","Why I Play","This is why I pick up the ball. For her.","L3talk","Off The Clock: family and the why."],
+ ["BB03","2026-12-07","7:00 AM","L3","L3_BB03_Mark-My-Words","Mark My Words","Mark my words. This time next year.","L3talk","A grind message to start the week."],
+ ["BB12","2026-12-08","7:00 AM","L3","L3_BB12_Not-That-Type-Of-Dude","Fake It Till You Make It?","Fake it till you make it? Not me. Real fans only.","L3talk","Real talk ahead of tonight's Thrizzl3 Effect."],
+ ["WBW02","2026-12-08","4:00 PM","WBW","WBW02_Bowling-Is-My-Sport","Bowling Is My Sport","Bowling's his sport, apparently. Tuesday's coming.","WBW","Who Beats Who Tuesday."],
+ ["BB14","2026-12-09","7:00 AM","L3","L3_BB14_Not-A-Rapper","I'm Not A Rapper. I'm An Artist.","Don't call me a rapper. I'm an artist.","L3talk","Sets up the singing side on Rythm & 3 day."],
+ ["BB01","2026-12-10","7:00 AM","L3","L3_BB01_Turned-Me-Into-A-Monster","It Turned Me Into A Monster","Regret nothing. It made me who I am.","L3talk","Morning message before tonight's 3's Up."],
+ ["BB15","2026-12-11","7:00 AM","L3","L3_BB15_Bucket-Reel","Never Came Off The Bench","Never came off the bench. Not once.","L3talk","Grind energy to start Friday."],
+ ["PU03","2026-12-12","7:00 PM","PU","PU03_Why-L3","Why They Call Him L3","Where the 3 comes from.","PU","Saturday's collab slot with @jerseyjon76."],
+ ["BB18","2026-12-13","7:00 PM","L3","L3_BB18_My-New-Girlfriend","My New Girlfriend","Basketball was my first love. Music's the one now.","L3talk","Off The Clock: why music won."],
+ ["WBW03","2026-12-15","4:00 PM","WBW","WBW03_You-Dont-Know-Me","Golf: You Don't Know Me","\"You don't know how to golf.\" Say less.","WBW","Who Beats Who Tuesday."],
+ ["PU04","2026-12-19","7:00 PM","PU","PU04_Weve-Done-It","We've Done It","Not \"we're gonna.\" We've done it.","PU","Saturday's collab slot with @jerseyjon76."],
+ ["WBW04","2026-12-22","4:00 PM","WBW","WBW04_Better-Than-Mike","HORSE: Better Than Mike","He's \"better than Mike.\" Prove it.","WBW","Who Beats Who Tuesday."]
+].map(function(r){return {id:r[0],date:r[1],time:r[2],series:r[3],file:r[4]+".mp4",hook:r[5],cap:r[6],tags:TAGS[r[7]],why:r[8]};});
+
+var SERIES = {
+  L3:{name:"Your clips",acct:"@lthrizzl3",folder:"IG Clips → READY TO USE"},
+  WBW:{name:"Who Beats Who",acct:"@jerseyjon76 + collab @lthrizzl3",folder:"Jersey Jon Clips → WHO BEATS WHO"},
+  PU:{name:"Pull Up",acct:"@jerseyjon76 + collab @lthrizzl3",folder:"Jersey Jon Clips → PULL UP"}
+};
+var PLATS = [["ig","IG"],["tt","TikTok"],["yt","YouTube"]];
+var state = {done:{}};
+try { var l = JSON.parse(localStorage.getItem("l3clips") || "null"); if(l && l.done) state = l; } catch(e){}
+var ui = {tab:"calendar", filter:"all"};
+try { var u = JSON.parse(localStorage.getItem("l3clips-ui")||"null"); if(u) ui = u; } catch(e){}
+var H = {"#how-to":"how","#captions":"captions","#calendar":"calendar"};
+if(H[location.hash]) ui.tab = H[location.hash];
+
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+function dt(d){return new Date(d+"T12:00:00");}
+function fmtDay(d){return dt(d).toLocaleDateString("en-US",{weekday:"short"});}
+function fmtDate(d){return dt(d).toLocaleDateString("en-US",{month:"short",day:"numeric"});}
+function weekKey(d){var x=dt(d);var day=(x.getDay()+6)%7;x.setDate(x.getDate()-day);return x.toISOString().slice(0,10);}
+function todayISO(){var n=new Date();return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0");}
+function isOn(id,p){return !!state.done[id+":"+p];}
+function fullCap(d){return d.cap+"\n\n"+d.tags;}
+function show(d){return SHOWS[dt(d).getDay()];}
+
+function render(){
+  var t=todayISO(), N=DROPS.length, on=0, per={ig:0,tt:0,yt:0};
+  DROPS.forEach(function(d){PLATS.forEach(function(p){if(isOn(d.id,p[0])){on++;per[p[0]]++;}});});
+  var next=DROPS.filter(function(d){return d.date>=t;})[0];
+  var h='<p class="back"><a href="../content/#posting">← Your game plan and posting guide</a></p>';
+  h+='<header><h1>Clip Calendar</h1><p>The '+N+' finished clips, each placed on the day whose show it fits, Nov 23 to Dec 22. They fill some of your 7 a.m., 12 p.m. and 7 p.m. slots. The rest stay yours to shoot. Tick each platform once that post is scheduled.</p></header>';
+  h+='<div class="wk" aria-label="Your weekly shows">'+[1,2,3,4,5,6,0].map(function(i){return '<div><b>'+["SUN","MON","TUE","WED","THU","FRI","SAT"][i]+'</b><span>'+esc(SHOWS[i])+'</span></div>';}).join('')+'</div>';
+  h+='<div class="legend">'+Object.keys(SERIES).map(function(k){var x=SERIES[k];return '<span class="pill s-'+k+'"><i></i>'+esc(x.name)+' · '+esc(x.acct)+'</span>';}).join('')+'</div>';
+  h+='<section class="stats" aria-label="Progress"><div class="stat"><b>'+on+'/'+(N*3)+'</b><span>posts scheduled</span><div class="bar"><div style="width:'+Math.round(100*on/(N*3))+'%"></div></div></div>';
+  PLATS.forEach(function(p){h+='<div class="stat"><b>'+per[p[0]]+'/'+N+'</b><span>'+p[1]+'</span><div class="bar"><div style="width:'+Math.round(100*per[p[0]]/N)+'%"></div></div></div>';});
+  h+='</section>';
+  if(next){h+='<div class="next"><span class="k">Next clip</span><span class="v">'+fmtDay(next.date)+' '+fmtDate(next.date)+' · '+esc(next.time)+' · '+esc(show(next.date))+'</span><span>'+esc(next.hook)+'</span></div>';}
+  h+='<nav class="tabs" role="tablist">';
+  [["calendar","Calendar"],["how","How to schedule"],["captions","Captions"]].forEach(function(x){h+='<button role="tab" id="tab-'+x[0]+'" data-tab="'+x[0]+'" aria-selected="'+(ui.tab===x[0])+'">'+x[1]+'</button>';});
+  h+='</nav>';
+  h+='<section '+(ui.tab==="calendar"?'':'hidden')+'>'+calendar(t)+'</section>';
+  h+='<section '+(ui.tab==="how"?'':'hidden')+'>'+how()+'</section>';
+  h+='<section '+(ui.tab==="captions"?'':'hidden')+'>'+captions()+'</section>';
+  h+='<p class="save">Ticks save on this phone or computer.</p>';
+  document.getElementById("app").innerHTML=h;
+}
+
+function calendar(t){
+  var h='<div class="filters" role="group" aria-label="Filter">';
+  [["all","All"],["L3","Your clips"],["WBW","Who Beats Who"],["PU","Pull Up"]].forEach(function(f){h+='<button class="chip" data-filter="'+f[0]+'" aria-pressed="'+(ui.filter===f[0])+'">'+f[1]+'</button>';});
+  h+='</div>';
+  var wk=null;
+  DROPS.forEach(function(d){
+    if(ui.filter!=="all" && d.series!==ui.filter) return;
+    var w=weekKey(d.date);
+    if(w!==wk){ if(wk) h+='</div>'; wk=w; h+='<div class="week"><h2>Week of '+fmtDate(w)+'</h2>'; }
+    var S=SERIES[d.series], all=PLATS.every(function(p){return isOn(d.id,p[0]);});
+    h+='<article class="drop '+d.series+(d.date===t?' today':'')+'">';
+    h+='<div class="when"><b>'+fmtDay(d.date)+' '+dt(d.date).getDate()+'</b><span>'+fmtDate(d.date).split(" ")[0]+' · '+esc(d.time)+'</span></div>';
+    h+='<div class="what"><span class="show">'+esc(show(d.date))+' · '+esc(SLOT[d.time])+'</span><h3>'+esc(d.hook)+'</h3><div class="file">'+esc(S.folder)+' / '+esc(d.file)+'</div><p class="cap">'+esc(d.why)+'</p>';
+    h+='<div class="meta"><span class="pill s-'+d.series+'"><i></i>'+esc(S.acct)+'</span><button class="copy" data-copy="'+d.id+'">Copy caption</button></div></div>';
+    h+='<div class="plats">'+PLATS.map(function(p){var on=isOn(d.id,p[0]);return '<label class="plat'+(on?' on':'')+'"><input type="checkbox" id="c-'+d.id+'-'+p[0]+'" data-k="'+d.id+':'+p[0]+'"'+(on?' checked':'')+'> '+p[1]+'</label>';}).join('')+'</div>';
+    if(all) h+='<div class="alldone">Scheduled everywhere</div>';
+    h+='</article>';
+  });
+  if(wk) h+='</div>';
+  return h;
+}
+
+function how(){
+  return ''+
+  '<p class="note">Load these during your Sunday batch, the same way your <a href="../content/#posting">posting guide</a> shows. Instagram and YouTube can take the whole month in one sitting. TikTok only schedules 10 days ahead, so do TikTok on Sun Nov 22 (for Nov 23–Dec 2), Wed Dec 2 (for Dec 3–Dec 12) and Sat Dec 12 (for Dec 13–Dec 22).</p>'+
+  '<details open><summary>Instagram + Facebook</summary><ol>'+
+  '<li>Follow steps 4–10 of your <a href="../content/#posting">posting guide</a> in Meta Business Suite, using the clip, time and caption from the Calendar tab.</li>'+
+  '<li>Don’t add music or text. The captions, hook banner and @lthrizzl3 tag are already in the video.</li>'+
+  '<li>Pick a cover frame where your face and the hook banner both show.</li>'+
+  '<li>On the phone instead: Instagram → <b>+</b> → <b>Reel</b> → pick the clip → <b>Next</b> → paste the caption → <b>More options</b> → <b>Schedule this Reel</b> → date and time → Done → <b>Schedule</b>. It can go up to 75 days out.</li></ol></details>'+
+  '<details><summary>Collab days: Who Beats Who and Pull Up</summary><ol>'+
+  '<li>Jon posts these from @jerseyjon76 and invites @lthrizzl3 as a collaborator.</li>'+
+  '<li>You’ll get an invite in your notifications. Tap <b>Accept</b> so it shows on your page too.</li>'+
+  '<li>Don’t also post these from your account. The collab already puts them on your profile.</li>'+
+  '<li>Collab posts can’t always be scheduled, so Jon may post them live at the time listed.</li></ol></details>'+
+  '<details><summary>TikTok (on a computer)</summary><ol>'+
+  '<li>Go to tiktok.com and log in as @lthrizzl3.</li>'+
+  '<li><b>Upload</b> (or menu → TikTok Studio → Upload) → drag in the clip.</li>'+
+  '<li>Paste the caption into <b>Description</b>.</li>'+
+  '<li>Pick the cover. Leave <b>Who can watch</b> on Everyone.</li>'+
+  '<li><b>When to post</b> → <b>Schedule</b> → date and time (make sure it says Pacific) → <b>Schedule</b>.</li>'+
+  '<li>A scheduled TikTok can’t be edited. To change one, delete it and upload again.</li></ol></details>'+
+  '<details><summary>YouTube Shorts (@3forthrizzl3)</summary><ol>'+
+  '<li>studio.youtube.com → check you’re on your channel.</li>'+
+  '<li><b>Create</b> → <b>Upload videos</b> → pick the file.</li>'+
+  '<li>Title: the hook plus your name, e.g. “They Quit. I Don’t. | LTHrizzL3”.</li>'+
+  '<li>Description: paste the caption and add <b>#Shorts</b> at the end.</li>'+
+  '<li>Audience: <b>No, it’s not made for kids</b> → Next → Next.</li>'+
+  '<li><b>Visibility</b> → <b>Schedule</b> → date, time, time zone Pacific → <b>Schedule</b>.</li></ol></details>';
+}
+
+function captions(){
+  var h='<p class="note">Same caption on every platform. Copy grabs the caption plus its hashtags. On YouTube, add #Shorts.</p><div class="tablewrap"><table><thead><tr><th>Date</th><th>Clip</th><th>Caption</th><th></th></tr></thead><tbody>';
+  DROPS.forEach(function(d){h+='<tr><td style="white-space:nowrap">'+fmtDate(d.date)+'<br><span style="color:var(--muted);font-size:12px">'+esc(d.time)+'</span></td><td><span class="pill s-'+d.series+'"><i></i>'+esc(d.id)+'</span></td><td>'+esc(d.cap)+'<br><span style="font:500 12px var(--mono);color:var(--muted)">'+esc(d.tags)+'</span></td><td><button class="copy" data-copy="'+d.id+'" data-label="Copy">Copy</button></td></tr>';});
+  return h+'</tbody></table></div>';
+}
+
+function save(){try{localStorage.setItem("l3clips",JSON.stringify(state));}catch(e){}}
+function saveUI(){try{localStorage.setItem("l3clips-ui",JSON.stringify(ui));}catch(e){}}
+
+document.addEventListener("change",function(e){
+  var k=e.target&&e.target.getAttribute("data-k"); if(!k) return;
+  if(e.target.checked) state.done[k]=true; else delete state.done[k];
+  var id=e.target.id; render(); var el=document.getElementById(id); if(el) el.focus(); save();
+});
+document.addEventListener("click",function(e){
+  var b=e.target.closest("button"); if(!b) return;
+  if(b.dataset.tab){ui.tab=b.dataset.tab;saveUI();try{history.replaceState(null,"",b.dataset.tab==="how"?"#how-to":"#"+b.dataset.tab);}catch(x){}render();document.getElementById("tab-"+ui.tab).focus();return;}
+  if(b.dataset.filter){ui.filter=b.dataset.filter;saveUI();render();return;}
+  if(b.dataset.copy){
+    var d=DROPS.filter(function(x){return x.id===b.dataset.copy;})[0]; if(!d) return;
+    var label=b.dataset.label||"Copy caption";
+    var done=function(ok){b.textContent=ok?"Copied":"Couldn’t copy";b.classList.toggle("ok",ok);setTimeout(function(){b.textContent=label;b.classList.remove("ok");},1600);};
+    try{navigator.clipboard.writeText(fullCap(d)).then(function(){done(true);},function(){done(false);});}catch(x){done(false);}
+  }
+});
+window.addEventListener("hashchange",function(){if(H[location.hash]){ui.tab=H[location.hash];render();}});
+render();
+})();
+</script>
+</body>
+</html>
