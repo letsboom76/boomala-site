@@ -170,6 +170,38 @@ section+section{border-top:1px solid var(--line)}
 footer{background:var(--black);color:var(--onblack-muted);font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;border-top:1px solid #2a2423}
 footer .wrap{padding-block:22px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 footer a{color:var(--onblack)}
+/* this week */
+.trules{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.trules span{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:7px 10px;border:1px solid var(--line);background:var(--paper)}
+.tdays{display:grid;gap:10px}
+.tday{background:var(--paper);border:1px solid var(--line)}
+.tday[open]{border-color:var(--red);box-shadow:inset 3px 0 0 var(--red)}
+.tday summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:120px minmax(0,1fr) 24px;gap:14px;align-items:center;padding:16px 20px}
+.tday summary::-webkit-details-marker{display:none}
+.tday summary:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.tdn{font-family:var(--display);font-weight:900;font-size:1.7rem;line-height:1;display:grid}
+.tdn i{font-style:normal;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;color:var(--muted);font-weight:500;margin-top:4px}
+.tds{font-family:var(--display);font-weight:800;font-size:1.25rem;text-transform:uppercase;color:var(--red)}
+.tday[open] .chev{transform:rotate(-135deg);margin-top:6px}
+.tposts{padding:0 20px 20px;display:grid;gap:10px}
+.tp{display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;border-top:1px solid var(--line);padding-top:14px}
+.tt{display:grid;gap:2px;align-content:start}
+.tt b{font-family:var(--display);font-size:1.4rem;font-weight:900;line-height:1}
+.tt span{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.tb{display:grid;gap:8px;min-width:0}
+.tb p{font-size:.92rem}
+.tb p span{display:inline-block;min-width:96px;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tf{font-family:var(--mono);font-size:.82rem!important;overflow-wrap:anywhere}
+.th{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.05rem!important}
+.tb pre{margin:0;background:var(--cream);border:1px solid var(--line);padding:10px 12px;font-family:var(--mono);font-size:.78rem;white-space:pre-wrap;line-height:1.55;color:var(--ink)}
+.tn{color:var(--muted)}
+.tcopy{justify-self:start;font:inherit;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;background:var(--black);color:var(--onblack);border:0;cursor:pointer}
+.tcopy:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.tshow .tt b{color:var(--red)}
+.tst{border-top:1px solid var(--line);padding-top:12px;font-size:.9rem;color:var(--muted)}
+.tst b{color:var(--ink)}
+.tfoot{margin-top:16px;color:var(--muted);font-size:.95rem}
+@media (max-width:600px){.tday summary{grid-template-columns:84px minmax(0,1fr) 20px;padding:14px 16px}.tp{grid-template-columns:1fr;gap:8px}.tposts{padding:0 16px 16px}.tb p span{display:block;min-width:0}}
 /* questions */
 .qsets{display:grid;gap:10px}
 .qset{background:var(--paper);border:1px solid var(--line)}
@@ -345,6 +377,178 @@ footer a{color:var(--onblack)}
       <div class="day"><span class="d">SUN</span><h3>Off The Clock</h3><p>Gospel, family, the week ahead. Stories, or one quiet post.</p><span class="p">The Why</span></div>
     </div>
     <p class="stories"><b>Stories every day:</b> behind the scenes, polls on the next Real Talk topic, reposts and countdowns to drops.</p>
+  </div>
+</section>
+
+<section id="thisweek">
+  <div class="wrap">
+    <div class="head"><span class="label">Week 1 · Nov 23 to 29</span><h2>This week's posts</h2>
+      <p class="intro">Every post for your first week: which clip, what goes on screen, the caption and the tags. Tap a day, tap Copy caption, paste it into Business Suite. Same caption and on-screen words go on the YouTube Short.</p></div>
+    <div class="trules"><span>7 AM: no rap, gospel or old-school R&amp;B under it</span><span>12 PM: the music</span><span>7 PM: that day's show</span></div>
+    <div class="tdays">
+<details class="tday" open><summary><span class="tdn">MON<i>Nov 23</i></span><span class="tds">No Rap Before 12</span><span class="chev" aria-hidden="true"></span></summary>
+<div class="tposts"><div class="tp"><div class="tt"><b>7:00 AM</b><span>Before 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB09_They-Quit-I-Dont</p>
+<p class="th"><span>On-screen</span>THEY QUIT. I DON&#x27;T.</p>
+<pre id="cap-mon-0">MOST PEOPLE QUIT RIGHT BEFORE IT HAPPENS. NOT ME. WEEK ONE STARTS NOW. 🏀
+
+#LTHrizzL3 #basketball #motivation #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Location: the court. Sound: gospel or old-school R&amp;B, no rap.</p>
+<button class="tcopy" type="button" data-copy="cap-mon-0">Copy caption</button></div></div><div class="tp"><div class="tt"><b>12:00 PM</b><span>After 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>BTS01 Session Day</p>
+<p class="th"><span>On-screen</span>SESSION DAY</p>
+<pre id="cap-mon-1">THIS IS WHERE I LIVE. DO YOUR SHI 3. 🎤
+
+#LTHrizzL3 #DoYourShi3 #newmusic #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: one of your songs (Prada or JOINTED UP).</p>
+<button class="tcopy" type="button" data-copy="cap-mon-1">Copy caption</button></div></div><div class="tp tshow"><div class="tt"><b>7:00 PM</b><span>The show</span></div><div class="tb">
+<p class="tf"><span>Clip</span>IG09 Meet L3</p>
+<p class="th"><span>On-screen</span>MEET L3</p>
+<pre id="cap-mon-2">IF YOU NEW HERE: I&#x27;M L3. I&#x27;M FROM THE 8. I SING, I RAP, I TELL IT HOW IT IS. ENERGY DON&#x27;T LIE. STICK AROUND. 👊🏾
+
+#LTHrizzL3 #NoRapBefore12 #ImFromThe8 #motivation #mindset</pre>
+<p class="tn"><span>Tag + sound</span>Tag @3forthrizzl3 so people find your other page. Pin this post to your profile.</p>
+<button class="tcopy" type="button" data-copy="cap-mon-2">Copy caption</button></div></div><p class="tst"><b>Stories:</b> 9:30 AM: Countdown: &quot;FIRST POST TONIGHT 7PM&quot; · 9:30 PM: Repost Meet L3</p></div></details>
+<details class="tday"><summary><span class="tdn">TUE<i>Nov 24</i></span><span class="tds">The Thrizzl3 Effect</span><span class="chev" aria-hidden="true"></span></summary>
+<div class="tposts"><div class="tp"><div class="tt"><b>7:00 AM</b><span>Before 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB02_Mental-Peace</p>
+<p class="th"><span>On-screen</span>I LOVE MY MENTAL PEACE</p>
+<pre id="cap-tue-0">DON&#x27;T CARE ABOUT LOOKS NO MORE. I CARE HOW YOU TREAT ME. PROTECT YOUR PEACE.
+
+#LTHrizzL3 #basketball #motivation #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Location: the court. Sound: gospel or old-school R&amp;B.</p>
+<button class="tcopy" type="button" data-copy="cap-tue-0">Copy caption</button></div></div><div class="tp"><div class="tt"><b>12:00 PM</b><span>After 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>PERF03 Aaliyah Stage</p>
+<p class="th"><span>On-screen</span>LIVE SESSION</p>
+<pre id="cap-tue-1">THIS ONE&#x27;S SPECIAL. AALIYAH ENERGY. MORE SOON. 🤍
+
+#LTHrizzL3 #DoYourShi3 #newmusic #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Location: the session venue. Sound: original session audio.</p>
+<button class="tcopy" type="button" data-copy="cap-tue-1">Copy caption</button></div></div><div class="tp tshow"><div class="tt"><b>7:00 PM</b><span>The show</span></div><div class="tb">
+<p class="tf"><span>Clip</span>IG04 I Took Her Back</p>
+<p class="th"><span>On-screen</span>I TOOK HER BACK</p>
+<pre id="cap-tue-2">I TOOK HER BACK. WOULD YOU HAVE? BE HONEST IN THE COMMENTS. 👇🏾 THE THRIZZL3 EFFECT, EVERY TUESDAY.
+
+#LTHrizzL3 #TheThrizzl3Effect #realtalk #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Pin the best comment. Repost it in your 9:30 PM story.</p>
+<button class="tcopy" type="button" data-copy="cap-tue-2">Copy caption</button></div></div><p class="tst"><b>Stories:</b> 9:30 AM: &quot;NEW THRIZZL3 EFFECT AT 7&quot; · 9:30 PM: Repost the best comment</p></div></details>
+<details class="tday"><summary><span class="tdn">WED<i>Nov 25</i></span><span class="tds">RYTHM &amp; 3</span><span class="chev" aria-hidden="true"></span></summary>
+<div class="tposts"><div class="tp"><div class="tt"><b>7:00 AM</b><span>Before 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB20_Worst-They-Can-Say-Is-No</p>
+<p class="th"><span>On-screen</span>THE WORST THEY CAN SAY IS NO</p>
+<pre id="cap-wed-0">ADVICE TO MY YOUNGER SELF: SHOOT YOUR SHOT. THE WORST THEY CAN SAY IS NO.
+
+#LTHrizzL3 #basketball #motivation #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Location: the court. Sound: gospel or old-school R&amp;B.</p>
+<button class="tcopy" type="button" data-copy="cap-wed-0">Copy caption</button></div></div><div class="tp"><div class="tt"><b>12:00 PM</b><span>After 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB14_Not-A-Rapper</p>
+<p class="th"><span>On-screen</span>I&#x27;M NOT A RAPPER. I&#x27;M AN ARTIST.</p>
+<pre id="cap-wed-1">DON&#x27;T CALL ME A RAPPER. I&#x27;M AN ARTIST. TONIGHT YOU&#x27;LL SEE WHY. 7PM.
+
+#LTHrizzL3 #DoYourShi3 #newmusic #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: a few seconds of tonight&#x27;s song under the end.</p>
+<button class="tcopy" type="button" data-copy="cap-wed-1">Copy caption</button></div></div><div class="tp tshow"><div class="tt"><b>7:00 PM</b><span>The show</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_MV02_Cant-Stop-Thinking-Bout-You</p>
+<p class="th"><span>On-screen</span>CAN&#x27;T STOP THINKING BOUT YOU</p>
+<pre id="cap-wed-2">WHAT YOU DOING? COME THROUGH. 🌙 RYTHM &amp; 3, EVERY WEDNESDAY.
+
+#LTHrizzL3 #RythmAnd3 #rnb #newmusic #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Story question at 9:30 PM: &quot;WHO YOU SENDING THIS TO?&quot;</p>
+<button class="tcopy" type="button" data-copy="cap-wed-2">Copy caption</button></div></div><p class="tst"><b>Stories:</b> 9:30 AM: A 5-second snippet tease · 9:30 PM: Poll: &quot;WHO YOU SENDING THIS TO?&quot;</p></div></details>
+<details class="tday"><summary><span class="tdn">THU<i>Nov 26</i></span><span class="tds">3&#x27;s Up 🎤 · Thanksgiving</span><span class="chev" aria-hidden="true"></span></summary>
+<div class="tposts"><div class="tp"><div class="tt"><b>7:00 AM</b><span>Before 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB13_If-I-Eat-We-All-Win</p>
+<p class="th"><span>On-screen</span>IF I EAT, WE ALL EAT</p>
+<pre id="cap-thu-0">HAPPY THANKSGIVING. IF I EAT, WE ALL EAT. THAT&#x27;S THE TEAM. 🍽️
+
+#LTHrizzL3 #basketball #motivation #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: gospel. Good one to share to your story too.</p>
+<button class="tcopy" type="button" data-copy="cap-thu-0">Copy caption</button></div></div><div class="tp"><div class="tt"><b>12:00 PM</b><span>After 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_MV01_Its-Bout-To-Get-Lit</p>
+<p class="th"><span>On-screen</span>IT&#x27;S BOUT TO GET LIT</p>
+<pre id="cap-thu-1">THEY PUT MY MUSIC ON WHEN I WALK IN. 👑 TURN IT UP AT THE FUNCTION TODAY.
+
+#LTHrizzL3 #DoYourShi3 #newmusic #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: original audio.</p>
+<button class="tcopy" type="button" data-copy="cap-thu-1">Copy caption</button></div></div><div class="tp tshow"><div class="tt"><b>7:00 PM</b><span>The show</span></div><div class="tb">
+<p class="tf"><span>Shoot</span>NEW: shoot your first 3&#x27;s Up</p>
+<p class="th"><span>On-screen</span>3&#x27;S UP 🎤 #1</p>
+<pre id="cap-thu-2">3&#x27;S UP. EPISODE 1. GRATEFUL AND STILL HUNGRY. NEW FREESTYLE EVERY THURSDAY. 🎤
+
+#LTHrizzL3 #3sUp #freestyle #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Shoot it before Thursday: 30–60 sec, one take, vertical. Prompt: &quot;grateful and still hungry.&quot;</p>
+<button class="tcopy" type="button" data-copy="cap-thu-2">Copy caption</button></div></div><p class="tst"><b>Stories:</b> 9:30 AM: &quot;3&#x27;S UP TONIGHT 7PM&quot; · 9:30 PM: Fan reactions to the freestyle</p></div></details>
+<details class="tday"><summary><span class="tdn">FRI<i>Nov 27</i></span><span class="tds">Fit Check</span><span class="chev" aria-hidden="true"></span></summary>
+<div class="tposts"><div class="tp"><div class="tt"><b>7:00 AM</b><span>Before 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB15_Bucket-Reel</p>
+<p class="th"><span>On-screen</span>NEVER CAME OFF THE BENCH</p>
+<pre id="cap-fri-0">NEVER CAME OFF THE BENCH. NOT ONCE. 🏀
+
+#LTHrizzL3 #basketball #motivation #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Location: the court. Sound: gospel or old-school R&amp;B.</p>
+<button class="tcopy" type="button" data-copy="cap-fri-0">Copy caption</button></div></div><div class="tp"><div class="tt"><b>12:00 PM</b><span>After 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_MV03_Prada-Balenciaga-Off-Whites</p>
+<p class="th"><span>On-screen</span>PRADA, BALENCIAGA, OFF-WHITES</p>
+<pre id="cap-fri-1">PRADA, BALENCIAGA OR SOME OFF-WHITES. PICK ONE. 👟
+
+#LTHrizzL3 #DoYourShi3 #newmusic #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: original audio.</p>
+<button class="tcopy" type="button" data-copy="cap-fri-1">Copy caption</button></div></div><div class="tp tshow"><div class="tt"><b>7:00 PM</b><span>The show</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB04_Changed-My-Whole-Image</p>
+<p class="th"><span>On-screen</span>WHY I CHANGED MY WHOLE IMAGE</p>
+<pre id="cap-fri-2">CHANGED MY WHOLE IMAGE BECAUSE THE ROOMS I&#x27;M WALKING INTO MATTER. FIT CHECK, EVERY FRIDAY.
+
+#LTHrizzL3 #FitCheck #DoYourShi3 #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Tag the brands you&#x27;re wearing. Tag your barber if it&#x27;s a fresh cut.</p>
+<button class="tcopy" type="button" data-copy="cap-fri-2">Copy caption</button></div></div><p class="tst"><b>Stories:</b> 9:30 AM: Pieces laid out on the bed · 9:30 PM: The fit out in the world</p></div></details>
+<details class="tday"><summary><span class="tdn">SAT<i>Nov 28</i></span><span class="tds">Effect clips</span><span class="chev" aria-hidden="true"></span></summary>
+<div class="tposts"><div class="tp"><div class="tt"><b>7:00 AM</b><span>Before 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>IG03 Can&#x27;t Change Nobody</p>
+<p class="th"><span>On-screen</span>YOU CAN&#x27;T CHANGE NOBODY</p>
+<pre id="cap-sat-0">YOU CAN&#x27;T CHANGE NOBODY. BUT YOU CAN CHANGE YOU.
+
+#LTHrizzL3 #TheThrizzl3Effect #realtalk #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: gospel or old-school R&amp;B.</p>
+<button class="tcopy" type="button" data-copy="cap-sat-0">Copy caption</button></div></div><div class="tp"><div class="tt"><b>12:00 PM</b><span>After 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB18_My-New-Girlfriend</p>
+<p class="th"><span>On-screen</span>MY NEW GIRLFRIEND</p>
+<pre id="cap-sat-1">BASKETBALL WAS MY FIRST LOVE. MUSIC&#x27;S THE ONE NOW. 🎶
+
+#LTHrizzL3 #DoYourShi3 #newmusic #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: a few seconds of one of your songs under the end.</p>
+<button class="tcopy" type="button" data-copy="cap-sat-1">Copy caption</button></div></div><div class="tp tshow"><div class="tt"><b>7:00 PM</b><span>The show</span></div><div class="tb">
+<p class="tf"><span>Clip</span>IG11 I&#x27;m Not Gonna Bottle It In</p>
+<p class="th"><span>On-screen</span>I&#x27;M NOT GONNA BOTTLE IT IN</p>
+<pre id="cap-sat-2">MEN KEEP A LOT IN. I&#x27;M NOT GONNA BOTTLE IT IN NO MORE. FROM THE THRIZZL3 EFFECT.
+
+#LTHrizzL3 #TheThrizzl3Effect #realtalk #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Posts from your account only. Schedule it with the rest.</p>
+<button class="tcopy" type="button" data-copy="cap-sat-2">Copy caption</button></div></div><p class="tst"><b>Stories:</b> 9:30 AM: Poll: next Thrizzl3 Effect topic · 9:30 PM: Repost the 7 PM clip</p></div></details>
+<details class="tday"><summary><span class="tdn">SUN<i>Nov 29</i></span><span class="tds">Off The Clock</span><span class="chev" aria-hidden="true"></span></summary>
+<div class="tposts"><div class="tp"><div class="tt"><b>7:00 AM</b><span>Before 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB07_Why-I-Play</p>
+<p class="th"><span>On-screen</span>WHY I PLAY</p>
+<pre id="cap-sun-0">THIS IS WHY I PICK UP THE BALL. FOR HER. ❤️
+
+#LTHrizzL3 #OffTheClock #ImFromThe8 #basketball</pre>
+<p class="tn"><span>Tag + sound</span>Sound: gospel.</p>
+<button class="tcopy" type="button" data-copy="cap-sun-0">Copy caption</button></div></div><div class="tp"><div class="tt"><b>12:00 PM</b><span>After 12</span></div><div class="tb">
+<p class="tf"><span>Clip</span>IG01 I Go Through Music</p>
+<p class="th"><span>On-screen</span>I GO THROUGH MUSIC</p>
+<pre id="cap-sun-1">HOW I GET THROUGH IT? MUSIC. EVERY TIME.
+
+#LTHrizzL3 #DoYourShi3 #newmusic #hiphop #ImFromThe8</pre>
+<p class="tn"><span>Tag + sound</span>Sound: original audio.</p>
+<button class="tcopy" type="button" data-copy="cap-sun-1">Copy caption</button></div></div><div class="tp tshow"><div class="tt"><b>7:00 PM</b><span>The show</span></div><div class="tb">
+<p class="tf"><span>Clip</span>L3_BB16_Bubbles</p>
+<p class="th"><span>On-screen</span>MY BASKETBALL WAS NAMED BUBBLES</p>
+<pre id="cap-sun-2">BEFORE L3, MY BASKETBALL HAD A NAME. BUBBLES. 😂 DON&#x27;T ASK.
+
+#LTHrizzL3 #OffTheClock #ImFromThe8 #basketball</pre>
+<p class="tn"><span>Tag + sound</span>Story at 8 PM: &quot;THIS WEEK: NEW 3&#x27;S UP THURSDAY.&quot;</p>
+<button class="tcopy" type="button" data-copy="cap-sun-2">Copy caption</button></div></div><p class="tst"><b>Stories:</b> 9:30 AM: Sunday music: what you&#x27;re playing · 9:30 PM: &quot;THIS WEEK: ...&quot; and next week&#x27;s 3&#x27;s Up date</p></div></details>
+    </div>
+    <p class="tfoot">Thursday's 3's Up is the one post you still need to shoot. Everything else is already cut and waiting in your clips folder.</p>
   </div>
 </section>
 
@@ -706,5 +910,6 @@ I'm from the 8.
     if(navigator.clipboard){navigator.clipboard.writeText(t).then(ok,function(){})}});
 })();
 </script>
+<script>document.querySelectorAll('.tcopy').forEach(function(b){b.addEventListener('click',function(){var t=document.getElementById(b.dataset.copy).textContent;function ok(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy caption'},1500)}if(navigator.clipboard)navigator.clipboard.writeText(t).then(ok,function(){});});});</script>
 </body>
 </html>
